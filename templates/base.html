@@ -1,0 +1,29 @@
+{%from "macros/macros.jinja2" import header%}
+{%from "macros/macros.jinja2" import footer%}
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{{title}}LinuxToolBox</title>
+    <meta name="description" content="Explore powerful security tools for network scanning and vulnerability assessment.">
+    <link rel="stylesheet" href="/static/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/static/css/others.css">
+    <link rel="stylesheet" href="/static/static/css/profile.css">
+    <link rel="stylesheet" href="/static/static/css/tools.css">
+    <link rel="stylesheet" href="static/static/css/style.css">
+    <link rel="stylesheet" href="/static/static/css/animate.min.css">
+    <link rel="stylesheet" href="/static/static/fonts/font-awesome.min.css">
+</head>
+
+<body class="body" style="background-color: #121212;">
+    {{header(session.get("email"))}}
+    {%block content%}
+    {%endblock%}
+    {{footer()}}
+</body>
+
+</html>

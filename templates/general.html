@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - LinuxToolBox</title>
+    <meta name="description" content="Explore powerful security tools for network scanning and vulnerability assessment.">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="static/css/animate.min.css">
+    <link rel="stylesheet" href="static/css/home.css">
+    <link rel="stylesheet" href="static/css/others.css">
+    <link rel="stylesheet" href="static/css/profile.css">
+    <link rel="stylesheet" href="static/css/scroll-bar.css">
+    <link rel="stylesheet" href="static/css/table.css">
+    <link rel="stylesheet" href="static/css/tools.css">
+</head>
+
+<body style="background: #121212;">
+    <nav class="navbar navbar-expand-md sticky-top navbar-shrink py-3 navbar-light" id="ProfileNav" style="background-color:#121212;max-height:72px;">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="home.html"><img class="logo" src="static/img/clipboard-image-2.png"></a><button data-bs-toggle="collapse" data-bs-target="#navcol-1" class="navbar-toggler"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon" style="background-color:#ebc33a;border-radius:4px;"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1" style="background-color:#121212;">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link link-light" href="home.html" style="color:#ffffff;color:#f3f5f8;border-radius:4px;">Home</a></li>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color:#f3f5f8;border-radius:4px;">Tools&nbsp;</a>
+                        <div class="dropdown-menu" style="border-radius:8px;"><a class="nmap_link" href="tools.html" style="padding-left:20px;margin-left:2px;padding-right:80px;margin-right:0px;">Nmap</a></div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link link-light" href="history.html" style="border-radius:4px;">History</a></li>
+                </ul>
+                <div class="dropdown all-btn" data-bss-hover-animate="pulse"><a aria-expanded="false" data-bs-toggle="dropdown" id="profile_btn" class="all-btn" href="#" style="width: 150px;padding: 10px 30px;background-color: #ebc33a;border-radius: 4px;color: #121212;"><strong>Profile&nbsp;</strong></a>
+                    <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container py-5">
+        <div class="d-flex d-lg-flex justify-content-center justify-content-lg-center sec_card">
+            <form class="d-flex flex-column sec_form" method="post" data-bs-theme="light">
+                <p class="font-monospace" style="color: #f3f5f8;font-size: 20px;margin: 0px;margin-bottom: 0px;"><strong>General</strong><br><span class="d-lg-flex align-items-lg-center" style="font-size: 15px;">Use the form below to update your profile.</span></p>
+                <div class="mb-3" style="display: flex;flex-direction: row;justify-content: space-between;">
+                    <div style="margin-top: 30px;width: 40%;"><label class="form-label font-monospace profile_text_label"><strong><span style="color: rgb(243, 245, 248);">First Name:</span></strong></label><input class="form-control profile_name_input" type="text" placeholder="First Name" style="padding-left: 10px;width: 100%;"></div>
+                    <div style="margin-top: 30px;width: 40%;"><label class="form-label font-monospace profile_text_label" id="profile_label1" style="margin-left: 0px;"><strong><span style="color: rgb(243, 245, 248);">Last Name:</span></strong></label><input class="form-control profile_name_input" type="text" style="width: 100%;padding-left: 10px;margin-left: 0px;" placeholder="Last Name"></div>
+                </div>
+                <div class="mb-3" style="margin-bottom: 17px;"><label class="form-label font-monospace profile_text_label"><strong><span style="color: rgb(243, 245, 248);">Phone Number:</span></strong></label><input class="form-control profile_number_input" type="number" name="number" placeholder="+1 (123) 456-7890" style="padding-left: 10px;width: 100%;">
+                    <p class="profile_small_text">We collect this incase of emergencies.</p>
+                </div>
+                <div class="d-flex justify-content-center justify-content-lg-center mb-3"><button class="btn btn-primary text-center shadow profile_save_btn all_btn" data-bss-hover-animate="pulse" type="submit" style="border-radius: 50px;">Save change</button></div>
+            </form>
+        </div>
+        <div style="margin-left: 20px;">
+            <div><a href="general.html">
+                    <p class="font-monospace profile_btn" style="width: 250px;height: 51px;margin-top: 80px;margin-bottom: 20px;padding-left: 5px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-fill" style="color: #f3f5f8;">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
+                        </svg><strong><span style="color: rgb(243, 245, 248);">&nbsp;General</span></strong><br><span class="d-lg-flex align-items-lg-center profile_small_text">Profile Name, Phone Number</span><br><br></p>
+                </a></div>
+            <div><a href="security.html">
+                    <p class="profile_btn" style="height: 51px;padding-left: 5px;margin-bottom: 0px;"><i class="fa fa-lock" style="color: #f3f5f8;margin-right: 15px;"></i><strong><span style="color: rgb(243, 245, 248);">&nbsp; &nbsp;Security</span></strong><br><span class="d-lg-flex align-items-lg-center profile_small_text">Password, Email Address</span></p>
+                </a><button class="btn text-center shadow-none profile_save_btn" data-bss-hover-animate="pulse" id="logout" type="submit" style="border-radius: 50px;margin-top: 40px;margin-left: 55px;margin-right: 55px;"><span style="color: rgb(226, 69, 89);">Log Out</span></button></div>
+        </div>
+    </div>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/js/bs-init.js"></script>
+</body>
+
+</html>

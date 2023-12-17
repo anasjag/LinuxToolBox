@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>LinuxToolBox</title>
+    <meta name="description" content="Explore powerful security tools for network scanning and vulnerability assessment.">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="static/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="static/fonts/line-awesome.min.css">
+    <link rel="stylesheet" href="static/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="static/css/animate.min.css">
+    <link rel="stylesheet" href="static/css/home.css">
+    <link rel="stylesheet" href="static/css/others.css">
+    <link rel="stylesheet" href="static/css/profile.css">
+    <link rel="stylesheet" href="static/css/scroll-bar.css">
+    <link rel="stylesheet" href="static/css/table.css">
+    <link rel="stylesheet" href="static/css/tools.css">
+</head>
+
+<body style="background-color: #121212;">
+    <nav class="navbar navbar-expand-md sticky-top navbar-shrink py-3 navbar-light" id="ProfileNav" style="background-color:#121212;max-height:72px;">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="home.html"><img class="logo" src="static/img/clipboard-image-2.png"></a><button data-bs-toggle="collapse" data-bs-target="#navcol-1" class="navbar-toggler"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon" style="background-color:#ebc33a;border-radius:4px;"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1" style="background-color:#121212;">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link link-light" href="home.html" style="color:#ffffff;color:#f3f5f8;border-radius:4px;">Home</a></li>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color:#f3f5f8;border-radius:4px;">Tools&nbsp;</a>
+                        <div class="dropdown-menu" style="border-radius:8px;"><a class="nmap_link" href="tools.html" style="padding-left:20px;margin-left:2px;padding-right:80px;margin-right:0px;">Nmap</a></div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link link-light" href="history.html" style="border-radius:4px;">History</a></li>
+                </ul>
+                <div class="dropdown" data-bss-hover-animate="pulse"><a aria-expanded="false" data-bs-toggle="dropdown" class="all_btn" href="" style="width: 150px;padding: 10px 30px;background-color: #ebc33a;border-radius: 4px;color: #121212;"><strong>Profile&nbsp;</strong></a>
+                    <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid d-xl-flex justify-content-xl-center align-items-xl-start" style="width: 80%;height: 100%;padding-top: 0px;margin-top: 100px;">
+        <div class="card d-xl-flex justify-content-xl-center" id="TableSorterCard" style="background-color: #434343;border-radius: 8px;width: 90%;height: 100%;">
+            <div class="card-header d-xl-flex py-3">
+                <div class="row d-xl-flex justify-content-xl-center align-items-xl-center table-topper align-items-center">
+                    <div class="col-12 col-sm-5 col-md-6 text-start d-xl-flex align-items-xl-center history-head">
+                        <p class="lead font-monospace text-start" data-bs-toggle="tooltip" data-bss-tooltip=""><strong><span style="color: rgb(255, 255, 255);">History</span></strong><br><span class="d-lg-flex align-items-lg-center" style="font-size: 12px;margin-top: -1px;"><strong><span style="color: rgb(255, 255, 255);">All scans history</span></strong></span></p>
+                    </div>
+                    <div class="col-12 col-sm-7 col-md-6 col-lg-4 col-xl-5 text-end d-flex d-lg-flex align-items-xl-center history-head">
+                        <div class="float-start float-md-end d-lg-flex d-xl-flex flex-fill justify-content-start search form-control" style="width: 70%;height: 30px;display: flex;justify-content: center;align-items: center;border-radius: 4px;padding-left: 5px;padding-right: 5px;margin-right: 0px;margin-right: 15px;"><i class="fas fa-search float-start search-icon" style="transform: translateY(-3px);padding-right: 10px;margin-right: -40px;"></i><input class="form-control-sm float-start float-sm-end custom-search-input" type="search" placeholder="Search..." style="border: none;padding-left: 0px;"></div><a class="btn btn-primary d-flex d-lg-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center" role="button" data-bss-hover-animate="pulse" id="new-scan"><i class="fa fa-plus"></i>&nbsp; New scan</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="width: 100%;">
+                <div class="col-md-12 search-table-col" style="margin-top: 3px;display: flex;flex-direction: column;padding-top: 0px;width: 100%;">
+                    <div class="font-monospace table" style="width: 100%;margin-top: -4px;height: 485px;">
+                        <table class="table" cellspacing="0" id="firsttable" width="100%">
+                            <thead class="table-heading">
+                                <tr class="table-row">
+                                    <th class="font-monospace table-header" style="padding-left: 50px;">Date</th>
+                                    <th class="table-header">IP or Hostname</th>
+                                    <th class="table-header">Success</th>
+                                    <th class="text-center table-header">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="table-header" style="padding-left: 50px;">London</td>
+                                    <td class="table-header">21</td>
+                                    <td class="table-header">2009/02/27</td>
+                                    <td class="text-center table-header"><svg class="btnNoBorders" fill="none" height="1em" style="color:#DC3545;" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11 5C11 4.44772 11.4477 4 12 4C12.5523 4 13 4.44772 13 5V12.1578L16.2428 8.91501L17.657 10.3292L12.0001 15.9861L6.34326 10.3292L7.75748 8.91501L11 12.1575V5Z" fill="currentColor"></path><path d="M4 14H6V18H18V14H20V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V14Z" fill="currentColor"></path></svg><svg class="bi bi-eye" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path></svg><i class="la la-remove"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="table-header" style="padding-left: 50px;">San Francisco</td>
+                                    <td class="table-header">30</td>
+                                    <td class="table-header">2010/07/14</td>
+                                    <td class="text-center table-header"><svg class="btnNoBorders" fill="none" height="1em" style="color:#DC3545;" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11 5C11 4.44772 11.4477 4 12 4C12.5523 4 13 4.44772 13 5V12.1578L16.2428 8.91501L17.657 10.3292L12.0001 15.9861L6.34326 10.3292L7.75748 8.91501L11 12.1575V5Z" fill="currentColor"></path><path d="M4 14H6V18H18V14H20V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V14Z" fill="currentColor"></path></svg><svg class="bi bi-eye" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path></svg><i class="la la-remove"></i></td>
+                                </tr>
+                                <tr class="table-header">
+                                    <td class="table-header" style="padding-left: 50px;">Edinburgh</td>
+                                    <td class="table-header">51</td>
+                                    <td class="table-header">2008/11/13</td>
+                                    <td class="text-center table-header"><svg class="btnNoBorders" fill="none" height="1em" style="color:#DC3545;" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11 5C11 4.44772 11.4477 4 12 4C12.5523 4 13 4.44772 13 5V12.1578L16.2428 8.91501L17.657 10.3292L12.0001 15.9861L6.34326 10.3292L7.75748 8.91501L11 12.1575V5Z" fill="currentColor"></path><path d="M4 14H6V18H18V14H20V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V14Z" fill="currentColor"></path></svg><svg class="bi bi-eye" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path></svg><i class="la la-remove"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="table-header" style="padding-left: 50px;">Singapore</td>
+                                    <td class="table-header">29</td>
+                                    <td class="table-header">2011/06/27</td>
+                                    <td class="text-center table-header"><svg class="btnNoBorders" fill="none" height="1em" style="color:#DC3545;" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11 5C11 4.44772 11.4477 4 12 4C12.5523 4 13 4.44772 13 5V12.1578L16.2428 8.91501L17.657 10.3292L12.0001 15.9861L6.34326 10.3292L7.75748 8.91501L11 12.1575V5Z" fill="currentColor"></path><path d="M4 14H6V18H18V14H20V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V14Z" fill="currentColor"></path></svg><svg class="bi bi-eye" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path></svg><i class="la la-remove"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="table-header" style="padding-left: 50px;">New York</td>
+                                    <td class="table-header">27</td>
+                                    <td class="table-header">2011/01/25</td>
+                                    <td class="text-center table-header"><svg class="btnNoBorders" fill="none" height="1em" style="color:#DC3545;" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11 5C11 4.44772 11.4477 4 12 4C12.5523 4 13 4.44772 13 5V12.1578L16.2428 8.91501L17.657 10.3292L12.0001 15.9861L6.34326 10.3292L7.75748 8.91501L11 12.1575V5Z" fill="currentColor"></path><path d="M4 14H6V18H18V14H20V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V14Z" fill="currentColor"></path></svg><svg class="bi bi-eye" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path></svg><i class="la la-remove"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="table-header" style="padding-left: 50px;">New York</td>
+                                    <td class="table-header">27</td>
+                                    <td class="table-header">2011/01/25</td>
+                                    <td class="text-center table-header"><svg class="btnNoBorders" fill="none" height="1em" style="color:#DC3545;" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11 5C11 4.44772 11.4477 4 12 4C12.5523 4 13 4.44772 13 5V12.1578L16.2428 8.91501L17.657 10.3292L12.0001 15.9861L6.34326 10.3292L7.75748 8.91501L11 12.1575V5Z" fill="currentColor"></path><path d="M4 14H6V18H18V14H20V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V14Z" fill="currentColor"></path></svg><svg class="bi bi-eye" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path></svg><i class="la la-remove"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="table-header" style="padding-left: 50px;">London</td>
+                                    <td class="table-header">21</td>
+                                    <td class="table-header">2009/02/27</td>
+                                    <td class="text-center table-header"><svg class="btnNoBorders" fill="none" height="1em" style="color:#DC3545;" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11 5C11 4.44772 11.4477 4 12 4C12.5523 4 13 4.44772 13 5V12.1578L16.2428 8.91501L17.657 10.3292L12.0001 15.9861L6.34326 10.3292L7.75748 8.91501L11 12.1575V5Z" fill="currentColor"></path><path d="M4 14H6V18H18V14H20V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V14Z" fill="currentColor"></path></svg><svg class="bi bi-eye" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path></svg><i class="la la-remove"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="table-header" style="padding-left: 50px;">San Francisco</td>
+                                    <td class="table-header">30</td>
+                                    <td class="table-header">2010/07/14</td>
+                                    <td class="text-center table-header"><svg class="btnNoBorders" fill="none" height="1em" style="color:#DC3545;" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11 5C11 4.44772 11.4477 4 12 4C12.5523 4 13 4.44772 13 5V12.1578L16.2428 8.91501L17.657 10.3292L12.0001 15.9861L6.34326 10.3292L7.75748 8.91501L11 12.1575V5Z" fill="currentColor"></path><path d="M4 14H6V18H18V14H20V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V14Z" fill="currentColor"></path></svg><svg class="bi bi-eye" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path></svg><i class="la la-remove"></i></td>
+                                </tr>
+                                <tr class="table-header">
+                                    <td class="table-header" style="padding-left: 50px;">Edinburgh</td>
+                                    <td class="table-header">51</td>
+                                    <td class="table-header">2008/11/13</td>
+                                    <td class="text-center table-header"><svg class="btnNoBorders" fill="none" height="1em" style="color:#DC3545;" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11 5C11 4.44772 11.4477 4 12 4C12.5523 4 13 4.44772 13 5V12.1578L16.2428 8.91501L17.657 10.3292L12.0001 15.9861L6.34326 10.3292L7.75748 8.91501L11 12.1575V5Z" fill="currentColor"></path><path d="M4 14H6V18H18V14H20V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V14Z" fill="currentColor"></path></svg><svg class="bi bi-eye" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path></svg><i class="la la-remove"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="table-header" style="padding-left: 50px;">Singapore</td>
+                                    <td class="table-header">29</td>
+                                    <td class="table-header">2011/06/27</td>
+                                    <td class="text-center table-header"><svg class="btnNoBorders" fill="none" height="1em" style="color:#DC3545;" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11 5C11 4.44772 11.4477 4 12 4C12.5523 4 13 4.44772 13 5V12.1578L16.2428 8.91501L17.657 10.3292L12.0001 15.9861L6.34326 10.3292L7.75748 8.91501L11 12.1575V5Z" fill="currentColor"></path><path d="M4 14H6V18H18V14H20V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V14Z" fill="currentColor"></path></svg><svg class="bi bi-eye" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path></svg><i class="la la-remove"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="table-header" style="padding-left: 50px;">New York</td>
+                                    <td class="table-header">27</td>
+                                    <td class="table-header">2011/01/25</td>
+                                    <td class="text-center table-header"><svg class="btnNoBorders" fill="none" height="1em" style="color:#DC3545;" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11 5C11 4.44772 11.4477 4 12 4C12.5523 4 13 4.44772 13 5V12.1578L16.2428 8.91501L17.657 10.3292L12.0001 15.9861L6.34326 10.3292L7.75748 8.91501L11 12.1575V5Z" fill="currentColor"></path><path d="M4 14H6V18H18V14H20V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V14Z" fill="currentColor"></path></svg><svg class="bi bi-eye" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path></svg><i class="la la-remove"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/js/bs-init.js"></script>
+</body>
+
+</html>

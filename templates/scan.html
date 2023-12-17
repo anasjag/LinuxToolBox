@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>LinuxToolBox</title>
+    <meta name="description" content="Explore powerful security tools for network scanning and vulnerability assessment.">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="static/css/animate.min.css">
+    <link rel="stylesheet" href="static/css/home.css">
+    <link rel="stylesheet" href="static/css/others.css">
+    <link rel="stylesheet" href="static/css/profile.css">
+    <link rel="stylesheet" href="static/css/scroll-bar.css">
+    <link rel="stylesheet" href="static/css/table.css">
+    <link rel="stylesheet" href="static/css/tools.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md sticky-top navbar-shrink py-3 navbar-light" id="mainNav" style="background-color: #121212;max-height: 72px;">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="home.html"><img class="logo" src="static/img/clipboard-image-2.png"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon" style="background-color: #ebc33a;border-radius: 4px;"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1" style="background-color: #121212;">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link link-light nav-link active" href="home.html" style="color:#ffffff;color:#f3f5f8;border-radius:4px;">Home</a></li>
+                    <li class="nav-item dropdown" style="padding-right: 0px;"><a class="nav-link dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color:#f3f5f8;border-radius:4px;">Tools&nbsp;</a>
+                        <div class="dropdown-menu" style="border-radius:8px;"><a class="nmap_link" href="tools.html" style="padding-left:20px;margin-left:2px;padding-right:80px;margin-right:0px;">Nmap</a></div>
+                    </li>
+                    <li class="nav-item" style="padding-left: 0px;"></li>
+                </ul>
+                <div class="nav-item" style="display: flex;">
+                    <div class="text-center d-lg-flex justify-content-lg-center align-items-lg-center nav-item" style="width: 89.8px;height: 41.5px;"><a class="link-light d-lg-flex justify-content-lg-center align-items-lg-center nav-link active" href="login.html" style="border-radius: 4px;padding-right: 0px;width: 89.5px;height: 41.5px;">Log in</a></div><a class="btn btn-primary shadow home_signup all_btn" role="button" data-bss-hover-animate="pulse" id="home_singup-1" href="signup.html" style="background-color: #EBC33A;color: #121212;border: none;border-radius: 4px;margin-left: 10px;">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="py-4" style="background-color: #121212;">
+        <div class="container py-4">
+            <div class="row mx-auto">
+                <div class="col">
+                    <h1 class="font-monospace" id="tool_h1"><strong>Port Scan with Nmap</strong></h1>
+                    <p class="font-monospace" id="tool_p1">Find open ports and running services, and do OS fingerprinting in a single port check.<br><br>Each Nmap port scan against a target IP address or hostname automatically maps the attack surface and gives accurate data for your reconnaissance work. Sign up here.</p><a class="btn font-monospace text-center shadow d-block" role="button" data-bss-hover-animate="pulse" id="tool_btn1" href="signup.html">Create account</a>
+                </div>
+                <div class="col">
+                    <section id="tool_card" style="margin-bottom: 35px;height: 200px;">
+                        <section id="tool_section1" style="padding-bottom: 0px;margin-bottom: -15px;">
+                            <div class="d-flex justify-content-center align-items-lg-start scan_text"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check" style="color: #f3f5f8;width: 24px;height: 24px;color: green;margin-left: 0px;">
+                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"></path>
+                                </svg>
+                                <p class="font-monospace" style="margin-left: 10px;color: #ebc33a;"><strong>Scan completed</strong> on <strong>192.168.1.1</strong><br>View your scan report or download it as a PDF.</p>
+                            </div>
+                        </section>
+                        <div class="d-flex justify-content-center align-items-center justify-content-lg-center" id="tool_section3" style="margin-top: 30px;margin-left: 0px;"><button class="btn btn-primary font-monospace text-center shadow d-flex d-lg-flex justify-content-center align-items-center home_signup all_btn" data-bss-hover-animate="pulse" id="scan_card_btn" type="button"><span style="color: rgb(243, 245, 248);"> </span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-eye" style="color: #f3f5f8;width: 24px;height: 24px;color: #f3f5f8;margin-left: 0px;margin-bottom: 5px;margin-right: 0px;margin-top: 3px;color: #ebc33a;font-size: 16px;">
+                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path>
+                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path>
+                                </svg><span style="font-weight: normal !important;">&nbsp;View</span> <span style="font-weight: normal !important;">report</span></button><button class="btn btn-primary font-monospace text-center shadow d-flex d-lg-flex align-items-center align-items-lg-center home_signup all_btn" data-bss-hover-animate="pulse" id="scan_card_btn" type="button" style="/*padding-right: 5px;*/"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-download" style="color: #f3f5f8;width: 24px;height: 24px;color: #f3f5f8;margin-left: 0px;margin-bottom: 5px;margin-right: 0px;margin-top: 3px;color: #ebc33a;">
+                                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
+                                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"></path>
+                                </svg><span style="font-weight: normal !important; color: rgb(235, 195, 58);">Download report</span></button><button class="btn btn-primary font-monospace text-center shadow d-flex d-lg-flex justify-content-center align-items-center justify-content-lg-center align-items-lg-center home_signup all_btn" data-bss-hover-animate="pulse" id="scan_card_btn" type="button" style="color: #f3f5f8;background-color: #ebc33a;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-plus" style="color: #f3f5f8;width: 24px;height: 24px;color: #f3f5f8;margin-left: 0px;margin-bottom: 5px;margin-right: 0px;margin-top: 3px;">
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+                                </svg>New scan</button></div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-4" style="background-color: #121212;">
+        <div class="container py-4">
+            <div class="row mx-auto">
+                <div class="col">
+                    <h1 class="font-monospace text-contnt"><strong>Online NMAP Port Scanner – Free NMAP Scanning for Open Ports</strong></h1>
+                    <div class="row">
+                        <div class="col">
+                            <p class="font-monospace text2-contnt"><br>Online NMAP port scanner is a free web-based tool that allows you to scan for open ports on any given IP address or domain. <a href="https://nmap.org/">NMAP</a> is a popular open-source network scanning tool used for security auditing and network exploration. With Online NMAP port scanner, you can easily perform a port scan without the need for any software installation or configuration.<br><strong>How to use Online NMAP port scanner</strong><br>To use the Online NMAP port scanner, simply navigate to <a href="https://nettoolsonline.com/nmap-online/">NettoolsOnline NMAP Tool</a> and enter the IP address or domain name that you want to scan. The tool will then perform a scan and provide you with a list of open ports on that IP or domain. You can use this information to identify any potential vulnerabilities in your network and take appropriate action to secure it.<br><strong>Benefits of using Online NMAP port scanner</strong><br>Online NMAP port scanner offers several benefits, including:<br>Free to use: Online NMAP port scanner is completely free, and there are no hidden fees or charges.Easy to use: The tool has a simple and intuitive interface, making it easy to perform port scans even if you have no prior experience with NMAP or network scanning tools.Fast and reliable: Online NMAP port scanner uses advanced scanning techniques to quickly and accurately identify open ports, making it a fast and reliable tool for network exploration and security auditing.<strong>What is NMAP and How It Works?</strong><br>NMAP is a powerful network scanning tool used to discover hosts and services on a computer network. It can be used for network inventory, vulnerability detection, penetration testing, firewall and router auditing, service detection, and network troubleshooting.<br>NMAP sends packets to a target host or network and analyzes the responses using various scanning techniques, such as TCP Connect Scanning, SYN Scanning, and UDP Scanning. It operates in multiple modes, including Interactive Mode, Scripting Mode, Stealth Mode, and Timing and Performance Mode.<br><strong>NMAP Common Ports</strong><br>NMAP has a database of common ports that it scans by default. Some of the most commonly used ports include:</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/js/bs-init.js"></script>
+</body>
+
+</html>

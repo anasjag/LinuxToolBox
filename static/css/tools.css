@@ -1,0 +1,486 @@
+@media (min-width: 300px) {
+  #tool_btn1 {
+    border-radius: 20px;
+    color: #f3f5f8;
+    margin-top: 82px;
+    max-width: 120px;
+    height: 30px;
+    font-size: 6px;
+    padding-bottom: 15px;
+    background: #434343;
+    border: none;
+  }
+}
+
+@media (min-width: 992px) {
+  section {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 30px;
+  }
+}
+
+@media (min-width: 300px) {
+  #tool_scan_option_p {
+    font-size: 8px;
+    width: 110px;
+    height: 19px;
+    color: #f3f5f8;
+    padding-left: 0px;
+    margin-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+  }
+}
+
+@media (min-width: 300px) {
+  #tool_checkbox1_p {
+    color: #f3f5f8;
+    font-size: 7px;
+    width: 80px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 5px;
+  }
+}
+
+@media (min-width: 992px) {
+  #tool_checkbox1_p {
+    margin-bottom: 0px;
+    color: #f3f5f8;
+    margin-top: 7px;
+    font-size: 14px;
+    width: 150px;
+  }
+}
+
+@media (min-width: 300px) {
+  #flexSwitchCheckDefault {
+    width: 24px;
+    height: 12px;
+    margin-right: 3px;
+  }
+}
+
+@media (min-width: 300px) {
+  #tool_checkbox_1 {
+    margin-left: 20px;
+    display: flex;
+  }
+}
+
+@media (min-width: 300px) {
+  #flexSwitchCheckDefault-1 {
+    width: 24px;
+    height: 12px;
+    margin-right: 4px;
+  }
+}
+
+@media (min-width: 300px) {
+  .tool_inputs {
+    width: 280px;
+    height: 21px;
+    border-radius: 4px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    padding-left: 15px;
+    padding-right: 11px;
+    margin-left: 0px;
+    margin-top: 3px;
+    font-size: 8px;
+  }
+}
+
+@media (min-width: 300px) {
+  #tool_target_label {
+    margin-left: 15px;
+    margin-bottom: 0px;
+    color: #f3f5f8;
+    margin-top: 12px;
+    font-size: 8px;
+  }
+}
+
+@media (min-width: 300px) {
+  #tool_card {
+    width: 310px;
+    height: 300px;
+    background-color: #434343;
+    border-radius: 28px;
+    margin-top: 15px;
+  }
+}
+
+@media (min-width: 300px) {
+  .custom-control.custom-radio {
+    margin-left: 40px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (min-width: 300px) {
+  #tool_p1 {
+    max-width: 502px;
+    max-height: 237px;
+    font-size: 8px;
+    color: #f3f5f8;
+  }
+}
+
+@media (min-width: 300px) {
+  #tool_h1 {
+    max-width: 543px;
+    max-height: 126px;
+    font-size: 26px;
+    padding-bottom: 0px;
+    margin-bottom: 30px;
+    color: #f3f5f8;
+  }
+}
+
+@media (min-width: 992px) {
+  #tool_p1 {
+    max-width: 502px;
+    max-height: 237px;
+    font-size: 15px;
+    color: #f3f5f8;
+  }
+}
+
+@media (min-width: 992px) {
+  #tool_h1 {
+    max-width: 543px;
+    max-height: 126px;
+    font-size: 45px;
+    padding-bottom: 0px;
+    margin-bottom: 30px;
+    color: #f3f5f8;
+  }
+}
+
+@media (min-width: 992px) {
+  #tool_btn1 {
+    border-radius: 20px;
+    color: #f3f5f8;
+    margin-top: 82px;
+    max-width: 140px;
+    height: 30px;
+    font-size: 9px;
+    padding-bottom: 15px;
+    /*padding-top: 20px;*/
+    background: #434343;
+    border: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  #tool_h1 {
+    max-width: 543px;
+    max-height: 126px;
+    font-size: 48px;
+    padding-bottom: 0px;
+    margin-bottom: 30px;
+    color: #f3f5f8;
+  }
+}
+
+@media (min-width: 1200px) {
+  #tool_p1 {
+    max-width: 502px;
+    max-height: 237px;
+    font-size: 20px;
+    color: #f3f5f8;
+  }
+}
+
+@media (min-width: 1200px) {
+  #tool_btn1 {
+    border-radius: 20px;
+    color: #f3f5f8;
+    margin-top: 82px;
+    max-width: 171px;
+    height: 53px;
+    font-size: 12px;
+    padding-bottom: 15px;
+    padding-top: 20px;
+    background: #434343;
+    border: none;
+  }
+}
+
+@media (min-width: 300px) {
+  #tool_checkbox2_p {
+    color: #f3f5f8;
+    font-size: 7px;
+  }
+}
+
+@media (min-width: 992px) {
+  #tool_card {
+    width: 640px;
+    height: 500px;
+    background-color: #434343;
+    border-radius: 28px;
+    margin-top: 0px;
+  }
+}
+
+@media (min-width: 992px) {
+  #tool_target_label {
+    margin-left: 45px;
+    margin-bottom: 0px;
+    color: #f3f5f8;
+    margin-top: 24px;
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 992px) {
+  .tool_inputs {
+    width: 560px;
+    height: 42px;
+    border-radius: 4px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    padding-left: 15px;
+    padding-right: 11px;
+    margin-left: 0px;
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 300px) {
+  #tool_checkbox_terms {
+    margin-left: 20px;
+    margin-top: 10px;
+    display: flex;
+  }
+}
+
+@media (min-width: 300px) {
+  #tool_port_selection_p {
+    font-size: 8px;
+    width: 110px;
+    height: 19px;
+    color: #f3f5f8;
+    padding-left: 0px;
+    margin-left: 0px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+  }
+}
+
+@media (min-width: 300px) {
+  #tool_section1, #tool_section2 {
+    border-bottom-style: solid;
+    border-bottom-color: var(--bs-emphasis-color);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5px;
+  }
+}
+
+@media (min-width: 992px) {
+  #tool_section1 {
+    padding-bottom: 30px;
+    border-bottom-style: solid;
+    border-bottom-color: var(--bs-emphasis-color);
+    margin-bottom: -18px;
+  }
+}
+
+@media (min-width: 992px) {
+  #tool_scan_option_p {
+    font-size: 16px;
+    width: 110px;
+    height: 19px;
+    color: #f3f5f8;
+    padding-left: 0px;
+    margin-left: 40px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  #flexSwitchCheckDefault {
+    width: 48px;
+    height: 24px;
+    margin-right: 4px;
+  }
+}
+
+@media (min-width: 300px) {
+  #tool_card_btn {
+    background-color: #EBC33A;
+    color: #121212;
+    border: none;
+    border-radius: 4px;
+    margin-left: 20px;
+    width: 135px;
+    height: 39px;
+    margin-top: 9px;
+    font-size: 8px;
+    margin-right: 15px;
+    padding: initial;
+  }
+}
+
+@media (min-width: 992px) {
+  #flexSwitchCheckDefault-1 {
+    width: 48px;
+    height: 24px;
+    margin-right: 4px;
+  }
+}
+
+@media (min-width: 992px) {
+  #tool_checkbox_1 {
+    margin-left: 40px;
+  }
+}
+
+@media (min-width: 992px) {
+  #tool_checkbox2_p {
+    color: #f3f5f8;
+    margin-top: 7px;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 992px) {
+  #tool_port_selection_p {
+    font-size: 16px;
+    width: 190px;
+    height: 19px;
+    color: #f3f5f8;
+    padding-left: 0px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  .custom-control.custom-radio {
+    margin-left: 40px;
+    margin-right: 20px;
+  }
+}
+
+@media (min-width: 300px) {
+  .custom-control-label {
+    color: #f3f5f8;
+    font-size: 7px;
+    margin-bottom: 0px;
+    margin-left: 3px;
+  }
+}
+
+@media (min-width: 992px) {
+  .custom-control-label {
+    font-size: 14px;
+    margin-left: 10px;
+    color: #f3f5f8;
+    width: 260px;
+  }
+}
+
+@media (min-width: 576px) {
+  #tool_card_section3 {
+    border-bottom-style: solid;
+    border-bottom-color: var(--bs-emphasis-color);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    padding-left: 20px;
+  }
+}
+
+@media (min-width: 300px) {
+  #tool_card_section3 {
+    border-bottom-style: solid;
+    border-bottom-color: var(--bs-emphasis-color);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    padding-left: 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  #tool_card_section3 {
+    border-bottom-style: solid;
+    border-bottom-color: var(--bs-emphasis-color);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    padding-left: 40px;
+  }
+}
+
+@media (min-width: 992px) {
+  #tool_checkbox_terms {
+    margin-left: 40px;
+    margin-top: 10px;
+    display: initial;
+  }
+}
+
+@media (min-width: 992px) {
+  #tool_card_btn {
+    background-color: #EBC33A;
+    color: #121212;
+    border: none;
+    border-radius: 4px;
+    margin-left: 20px;
+    width: 274px;
+    height: 48px;
+    font-size: 16px;
+    margin-top: 10px;
+    font-size: 13px;
+  }
+}
+
+#tool_card_input2:hover {
+  box-shadow: 0 0 0 .25rem rgba(235,195,58,0.5);
+}
+
+.form-check-input:hover {
+  box-shadow: 0 0 0 .25rem rgba(235,195,58,0.5);
+}
+
+#customRadio1, #customRadio2, #customCheckInline1 {
+  accent-color: #ebc33a;
+}
+
+@media (min-width: 992px) {
+  .text-contnt {
+    /*max-width: 543px;*/
+    /*max-height: 126px;*/
+    font-size: 48px;
+    color: #f3f5f8;
+    margin-bottom: 117px;
+    padding-bottom: 0px;
+  }
+}
+
+@media (min-width: 300px) {
+  .text2-contnt {
+    /*max-width: 502px;*/
+    /*max-height: 237px;*/
+    font-size: 10px;
+    color: #f3f5f8;
+  }
+}
+
+@media (min-width: 992px) {
+  .text2-contnt {
+    height: auto;
+    font-size: 20px;
+    color: #f3f5f8;
+  }
+}
+
