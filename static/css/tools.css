@@ -126,7 +126,7 @@
   #tool_p1 {
     max-width: 502px;
     max-height: 237px;
-    font-size: 8px;
+    font-size: 10px;
     color: #f3f5f8;
   }
 }
@@ -135,7 +135,7 @@
   #tool_h1 {
     max-width: 543px;
     max-height: 126px;
-    font-size: 26px;
+    font-size: 22px;
     padding-bottom: 0px;
     margin-bottom: 30px;
     color: #f3f5f8;
@@ -146,7 +146,7 @@
   #tool_p1 {
     max-width: 502px;
     max-height: 237px;
-    font-size: 15px;
+    font-size: 13px;
     color: #f3f5f8;
   }
 }
@@ -155,7 +155,7 @@
   #tool_h1 {
     max-width: 543px;
     max-height: 126px;
-    font-size: 45px;
+    font-size: 32px;
     padding-bottom: 0px;
     margin-bottom: 30px;
     color: #f3f5f8;
@@ -192,7 +192,7 @@
   #tool_p1 {
     max-width: 502px;
     max-height: 237px;
-    font-size: 20px;
+    font-size: 18px;
     color: #f3f5f8;
   }
 }
