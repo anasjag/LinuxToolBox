@@ -1,39 +1,6 @@
-<!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
+{%extends 'base.html'%}
+{%block content%}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>LinuxToolBox</title>
-    <meta name="description" content="Explore powerful security tools for network scanning and vulnerability assessment.">
-    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
-    <link rel="stylesheet" href="static/css/animate.min.css">
-    <link rel="stylesheet" href="static/css/home.css">
-    <link rel="stylesheet" href="static/css/others.css">
-    <link rel="stylesheet" href="static/css/profile.css">
-    <link rel="stylesheet" href="static/css/scroll-bar.css">
-    <link rel="stylesheet" href="static/css/table.css">
-    <link rel="stylesheet" href="static/css/tools.css">
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-md sticky-top navbar-shrink py-3 navbar-light" id="mainNav" style="background-color: #121212;max-height: 72px;">
-        <div class="container"><a class="navbar-brand d-flex align-items-center" href="home.html"><img class="logo" src="static/img/clipboard-image-2.png"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon" style="background-color: #ebc33a;border-radius: 4px;"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1" style="background-color: #121212;">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link link-light nav-link active" href="home.html" style="color:#ffffff;color:#f3f5f8;border-radius:4px;">Home</a></li>
-                    <li class="nav-item dropdown" style="padding-right: 0px;"><a class="nav-link dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color:#f3f5f8;border-radius:4px;">Tools&nbsp;</a>
-                        <div class="dropdown-menu" style="border-radius:8px;"><a class="nmap_link" href="tools.html" style="padding-left:20px;margin-left:2px;padding-right:80px;margin-right:0px;">Nmap</a></div>
-                    </li>
-                    <li class="nav-item" style="padding-left: 0px;"></li>
-                </ul>
-                <div class="nav-item" style="display: flex;">
-                    <div class="text-center d-lg-flex justify-content-lg-center align-items-lg-center nav-item" style="width: 89.8px;height: 41.5px;"><a class="link-light d-lg-flex justify-content-lg-center align-items-lg-center nav-link active" href="login.html" style="border-radius: 4px;padding-right: 0px;width: 89.5px;height: 41.5px;">Log in</a></div><a class="btn btn-primary shadow home_signup all_btn" role="button" data-bss-hover-animate="pulse" id="home_singup-1" href="signup.html" style="background-color: #EBC33A;color: #121212;border: none;border-radius: 4px;margin-left: 10px;">Sign Up</a>
-                </div>
-            </div>
-        </div>
-    </nav>
     <section class="py-4" style="background-color: #121212;">
         <div class="container py-4">
             <div class="row mx-auto">
@@ -80,6 +47,5 @@
     </section>
     <script src="static/bootstrap/js/bootstrap.min.js"></script>
     <script src="static/js/bs-init.js"></script>
-</body>
 
-</html>
+{%endblock%}
