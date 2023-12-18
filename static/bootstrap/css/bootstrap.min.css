@@ -777,16 +777,15 @@ progress {
 }
 
 .container,
-.container-fluid,
+.container-fluid,   
 .container-xxl,
 .container-xl,
 .container-lg,
 .container-md,
 .container-sm {
-    
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
-    width: 100%;
+    width: 80%;
     padding-right: calc(var(--bs-gutter-x)*.5);
     padding-left: calc(var(--bs-gutter-x)*.5);
     margin-right: auto;
@@ -853,12 +852,9 @@ progress {
 }
 
 .row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
+    display: flex;
     flex-wrap: wrap;
     margin-top: calc(-1*var(--bs-gutter-y));
     margin-right: calc(-0.5*var(--bs-gutter-x));
@@ -875,7 +871,7 @@ progress {
 }
 
 .col {
-    flex: 1 0 0%
+    flex: 1
 }
 
 .row-cols-auto>* {
@@ -9282,8 +9278,7 @@ fieldset:disabled .btn {
 
 .py-4 {
     padding-top: 1.5rem !important;
-    padding-bottom: 1.5rem !important;
-    
+    padding-bottom: 1.5rem !important
 }
 
 .py-5 {
