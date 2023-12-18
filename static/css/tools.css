@@ -125,8 +125,8 @@
 @media (min-width: 300px) {
   #tool_p1 {
     max-width: 502px;
-    height: 130px;
-    font-size: 8px;
+    max-height: 237px;
+    font-size: 10px;
     color: #f3f5f8;
   }
 }

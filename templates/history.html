@@ -1,43 +1,6 @@
-<!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
+{%extends 'base.html'%}
+{%block content%}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>LinuxToolBox</title>
-    <meta name="description" content="Explore powerful security tools for network scanning and vulnerability assessment.">
-    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
-    <link rel="stylesheet" href="static/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="static/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="static/fonts/line-awesome.min.css">
-    <link rel="stylesheet" href="static/fonts/fontawesome5-overrides.min.css">
-    <link rel="stylesheet" href="static/css/animate.min.css">
-    <link rel="stylesheet" href="static/css/home.css">
-    <link rel="stylesheet" href="static/css/others.css">
-    <link rel="stylesheet" href="static/css/profile.css">
-    <link rel="stylesheet" href="static/css/scroll-bar.css">
-    <link rel="stylesheet" href="static/css/table.css">
-    <link rel="stylesheet" href="static/css/tools.css">
-</head>
-
-<body style="background-color: #121212;">
-    <nav class="navbar navbar-expand-md sticky-top navbar-shrink py-3 navbar-light" id="ProfileNav" style="background-color:#121212;max-height:72px;">
-        <div class="container"><a class="navbar-brand d-flex align-items-center" href="home.html"><img class="logo" src="static/img/clipboard-image-2.png"></a><button data-bs-toggle="collapse" data-bs-target="#navcol-1" class="navbar-toggler"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon" style="background-color:#ebc33a;border-radius:4px;"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1" style="background-color:#121212;">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link link-light" href="home.html" style="color:#ffffff;color:#f3f5f8;border-radius:4px;">Home</a></li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color:#f3f5f8;border-radius:4px;">Tools&nbsp;</a>
-                        <div class="dropdown-menu" style="border-radius:8px;"><a class="nmap_link" href="tools.html" style="padding-left:20px;margin-left:2px;padding-right:80px;margin-right:0px;">Nmap</a></div>
-                    </li>
-                    <li class="nav-item"><a class="nav-link link-light" href="history.html" style="border-radius:4px;">History</a></li>
-                </ul>
-                <div class="dropdown" data-bss-hover-animate="pulse"><a aria-expanded="false" data-bs-toggle="dropdown" class="all_btn" href="" style="width: 150px;padding: 10px 30px;background-color: #ebc33a;border-radius: 4px;color: #121212;"><strong>Profile&nbsp;</strong></a>
-                    <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
-                </div>
-            </div>
-        </div>
-    </nav>
     <div class="container-fluid d-xl-flex justify-content-xl-center align-items-xl-start" style="width: 80%;height: 100%;padding-top: 0px;margin-top: 100px;">
         <div class="card d-xl-flex justify-content-xl-center" id="TableSorterCard" style="background-color: #434343;border-radius: 8px;width: 90%;height: 100%;">
             <div class="card-header d-xl-flex py-3">
@@ -138,6 +101,5 @@
     </div>
     <script src="static/bootstrap/js/bootstrap.min.js"></script>
     <script src="static/js/bs-init.js"></script>
-</body>
 
-</html>
+{%endblock%}
