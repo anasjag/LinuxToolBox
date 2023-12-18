@@ -2,7 +2,7 @@
   #tool_btn1 {
     border-radius: 20px;
     color: #f3f5f8;
-    margin-top: 82px;
+    margin-top: -50px;
     max-width: 120px;
     height: 30px;
     font-size: 6px;
@@ -125,7 +125,7 @@
 @media (min-width: 300px) {
   #tool_p1 {
     max-width: 502px;
-    max-height: 237px;
+    height: 130px;
     font-size: 8px;
     color: #f3f5f8;
   }
@@ -135,7 +135,7 @@
   #tool_h1 {
     max-width: 543px;
     max-height: 126px;
-    font-size: 26px;
+    font-size: 18px;
     padding-bottom: 0px;
     margin-bottom: 30px;
     color: #f3f5f8;
@@ -145,8 +145,8 @@
 @media (min-width: 992px) {
   #tool_p1 {
     max-width: 502px;
-    max-height: 237px;
-    font-size: 15px;
+    height: 237px;
+    font-size: 11px;
     color: #f3f5f8;
   }
 }
@@ -155,7 +155,7 @@
   #tool_h1 {
     max-width: 543px;
     max-height: 126px;
-    font-size: 45px;
+    font-size: 24px;
     padding-bottom: 0px;
     margin-bottom: 30px;
     color: #f3f5f8;
@@ -166,7 +166,7 @@
   #tool_btn1 {
     border-radius: 20px;
     color: #f3f5f8;
-    margin-top: 82px;
+    margin-top: 22px;
     max-width: 140px;
     height: 30px;
     font-size: 9px;
@@ -181,7 +181,7 @@
   #tool_h1 {
     max-width: 543px;
     max-height: 126px;
-    font-size: 48px;
+    font-size: 38px;
     padding-bottom: 0px;
     margin-bottom: 30px;
     color: #f3f5f8;
@@ -191,8 +191,8 @@
 @media (min-width: 1200px) {
   #tool_p1 {
     max-width: 502px;
-    max-height: 237px;
-    font-size: 20px;
+    height: 237px;
+    font-size: 16px;
     color: #f3f5f8;
   }
 }
@@ -472,7 +472,7 @@
   .text2-contnt {
     /*max-width: 502px;*/
     /*max-height: 237px;*/
-    font-size: 10px;
+    font-size: 14px;
     color: #f3f5f8;
   }
 }
