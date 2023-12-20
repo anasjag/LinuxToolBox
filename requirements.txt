@@ -8,4 +8,4 @@ MarkupSafe
 pymongo
 Werkzeug
 gunicorn
-nmap
+python-nmap
