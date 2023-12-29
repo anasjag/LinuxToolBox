@@ -22,11 +22,12 @@
     <link rel="stylesheet" href="static/css/table.css">
     <link rel="stylesheet" href="static/css/tools.css">
     <link rel="stylesheet" href="static/css/scan_result.css">
-</head>
+    <link rel="stylesheet" href="static/css/loding.css">
+    <script>function hideLoading() {document.getElementById('loadingIndicator').style.display = 'none';}</script>
 </head>
 
 <body class="body" style="background-color: #121212;">
-    {{header(session.get(""))}}
+    {{header(session.get("email"))}}
     {%block content%}
     {%endblock%}
     {{footer()}}

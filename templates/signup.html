@@ -1,21 +1,68 @@
 {%extends 'base.html'%}
 {%block content%}
+
 <body style="display: flex;flex-direction: column;justify-items: center;background-color: #121212;">
     <div class="col-md-8 col-xl-6 text-center mx-auto" style="margin-top: 100px;">
         <p class="fw-bold mb-2" style="color: #EBC33A;">Sign Up</p>
         <h2 class="fw-bold" style="color: #f3f5f8;">Welcome to LinuxToolBox!</h2>
     </div>
-    <div id="div_left" style="background-color: #f3f5f8;border-radius: 8px;margin: 100px auto;padding-left: 30px;padding-right: 30px;display: flex;justify-items: center;">
-        <div id="signup_p"><a class="text-center" href="home.html"><img data-bss-hover-animate="pulse" id="signup_logo" src="static/img/clipboard-image-1.png" width="212" height="215" href="home.html" style="margin-top: 98px;"></a>
-            <h1 class="font-monospace text-center" id="signup_p1" style="color: #121212;align-self: center;"><strong>Hello Friend</strong></h1>
-            <p class="font-monospace text-center" id="signup_p2">To keep connected with us please login<br>with your personal info.</p><a class="btn btn-primary font-monospace shadow login_btn" role="button" data-bss-hover-animate="pulse" id="login_btn" href="login.html" style="padding-top: 5px;align-self: center;">Login</a>
+    <div id="div_left"
+        style="background-color: #f3f5f8;border-radius: 8px;margin: 100px auto;padding-left: 30px;padding-right: 30px;display: flex;justify-items: center;">
+        <div id="signup_p"><a class="text-center" href="home.html"><img data-bss-hover-animate="pulse" id="signup_logo"
+                    src="static/img/clipboard-image-1.png" width="212" height="215" href="home.html"
+                    style="margin-top: 98px;"></a>
+            <h1 class="font-monospace text-center" id="signup_p1" style="color: #121212;align-self: center;">
+                <strong>Hello Friend</strong></h1>
+            <p class="font-monospace text-center" id="signup_p2">To keep connected with us please <a href="login.html">login</a><br>with your
+                personal info.</p>
         </div>
         <form class="signup_form" method="post" data-bs-theme="light" style="margin-right: 20px;margin-top: 100px;">
-            <div class="bounce animated mb-3" style="margin-bottom: -36px;padding-bottom: 0px;"><label class="form-label font-monospace form-label">Name:</label><input class="form-control form-control-sm form-control" type="email" name="name" placeholder="Name" style="border-radius: 8px;height: 39.1953px;margin-bottom: 10px;"></div>
-            <div class="bounce animated mb-3" style="margin-top: 0px;margin-bottom: 6px;"><label class="form-label font-monospace form-label" style="padding-bottom: 0px;margin-bottom: 0px;font-size: 15px;color: #121212;">Email:</label><input class="form-control form-control-sm form-control" type="email" name="email" placeholder="Example@linuxtoolbox.com" style="border-radius: 8px;margin-bottom: 10px;"></div>
-            <div class="bounce animated mb-3"><label class="form-label font-monospace form-label" style="margin-bottom: 0px;color: #121212;">Password:</label><input class="form-control form-control-sm form-control" type="password" name="password" placeholder="Password" style="border-radius: 8px;margin-bottom: 10px;"></div>
-            <div class="mb-3"><label class="form-label font-monospace bounce animated" style="margin-bottom: 0px;color: #121212;margin-top: 0px;margin-right: 0px;">Confirm Password:</label><input class="form-control form-control-sm bounce animated" type="password" name="password" placeholder="Password" style="border-radius: 8px;margin-bottom: 58px;"></div>
-            <div class="mb-3" style="margin-top: -51px;"><button class="btn btn-primary font-monospace text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center shadow form-control all_btn" data-bss-hover-animate="pulse" id="signup_btn" type="submit">Sign up</button></div>
+            {{form.hidden_tag()}}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {%- for category, message in messages %}
+                    <span class="form__flash form__flash--{{category}}"> {{ message }}</span>
+                {% endfor %}
+            {% endwith %}
+            <div style="display: flex; width:100%">
+                <div class="bounce animated mb-3">
+                    {{ form.fname.label(class="form-label font-monospace form-label", id="signup_fname") }}
+                    {{ form.fname(class="form-control form-control-sm form-control", placeholder="John", style="width:98%; border-radius: 8px;margin-bottom: 10px;")}}
+                </div>
+                <div class="bounce animated mb-3">   
+                    {{ form.lname.label(class="form-label font-monospace form-label", id="signup_fname") }}
+                    {{ form.lname(class="form-control form-control-sm form-control", placeholder="Doe", style="width:98%; border-radius: 8px;margin-bottom: 10px;")}}
+                </div>
+            </div>
+            <div class="bounce animated mb-3" style="margin-top: 0px;margin-bottom: 6px;">
+
+                {{ form.email.label(class="form-label font-monospace form-label", style="color: #121212;") }}
+                {{ form.email(class="form-control form-control-sm form-control", placeholder="Example@linuxtoolbox.com", style="border-radius: 8px;margin-bottom: 10px;")}}
+                
+            </div>
+            <div class="bounce animated mb-3">
+                
+                {{form.password.label(class="form-label font-monospace form-label", style="color: #121212;")}}
+                {{form.password(class="form-control form-control-sm form-control", placeholder="Password", style="border-radius: 8px;margin-bottom: 10px;")}}
+            
+            </div>
+            <div class="mb-3">
+
+                {{form.confirm.label(class="form-label font-monospace bounce animated", style="color: #121212;")}}
+                {{form.confirm(class="form-control form-control-sm bounce animated", placeholder="Password", style="border-radius: 8px;margin-bottom: 58px;")}}
+            
+            </div>
+            <div class="mb-3" style="margin-top: -51px;">
+                <ul >
+                    {% for error in form.password.errors %}
+                        <li style="color: rgb(209,84,93); font-size:70%; line-height: 0.9; margin-top: 5px; margin-bottom: -15px">{{ error }}</li><br>
+                    {% endfor %} 
+                    {% for error in form.confirm.errors %}
+                        <li style="color: rgb(209,84,93); font-size:70%; line-height: 0.9; margin-top: 5px; margin-bottom: -200px">{{ error }}</li><br>
+                    {% endfor %}  
+                </ul>  
+                {{ form.submit(class="btn btn-primary font-monospace text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center shadow form-control all_btn", type="submit", id="signup_btn", **{'data-bss-hover-animate':'pulse'},)}}
+            
+            </div>
         </form>
     </div>
     <script src="static/bootstrap/js/bootstrap.min.js"></script>
