@@ -1,65 +1,129 @@
 {%extends 'base.html'%}
 {%block content%}
 
-    <!-- pop out-->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <!-- Close button -->
-            <span class="close" id="closeModalButton">&times;</span>
-            <!-- Content of the modal -->
-            <iframe src="nmap" frameborder="0" width="100%" height="1180px"></iframe>
-        </div>
-    </div>
+<!-- pop out-->
+<div id="myModal" class="modal">
+    <div class="modal-content" style="background-color: #121212;">
+        <!-- Close button -->
+        <span class="close" id="closeModalButton">&times;</span>
 
-    <section class="py-4" style="background-color: #121212;">
-        <div class="container py-4">
-            <div class="row">
-                <div class="col">
-                    <h1 class="font-monospace" id="tool_h1"><strong>Port Scan with Nmap</strong></h1>
-                    <p class="font-monospace" id="tool_p1">Find open ports and running services, and do OS fingerprinting in a single port check.<br><br>Each Nmap port scan against a target IP address or hostname automatically maps the attack surface and gives accurate data for your reconnaissance work. Sign up here.</p>
-                    <a class="btn font-monospace text-center shadow d-block" role="button" data-bss-hover-animate="pulse" id="tool_btn1" href="signup.html">Create account</a>
-                </div>
-                <div class="col">
-                    <section id="tool_card" style="/*padding-bottom: 53px;*/margin-bottom: 35px;">
-                        <section id="tool_section1"><label class="form-label font-monospace" id="tool_target_label" style="/*margin-left: 40px;*/">Target<input type="text" id="tool_card_input1" class="tool_inputs" placeholder="IP or hostname"></label></section>
-                        <section id="tool_section2" style="padding-top: 0px;">
-                            <p class="font-monospace" id="tool_scan_option_p">Scan option</p>
-                            <div style="display: flex;padding-bottom: 0px;margin-top: 0px;">
-                                <div id="tool_checkbox_1" class="form-check form-switch" style="padding-top: 0px;"><input type="checkbox" id="flexSwitchCheckDefault" class="form-check-input"><label class="form-label form-check-label" id="tool_checkbox1_p" for="flexSwitchCheckDefault" style="margin-top: 0px;">Detect service version</label></div>
-                                <div class="form-check form-switch" style="margin-left: 21px;display: flex;"><input type="checkbox" id="flexSwitchCheckDefault-1" class="form-check-input"><label class="form-label form-check-label" id="tool_checkbox2_p" for="flexSwitchCheckDefault" style="margin-top: 5px;padding-top: 0px;">Detect operation system</label></div>
+        <!-- Loading indicator -->
+        <div class="loading" id="loadingIndicator">
+            <div class="loading-indicator"></div>
+            <p class="font-monospace" id="scan_p1">Starting Nmap Scan</p>
+        </div>
+
+        <!-- Content of the modal -->
+        <iframe src="scan" frameborder="0" name="Frame" width="100%" height="1180px" style="background-color: #121212;"
+            onload="hideLoading()"></iframe>
+    </div>
+</div>
+
+<section class="py-4" style="background-color: #121212;">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col">
+                <h1 class="font-monospace" id="tool_h1"><strong>Port Scan with Nmap</strong></h1>
+                <p class="font-monospace" id="tool_p1">Find open ports and running services, and do OS fingerprinting in
+                    a single port check.<br><br>Each Nmap port scan against a target IP address or hostname
+                    automatically maps the attack surface and gives accurate data for your reconnaissance work. Sign up
+                    here.</p>
+                <a class="btn font-monospace text-center shadow d-block" role="button" data-bss-hover-animate="pulse"
+                    id="tool_btn1" href="signup.html">Create account</a>
+            </div>
+            <div class="col">
+                <section id="tool_card" style="padding-bottom: 53px;margin-bottom: 35px;">
+                    <section id="tool_section1" >
+                        <label class="form-label font-monospace" id="tool_target_label">Target</label>
+                            <input type="text" id="tool_card_input1"
+                                class="tool_inputs" placeholder="IP or hostname"></section>
+                    <section id="tool_section2" style="padding-top: 0px;">
+                        <p class="font-monospace" id="tool_scan_option_p">Scan option</p>
+                        <div style="display: flex;padding-bottom: 0px;margin-top: 0px;">
+                            <div id="tool_checkbox_1" class="form-check form-switch" style="padding-top: 0px;"><input
+                                    type="checkbox" id="flexSwitchCheckDefault" class="form-check-input"><label
+                                    class="form-label form-check-label" id="tool_checkbox1_p"
+                                    for="flexSwitchCheckDefault" style="margin-top: 0px;">Detect service version</label>
                             </div>
-                        </section>
-                        <section id="tool_card_section3">
-                            <p class="font-monospace" id="tool_port_selection_p">Port selection</p>
-                            <div id="tool_radios" style="display: flex;padding-bottom: 0px;margin-top: 0px;margin-left: -40px;">
-                                <div class="custom-control custom-radio"><input type="radio" id="customRadio1" class="custom-control-input" name="customRadio" checked=""><label class="form-label custom-control-label" for="customRadio1">Common ports</label></div>
-                                <div class="custom-control custom-radio"><input type="radio" id="customRadio2" class="custom-control-input" name="customRadio"><label class="form-label custom-control-label" for="customRadio2">Lists of ports</label></div>
-                            </div><input type="text" id="tool_card_input2" class="tool_inputs" placeholder="Top 10 ports">
-                        </section>
-                        <div id="tool_section3" style="display: flex;margin-top: 30px;">
-                            <div id="tool_checkbox_terms" class="custom-control custom-checkbox custom-control-inline"><input type="checkbox" id="customCheckInline1" class="custom-control-input" style="width: 20px;height: 20px;"><label class="form-label custom-control-label" id="tool_terms_p" for="customCheckInline2">I am authorized to scan this target and I agree with the <span style="text-decoration: underline;">Terrms of Service.</span></label></div><button class="btn btn-primary shadow home_signup all_btn" data-bss-hover-animate="pulse" id="tool_card_btn" type="button">Start scan</button>
+                            <div class="form-check form-switch" style="margin-left: 21px;display: flex;"><input
+                                    type="checkbox" id="flexSwitchCheckDefault-1" class="form-check-input"><label
+                                    class="form-label form-check-label" id="tool_checkbox2_p"
+                                    for="flexSwitchCheckDefault" style="margin-top: 5px;padding-top: 0px;">Detect
+                                    operation system</label></div>
                         </div>
                     </section>
-                </div>
+                    <section id="tool_card_section3">
+                        <p class="font-monospace" id="tool_port_selection_p">Port selection</p>
+                        <div id="tool_radios"
+                            style="display: flex;padding-bottom: 0px;margin-top: 0px;margin-left: -40px;">
+                            <div class="custom-control custom-radio"><input type="radio" id="customRadio1"
+                                    class="custom-control-input" name="customRadio" checked=""><label
+                                    class="form-label custom-control-label" for="customRadio1">Common ports</label>
+                            </div>
+                            <div class="custom-control custom-radio"><input type="radio" id="customRadio2"
+                                    class="custom-control-input" name="customRadio"><label
+                                    class="form-label custom-control-label" for="customRadio2">Lists of ports</label>
+                            </div>
+                        </div><input type="text" id="tool_card_input2" class="tool_inputs" placeholder="Top 10 ports">
+                    </section>
+                    <div id="tool_section3" style="display: flex;margin-top: 30px;">
+                        <div id="tool_checkbox_terms" class="custom-control custom-checkbox custom-control-inline">
+                            <input type="checkbox" id="customCheckInline1" class="custom-control-input"
+                                style="width: 20px;height: 20px;"><label class="form-label custom-control-label"
+                                id="tool_terms_p" for="customCheckInline2">I am authorized to scan this target and I
+                                agree with the <span style="text-decoration: underline;">Terrms of
+                                    Service.</span></label>
+                        </div><button class="btn btn-primary shadow home_signup all_btn" data-bss-hover-animate="pulse"
+                            id="tool_card_btn" type="button">Start scan</button>
+                    </div>
+                </section>
             </div>
         </div>
-    </section>
-    <section class="py-4" style="background-color: #121212;">
-        <div class="container py-4">
-            <div class="row mx-auto">
-                <div class="col">
-                    <h1 class="font-monospace text-contnt "><strong>Online NMAP Port Scanner – Free NMAP Scanning for Open Ports</strong></h1>
-                    <div class="row">
-                        <div class="col">
-                            <p class="font-monospace text2-contnt"><br>Online NMAP port scanner is a free web-based tool that allows you to scan for open ports on any given IP address or domain. <a href="https://nmap.org/">NMAP</a> is a popular open-source network scanning tool used for security auditing and network exploration. With Online NMAP port scanner, you can easily perform a port scan without the need for any software installation or configuration.<br><strong>How to use Online NMAP port scanner</strong><br>To use the Online NMAP port scanner, simply navigate to <a href="https://nettoolsonline.com/nmap-online/">NettoolsOnline NMAP Tool</a> and enter the IP address or domain name that you want to scan. The tool will then perform a scan and provide you with a list of open ports on that IP or domain. You can use this information to identify any potential vulnerabilities in your network and take appropriate action to secure it.<br><strong>Benefits of using Online NMAP port scanner</strong><br>Online NMAP port scanner offers several benefits, including:<br>Free to use: Online NMAP port scanner is completely free, and there are no hidden fees or charges.Easy to use: The tool has a simple and intuitive interface, making it easy to perform port scans even if you have no prior experience with NMAP or network scanning tools.Fast and reliable: Online NMAP port scanner uses advanced scanning techniques to quickly and accurately identify open ports, making it a fast and reliable tool for network exploration and security auditing.<strong>What is NMAP and How It Works?</strong><br>NMAP is a powerful network scanning tool used to discover hosts and services on a computer network. It can be used for network inventory, vulnerability detection, penetration testing, firewall and router auditing, service detection, and network troubleshooting.<br>NMAP sends packets to a target host or network and analyzes the responses using various scanning techniques, such as TCP Connect Scanning, SYN Scanning, and UDP Scanning. It operates in multiple modes, including Interactive Mode, Scripting Mode, Stealth Mode, and Timing and Performance Mode.<br><strong>NMAP Common Ports</strong><br>NMAP has a database of common ports that it scans by default. Some of the most commonly used ports include:</p>
-                        </div>
+    </div>
+</section>
+<section class="py-4" style="background-color: #121212;">
+    <div class="container py-4">
+        <div class="row mx-auto">
+            <div class="col">
+                <h1 class="font-monospace text-contnt "><strong>Online NMAP Port Scanner – Free NMAP Scanning for Open
+                        Ports</strong></h1>
+                <div class="row">
+                    <div class="col">
+                        <p class="font-monospace text2-contnt"><br>Online NMAP port scanner is a free web-based tool
+                            that allows you to scan for open ports on any given IP address or domain. <a
+                                href="https://nmap.org/">NMAP</a> is a popular open-source network scanning tool used
+                            for security auditing and network exploration. With Online NMAP port scanner, you can easily
+                            perform a port scan without the need for any software installation or
+                            configuration.<br><strong>How to use Online NMAP port scanner</strong><br>To use the Online
+                            NMAP port scanner, simply navigate to <a
+                                href="https://nettoolsonline.com/nmap-online/">NettoolsOnline NMAP Tool</a> and enter
+                            the IP address or domain name that you want to scan. The tool will then perform a scan and
+                            provide you with a list of open ports on that IP or domain. You can use this information to
+                            identify any potential vulnerabilities in your network and take appropriate action to secure
+                            it.<br><strong>Benefits of using Online NMAP port scanner</strong><br>Online NMAP port
+                            scanner offers several benefits, including:<br>Free to use: Online NMAP port scanner is
+                            completely free, and there are no hidden fees or charges.Easy to use: The tool has a simple
+                            and intuitive interface, making it easy to perform port scans even if you have no prior
+                            experience with NMAP or network scanning tools.Fast and reliable: Online NMAP port scanner
+                            uses advanced scanning techniques to quickly and accurately identify open ports, making it a
+                            fast and reliable tool for network exploration and security auditing.<strong>What is NMAP
+                                and How It Works?</strong><br>NMAP is a powerful network scanning tool used to discover
+                            hosts and services on a computer network. It can be used for network inventory,
+                            vulnerability detection, penetration testing, firewall and router auditing, service
+                            detection, and network troubleshooting.<br>NMAP sends packets to a target host or network
+                            and analyzes the responses using various scanning techniques, such as TCP Connect Scanning,
+                            SYN Scanning, and UDP Scanning. It operates in multiple modes, including Interactive Mode,
+                            Scripting Mode, Stealth Mode, and Timing and Performance Mode.<br><strong>NMAP Common
+                                Ports</strong><br>NMAP has a database of common ports that it scans by default. Some of
+                            the most commonly used ports include:</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <script src="static/bootstrap/js/bootstrap.min.js"></script>
-    <script src="static/js/bs-init.js"></script>
-    <script src="static/js/script.js"></script>
+    </div>
+</section>
+<script src="static/bootstrap/js/bootstrap.min.js"></script>
+<script src="static/js/bs-init.js"></script>
+<script src="static/js/script.js"></script>
 
 {%endblock%}

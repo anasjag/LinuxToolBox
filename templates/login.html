@@ -1,6 +1,6 @@
 {%extends 'base.html'%}
 {%block content%}
-<body style="background-color: #121212;">
+
     <section class="py-4" style="background-color: #121212;">
         <div class="container py-4" style="padding-top: 52px;">
             <div class="row mb-4 mb-lg-5">
@@ -14,10 +14,33 @@
                     <div class="card">
                         <div class="card-body text-center d-flex flex-column align-items-center" style="background-color: #f3f5f8;border-radius: 8px;"><a href="home.html"><img data-bss-hover-animate="pulse" src="static/img/clipboard-image-1.png" style="max-width: 212px;max-height: 215px;padding-bottom: 50px;margin-top: 40px;"></a>
                             <form method="post" data-bs-theme="light">
-                                <div class="mb-3"><input class="form-control bounce animated" type="email" name="email" placeholder="Example@linuxtoolbox.com" style="border-radius: 8px;margin-top: 10px;--bs-body-color: var(--bs-emphasis-color);color: var(--bs-body-color);"></div>
-                                <div class="mb-3"><input class="form-control bounce animated" type="password" name="password" placeholder="Password" style="border-radius: 8px;margin-bottom: 50px;"></div>
-                                <div class="mb-3"><button class="btn btn-primary shadow d-block w-100 all_btn" data-bss-hover-animate="pulse" type="submit" style="background-color: #EBC33A;border-radius: 8px;border: none;color: #121212;">Log in</button>
-                                    <p style="margin-top: 50px;color: #121212;font-size: 15px;margin-bottom: 40px;"><strong>Need an account?</strong><br><a data-bss-hover-animate="flash" href="signup.html"><span style="color: rgb(18, 18, 18);">Sign up here</span></a></p>
+
+                                {{form.hidden_tag()}}
+                                <div class="mb-3">
+                                    {{ form.email( class="form-control bounce animated", placeholder="Example@linuxtoolbox.com", style="border-radius: 8px;margin-top: 10px;--bs-body-color: var(--bs-emphasis-color);color: var(--bs-body-color);")}}
+                                </div>
+                                <div class="mb-3">
+                                    {{form.password(class="form-control bounce animated", placeholder="Password", style="border-radius: 8px;margin-bottom: 50px;")}}
+                                </div>
+                                <div class="mb-3">
+                                    {% if form.password.errors %}
+                                        <li style="color: rgb(209,84,93); font-size:70%; line-height: 0.9; margin-top: 5px; margin-bottom: -15px">{{ form.password.errors[0] }}</li><br>
+                                    {%else%}
+                                        {% with messages = get_flashed_messages(with_categories=true) %}
+                                        {%- for category, message in messages %}
+                                            <li class="form__flash--{{category}}"> {{ message }}</li><br>
+                                        {% endfor %}
+                                        {% endwith %}
+                                    {%endif%}
+                                    {{ form.submit(class="btn btn-primary shadow d-block w-100 all_btn", style="background-color: #EBC33A;border-radius: 8px;border: none;color: #121212;", **{'data-bss-hover-animate':'pulse'},)}}
+                                    <p style="margin-top: 50px;color: #121212;font-size: 15px;margin-bottom: 40px;">
+                                        <strong>Need an account?
+                                        </strong><br>
+                                        <a data-bss-hover-animate="flash" href="signup.html">
+                                            <span style="color: rgb(18, 18, 18);">Sign up here
+                                            </span>
+                                        </a>
+                                    </p>
                                 </div>
                             </form>
                         </div>
@@ -29,5 +52,5 @@
     <footer class="bg-primary-gradient"></footer>
     <script src="static/bootstrap/js/bootstrap.min.js"></script>
     <script src="static/js/bs-init.js"></script>
-</body>
+
 {%endblock%}

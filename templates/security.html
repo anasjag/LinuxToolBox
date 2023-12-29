@@ -1,28 +1,78 @@
 {%extends 'base.html'%}
 {%block content%}
 
-    <div class="container py-5">
-        <div class="d-flex align-items-start justify-content-md-center align-items-md-start sec_card">
-            <form class="sec_form" method="post" data-bs-theme="light">
-                <p class="font-monospace" style="color: #f3f5f8;font-size: 20px;margin: 0px;margin-bottom: 0px;"><strong>Security</strong><br><span class="d-lg-flex align-items-lg-center" style="font-size: 15px;">Use the form below to update your Password or Email.</span></p>
-                <div class="security_field" style="margin-top: 30px;"><label class="form-label font-monospace form-label" style="padding-bottom:0px;margin-bottom:0px;font-size:15px;color:#f3f5f8;" for="email"><strong>Email:</strong></label><input class="form-control form-control-sm form-control" type="email" name="email" placeholder="Example@linuxtoolbox.com" style="border-radius: 8px;margin-bottom: 30px;"></div>
-                <div class="security_field" style="margin-top: 0px;"><label class="form-label font-monospace form-label" style="margin-bottom:0px;color:#f3f5f8;" for="password"><strong>Password:</strong></label><input class="form-control form-control-sm form-control" type="password" name="password" placeholder="Password" style="border-radius: 8px;margin-bottom: 0px;"></div>
-                <div class="security_field"><label class="form-label font-monospace" style="margin-bottom: 0px;color: #f3f5f8;margin-top: 0px;" for="confirm password"><strong>Confirm Password:</strong></label><input class="form-control form-control-sm form-control" type="password" name="confirm password" placeholder="Password" style="border-radius: 8px;margin-bottom: 0px;"></div>
-                <div class="d-flex justify-content-center justify-content-lg-center align-items-lg-center mb-3"><button class="btn btn-primary text-center shadow d-flex justify-content-center align-items-center profile_save_btn all_btn" data-bss-hover-animate="pulse" type="submit" style="padding-right: 10px;padding-left: 10px;">Save change</button></div>
-            </form>
-        </div>
-        <div style="margin-left: 20px;padding-top: 0px;width: 90%;">
-            <div><a href="general.html">
-                    <p class="font-monospace profile_btn" style="width: 250px;height: 51px;margin-top: 80px;margin-bottom: 20px;padding-left: 4px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-fill" style="color: #f3f5f8;">
-                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
-                        </svg><strong><span style="color: rgb(243, 245, 248);">&nbsp;General</span></strong><br><span class="d-lg-flex justify-content-lg-start align-items-lg-end profile_small_text">Profile Name, Phone Number</span><br><br></p>
-                </a></div>
-            <div><a href="security.html" style="margin-bottom: 15px;">
-                    <p class="profile_btn" style="padding-left: 5px;margin-bottom: 0px;"><i class="fa fa-lock" style="color: #f3f5f8;margin-right: 15px;"></i><strong><span style="color: rgb(243, 245, 248);">&nbsp; &nbsp;Security</span></strong><br><span class="d-lg-flex align-items-lg-center profile_small_text">Password, Email Address</span></p>
-                </a><button class="btn text-center shadow-none profile_save_btn" data-bss-hover-animate="pulse" id="logout-1" type="submit" style="border-radius: 50px;margin-top: 40px;margin-left: 55px;margin-right: 55px;"><span style="color: rgb(226, 69, 89);">Log Out</span></button></div>
-        </div>
+<div class="container py-5">
+    <div class="d-flex align-items-start justify-content-md-center align-items-md-start sec_card">
+        <form class="sec_form" method="post" data-bs-theme="light">
+            {{form.hidden_tag()}}
+            <p class="font-monospace" style="color: #f3f5f8;font-size: 20px;margin: 0px;margin-bottom: 0px;">
+                <strong>Security</strong><br><span class="d-lg-flex align-items-lg-center" style="font-size: 15px;">Use
+                    the form below to update your Password or Email.</span></p>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+            
+                {%- for category, message in messages %}
+                    <span class="form__flash--{{category}}"> {{ message }}</span><br>
+                {% endfor %}
+                {% endwith %}
+            <div class="security_field" style="margin-top: 30px;">
+
+                <strong>{{form.email.label(class="form-label font-monospace form-label",
+                        style="padding-bottom:0px;margin-bottom:0px;font-size:15px;color:#f3f5f8;",
+                        for="email")}} </strong>
+                    {{form.email(class="form-control form-control-sm form-control",
+                        type="email", value=form.email.default, placeholder="Example@linuxtoolbox.com",
+                        style="border-radius: 8px;margin-bottom: 30px;")}}
+            </div>
+            <div class="security_field" style="margin-top: 0px;">
+                <strong>{{form.password.label(class="form-label font-monospace form-label",
+                        style="margin-bottom:0px;color:#f3f5f8;")}}</strong>
+                    {{form.password(class="form-control form-control-sm form-control",
+                        placeholder="Password", style="border-radius: 8px;margin-bottom: 0px;")}}
+            </div>
+            <div class="security_field">
+                <strong>{{form.confirm.label(class="form-label font-monospace form-label",
+                        style="margin-bottom: 0px; color:#f3f5f8; margin-top: 0px;")}}</strong>
+                    {{form.confirm(class="form-control form-control-sm form-control",
+                         placeholder="Password", style="border-radius: 8px;margin-bottom: 0px;")}}          
+            </div>
+            
+            <div class="d-flex justify-content-center justify-content-lg-center align-items-lg-center mb-3">
+              
+                <ul >
+                    {% for error in form.password.errors %}
+                        <li style="color: rgb(209,84,93); font-size:70%; line-height: 0.9; margin-top: 5px; margin-bottom: -15px">{{ error }}</li><br>
+                    {% endfor %} 
+                    {% for error in form.confirm.errors %}
+                        <li style="color: rgb(209,84,93); font-size:70%; line-height: 0.9; margin-top: 5px; margin-bottom: -25px">{{ error }}</li><br>
+                    {% endfor %}  
+                    </ul>  
+                {{ form.submit(class="btn btn-primary text-center shadow d-flex justify-content-center align-items-center profile_save_btn all_btn", type="submit", style="padding-right: 10px;padding-left: 10px;", **{'data-bss-hover-animate':'pulse'},)}}
+            </div>
+        </form>
     </div>
-    <script src="static/bootstrap/js/bootstrap.min.js"></script>
-    <script src="static/js/bs-init.js"></script>
+    <div style="margin-left: 20px;padding-top: 0px;width: 90%;">
+        <div><a href="general.html">
+                <p class="font-monospace profile_btn"
+                    style="width: 250px;height: 51px;margin-top: 80px;margin-bottom: 20px;padding-left: 4px;"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                        viewBox="0 0 16 16" class="bi bi-person-fill" style="color: #f3f5f8;">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
+                    </svg><strong><span style="color: rgb(243, 245, 248);">&nbsp;General</span></strong><br><span
+                        class="d-lg-flex justify-content-lg-start align-items-lg-end profile_small_text">Profile Name,
+                        Phone Number</span><br><br></p>
+            </a></div>
+        <div><a href="security.html" style="margin-bottom: 15px;">
+                <p class="profile_btn" style="padding-left: 5px;margin-bottom: 0px;"><i class="fa fa-lock"
+                        style="color: #f3f5f8;margin-right: 15px;"></i><strong><span
+                            style="color: rgb(243, 245, 248);">&nbsp; &nbsp;Security</span></strong><br><span
+                        class="d-lg-flex align-items-lg-center profile_small_text">Password, Email Address</span></p>
+            </a><a class="btn text-center shadow-none profile_save_btn" href="logout" data-bss-hover-animate="pulse"
+                id="logout-1" type="submit"
+                style="border-radius: 50px;margin-top: 40px;margin-left: 55px;margin-right: 55px;"><span
+                    style="color: rgb(226, 69, 89);">Log Out</span></a></div>
+    </div>
+</div>
+<script src="static/bootstrap/js/bootstrap.min.js"></script>
+<script src="static/js/bs-init.js"></script>
 
 {%endblock%}

@@ -8,4 +8,8 @@ MarkupSafe
 pymongo
 Werkzeug
 gunicorn
-python-nmap
+flask-wtf
+python-dotenv
+xmltodict
+email_validator
+

@@ -1,32 +1,78 @@
 {%extends 'base.html'%}
 {%block content%}
 
-    <div class="container py-5">
-        <div class="d-flex d-lg-flex justify-content-center justify-content-lg-center sec_card">
-            <form class="d-flex flex-column sec_form" method="post" data-bs-theme="light">
-                <p class="font-monospace" style="color: #f3f5f8;font-size: 20px;margin: 0px;margin-bottom: 0px;"><strong>General</strong><br><span class="d-lg-flex align-items-lg-center" style="font-size: 15px;">Use the form below to update your profile.</span></p>
-                <div class="mb-3" style="display: flex;flex-direction: row;justify-content: space-between;">
-                    <div style="margin-top: 30px;width: 40%;"><label class="form-label font-monospace profile_text_label"><strong><span style="color: rgb(243, 245, 248);">First Name:</span></strong></label><input class="form-control profile_name_input" type="text" placeholder="First Name" style="padding-left: 10px;width: 100%;"></div>
-                    <div style="margin-top: 30px;width: 40%;"><label class="form-label font-monospace profile_text_label" id="profile_label1" style="margin-left: 0px;"><strong><span style="color: rgb(243, 245, 248);">Last Name:</span></strong></label><input class="form-control profile_name_input" type="text" style="width: 100%;padding-left: 10px;margin-left: 0px;" placeholder="Last Name"></div>
+<div class="container py-5">
+    <div class="d-flex d-lg-flex justify-content-center justify-content-lg-center sec_card">
+        <form class="d-flex flex-column sec_form" method="post" data-bs-theme="light">
+            {{form.hidden_tag()}}
+            <p class="font-monospace" style="color: #f3f5f8;font-size: 20px;margin: 0px;margin-bottom: 0px;">
+                <strong>General</strong><br><span class="d-lg-flex align-items-lg-center" style="font-size: 15px;">Use
+                    the form below to update your profile.</span></p>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {%- for category, message in messages %}
+                    <span class="form__flash form__flash--{{category}}"> {{ message }}</span>
+                {% endfor %}
+                {% endwith %}
+            <div class="mb-3" style="display: flex;flex-direction: row;justify-content: space-between;">
+                <div style="margin-top: 30px;width: 40%;">
+
+                    <strong>{{ form.fname.label(class="form-label font-monospace profile_text_label", style="color: rgb(243, 245, 248);") }}</strong>
+                    {{ form.fname(class="form-control profile_name_input",type="text", placeholder="First Name", style="padding-left: 10px;", value=form.fname.default)}}
+                
+                    </div>
+                <div style="margin-top: 30px;width: 40%;">
+
+                    <strong>{{ form.lname.label(class="form-label font-monospace profile_text_label", id="profile_label1", style="color: rgb(243, 245, 248);") }}</strong>
+                    {{ form.lname(class="form-control profile_name_input", value=form.lname.default,type="text", style="width: 100%;padding-left: 10px;margin-left: 0px;", placeholder="Last Name")}}
+                    
                 </div>
-                <div class="mb-3" style="margin-bottom: 17px;"><label class="form-label font-monospace profile_text_label"><strong><span style="color: rgb(243, 245, 248);">Phone Number:</span></strong></label><input class="form-control profile_number_input" type="number" name="number" placeholder="+1 (123) 456-7890" style="padding-left: 10px;width: 100%;">
-                    <p class="profile_small_text">We collect this incase of emergencies.</p>
+            </div>
+            {% for error in form.fname.errors or form.lname.errors%}
+                <strong><span style="color: rgb(209,84,93); font-size:70%; line-height: 0.9; margin-top: -50px; ">{{ error }}</span></strong>
+            {% endfor %}
+            <div class="mb-3" style="margin-bottom: 17px;">
+
+                <strong>{{ form.phone.label(class="form-label font-monospace profile_text_label" ,style="color: rgb(243, 245, 248);") }} </strong>
+                <div style="display:flex;">
+                    {{ form.country_code(class="form-control profile_number_input", value=form.country_code.default, style="padding: 2.5px 10px; width:16%; margin-right:1.5%") }}
+                    {{ form.phone(class="form-control profile_number_input", value=form.phone.default, placeholder=" 780-610-499", style="padding-left: 10px;")}}
                 </div>
-                <div class="d-flex justify-content-center justify-content-lg-center mb-3"><button class="btn btn-primary text-center shadow profile_save_btn all_btn" data-bss-hover-animate="pulse" type="submit" style="border-radius: 50px;">Save change</button></div>
-            </form>
-        </div>
-        <div style="margin-left: 20px;">
-            <div><a href="general.html">
-                    <p class="font-monospace profile_btn" style="width: 250px;height: 51px;margin-top: 80px;margin-bottom: 20px;padding-left: 5px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-fill" style="color: #f3f5f8;">
-                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
-                        </svg><strong><span style="color: rgb(243, 245, 248);">&nbsp;General</span></strong><br><span class="d-lg-flex align-items-lg-center profile_small_text">Profile Name, Phone Number</span><br><br></p>
-                </a></div>
-            <div><a href="security.html">
-                    <p class="profile_btn" style="height: 51px;padding-left: 5px;margin-bottom: 0px;"><i class="fa fa-lock" style="color: #f3f5f8;margin-right: 15px;"></i><strong><span style="color: rgb(243, 245, 248);">&nbsp; &nbsp;Security</span></strong><br><span class="d-lg-flex align-items-lg-center profile_small_text">Password, Email Address</span></p>
-                </a><button class="btn text-center shadow-none profile_save_btn" data-bss-hover-animate="pulse" id="logout" type="submit" style="border-radius: 50px;margin-top: 40px;margin-left: 55px;margin-right: 55px;"><span style="color: rgb(226, 69, 89);">Log Out</span></button></div>
-        </div>
+            
+                <p class="profile_small_text">We collect this incase of emergencies.</p>
+                {% for error in form.phone.errors%}
+                    <strong><span style="color: rgb(209,84,93); font-size:70%; line-height: 0.9; margin-top: -50px; ">{{error}}</span></strong>
+                {% endfor %}
+                {% for error in form.country_code.errors%}
+                    <strong><span style="color: rgb(209,84,93); font-size:70%; line-height: 0.9; ">{{error}}</span></strong>
+                {% endfor %}
+            </div>
+            <div class="d-flex justify-content-center justify-content-lg-center mb-3">
+                {{ form.submit(class="btn btn-primary text-center shadow profile_save_btn",type="submit", style="border-radius: 50px;", **{'data-bss-hover-animate':'pulse'})}}
+            </div>
+        </form>
     </div>
-    <script src="static/bootstrap/js/bootstrap.min.js"></script>
-    <script src="static/js/bs-init.js"></script>
+    <div style="margin-left: 20px;">
+        <div><a href="general.html">
+                <p class="font-monospace profile_btn"
+                    style="width: 250px;height: 51px;margin-top: 80px;margin-bottom: 20px;padding-left: 5px;"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                        viewBox="0 0 16 16" class="bi bi-person-fill" style="color: #f3f5f8;">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
+                    </svg><strong><span style="color: rgb(243, 245, 248);">&nbsp;General</span></strong><br><span
+                        class="d-lg-flex align-items-lg-center profile_small_text">Profile Name, Phone
+                        Number</span><br><br></p>
+            </a></div>
+        <div><a href="security.html">
+                <p class="profile_btn" style="height: 51px;padding-left: 5px;margin-bottom: 0px;"><i class="fa fa-lock"
+                        style="color: #f3f5f8;margin-right: 15px;"></i><strong><span
+                            style="color: rgb(243, 245, 248);">&nbsp; &nbsp;Security</span></strong><br><span
+                        class="d-lg-flex align-items-lg-center profile_small_text">Password, Email Address</span></p>
+            </a><a class="btn text-center shadow-none profile_save_btn" href="logout" data-bss-hover-animate="pulse" id="logout"
+                type="submit" style="border-radius: 50px;margin-top: 40px;margin-left: 55px;margin-right: 55px;"><span
+                    style="color: rgb(226, 69, 89);">Log Out</span></a></div>
+    </div>
+</div>
+<script src="static/bootstrap/js/bootstrap.min.js"></script>
+<script src="static/js/bs-init.js"></script>
 
 {%endblock%}

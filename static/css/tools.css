@@ -78,27 +78,8 @@
 }
 
 @media (min-width: 300px) {
-  .tool_inputs {
-    width: 95%;
-    
-    height: 21px;
-    border-radius: 4px;
-    padding-top: 11px;
-    padding-bottom: 11px;
-    padding-left: 15px;
-    padding-right: 11px;
-    margin-left: 0px;
-    margin-top: 3px;
-    font-size: 8px;
-  }
-}
-
-@media (min-width: 300px) {
   #tool_target_label {
-    margin-left: 15px;
-    margin-bottom: 0px;
     color: #f3f5f8;
-    margin-top: 12px;
     font-size: 8px;
   }
 }
@@ -231,11 +212,23 @@
 
 @media (min-width: 992px) {
   #tool_target_label {
-    margin-left: 45px;
-    margin-bottom: 0px;
     color: #f3f5f8;
-    margin-top: 24px;
     font-size: 16px;
+  }
+}
+
+@media (min-width: 300px) {
+  .tool_inputs {
+    width: 95%;
+    height: 21px;
+    border-radius: 4px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    padding-left: 15px;
+    padding-right: 11px;
+    margin-left: 0px;
+    margin-top: 3px;
+    font-size: 8px;
   }
 }
 
@@ -279,6 +272,9 @@
     border-bottom-style: solid;
     border-bottom-color: var(--bs-emphasis-color);
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     flex-direction: column;
     padding-bottom: 5px;
   }
@@ -286,6 +282,7 @@
 
 @media (min-width: 992px) {
   #tool_section1 {
+    width: 100%;
     padding-bottom: 30px;
     border-bottom-style: solid;
     border-bottom-color: var(--bs-emphasis-color);
@@ -388,18 +385,6 @@
     width: 260px;
   }
 }
-
-@media (min-width: 576px) {
-  #tool_card_section3 {
-    border-bottom-style: solid;
-    border-bottom-color: var(--bs-emphasis-color);
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 20px;
-    padding-left: 20px;
-  }
-}
-
 @media (min-width: 300px) {
   #tool_card_section3 {
     border-bottom-style: solid;
@@ -411,6 +396,16 @@
   }
 }
 
+@media (min-width: 576px) {
+  #tool_card_section3 {
+    border-bottom-style: solid;
+    border-bottom-color: var(--bs-emphasis-color);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    padding-left: 20px;
+  }
+}
 @media (min-width: 992px) {
   #tool_card_section3 {
     border-bottom-style: solid;
@@ -421,6 +416,9 @@
     padding-left: 40px;
   }
 }
+
+
+
 
 @media (min-width: 992px) {
   #tool_checkbox_terms {

@@ -84,6 +84,21 @@
 }
 
 @media (min-width: 300px) {
+  #signup_fname {
+    font-size: 10px;
+    justify-self: center;
+    align-self: center;
+  }
+}
+
+@media (min-width: 992px) {
+  #signup_fname {
+    font-size: 15px;
+    justify-self: center;
+    align-self: center;
+  }
+}
+@media (min-width: 300px) {
   .login_btn {
     background-color: #121212;
     color: #EBC33A;
@@ -231,6 +246,35 @@
 .form-label {
   margin-bottom: 0px;
   color: #121212;
+}
+@media (min-width: 300px) {
+  .form-label {
+    font-size: 10px;
+    justify-self: center;
+    align-self: center;
+  }
+}
+
+@media (min-width: 992px) {
+  .form-label {
+    font-size: 15px;
+    justify-self: center;
+    align-self: center;
+  }
+}
+
+.form__flash--success{
+  font-size: 70%;
+  color: #121212;
+  background-color: #EBC33A;
+  line-height: 1.9;  
+}
+.form__flash--danger{
+  font-size: 70%;
+  color: rgb(209,84,93); 
+  line-height: 0.9; 
+  margin-top: 5px; 
+  margin-bottom: -15px
 }
 
 @media (min-width: 992px) {

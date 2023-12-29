@@ -1,22 +1,21 @@
 {% macro header(email) %}
-{%if request.path not in [url_for('login'), url_for('signup')]%}
+{%if request.path not in [url_for('pages.login'), url_for('pages.signup')]%}
 
 <nav class="navbar navbar-expand-md sticky-top navbar-shrink py-3 navbar-light" id="mainNav" style="background-color: #121212;max-height: 72px;">
     <div class="container"><a class="navbar-brand d-flex align-items-center" href="/home.html"><img class="logo" src="static/img/clipboard-image-2.png"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon" style="background-color: #ebc33a;border-radius: 4px;"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1" style="background-color:#121212;">
             <ul class="navbar-nav mx-auto">
-                <li class="nav-item"><a class="nav-link link-light {{ 'nav-link active' if request.path == url_for('home') }} " href="/home.html" style="color:#ffffff;color:#f3f5f8;border-radius:4px;">Home</a></li>
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle {{ 'nav-link active' if request.path == url_for('tools') }}" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color:#f3f5f8;border-radius:4px;">Tools&nbsp;</a>
+                <li class="nav-item"><a class="nav-link link-light {{ 'nav-link active' if request.path == url_for('pages.home') }} " href="/home.html" style="color:#ffffff;color:#f3f5f8;border-radius:4px;">Home</a></li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle {{ 'nav-link active' if request.path == url_for('pages.tools') }}" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color:#f3f5f8;border-radius:4px;">Tools&nbsp;</a>
                     <div class="dropdown-menu" style="border-radius:8px;"><a class="nmap_link" href="tools.html" style="padding-left:20px;margin-left:2px;padding-right:80px;margin-right:0px;">Nmap</a></div>
                 </li>
         {% if not email %}
                 <li class="nav-item"><a class="nav-link link-light" href="login.html" style="border-radius:4px;">Log in</a></li>
             </ul><a class="btn btn-primary shadow home_signup" role="button" href="signup.html" id="home_singup-1" style="background-color:#EBC33A;color:#121212;border:none;border-radius:4px;">Sign Up</a>
         {% else %}
-                <li class="nav-item"><a class="nav-link link-light {{ 'nav-link active' if request.path == url_for('history') }}" href="history.html" style="border-radius:4px;">History</a></li>
+                <li class="nav-item"><a class="nav-link link-light {{ 'nav-link active' if request.path == url_for('pages.history') }}" href="history.html" style="border-radius:4px;">History</a></li>
                 </ul>
-                <div class="dropdown"><a aria-expanded="false" data-bs-toggle="dropdown" href="general.html" style="width: 150px;padding: 10px 30px;background-color: #ebc33a;border-radius: 4px;color: #121212;"><strong>Profile&nbsp;</strong></a>
-                <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a>
+                <div><a href="general.html" style="width: 150px;padding: 10px 30px;background-color: #ebc33a;border-radius: 4px;color: #121212;"><strong>Profile&nbsp;</strong></a>
                 </div>
             </div> 
         {% endif %}
