@@ -39,10 +39,11 @@
             <div class="col-md-12 search-table-col"
                 style="margin-top: 3px;display: flex;flex-direction: column;padding-top: 0px;width: 100%;">
                 <div class="font-monospace table" style="width: 100%;margin-top: -4px;height: 485px;">
-                    {% if scanned_data %} <!-- if there is a data in the dic/database -->
+
                     <table class="table" cellspacing="0" id="firsttable" width="100%">
 
                         <thead class="table-heading">
+
                             <tr class="table-row">
                                 <th class="font-monospace table-header" style="padding-left: 50px;">IP or Hostname</th>
                                 <th class="table-header">Status</th>
@@ -50,8 +51,8 @@
                                 <th class="text-center table-header">Actions</th>
                             </tr>
                         </thead>
-
                         <tbody>
+                            {% if scanned_data %} <!-- if there is a data in the dic/database -->
                             {% for scan_data in scanned_data %}
                             <tr>
                                 <td class="table-header" style="padding-left: 50px;">{{ scan_data.ip }}</td>
@@ -92,14 +93,16 @@
                                     </a>
                                 </td>
                                 {% endfor %}
-                                {% if not scanned_data %}
+                                {% else %}
                             <tr>
-                                <td colspan="4" class="text-center">No data available</td>
+                                <td colspan="4" class="text-center"
+                                    style="background-color: #434343; color:#DC3545; border:none;">No data available
+                                </td>
                             </tr>
                             {% endif %}
                         </tbody>
                     </table>
-                    {% endif %}
+
                 </div>
             </div>
         </div>
