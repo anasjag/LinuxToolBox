@@ -63,7 +63,7 @@
                                 <td class="table-header">{{ scan_data.date }}</td>
                                 <td class="text-center table-header">
                                     <a
-                                        href="{{ url_for('pages.handle_action', action_type='download_btn', scan_id=scan_data.id) }}">
+                                        href="{{ url_for('pages.handle_action', action_type='download_btn', scan_id=scan_data._id) }}">
                                         <svg class="btnNoBorders" fill="none" height="1em" style="color:#DC3545;"
                                             viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -75,7 +75,7 @@
                                         </svg>
                                     </a>
                                     <a
-                                        href="{{ url_for('pages.handle_action', action_type='showResult_btn', scan_id=scan_data.id) }}">
+                                        href="{{ url_for('pages.handle_action', action_type='showResult_btn', scan_id=scan_data._id) }}">
                                         <svg class="bi bi-eye" fill="currentColor" height="1em" viewbox="0 0 16 16"
                                             width="1em" xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -87,7 +87,7 @@
                                         </svg>
                                     </a>
                                     <a
-                                        href="{{ url_for('pages.handle_action', action_type='remove_btn', scan_id=scan_data.id) }}">
+                                        href="{{ url_for('pages.handle_action', action_type='remove_btn', scan_id=scan_data._id) }}">
                                         <i class="la la-remove"></i>
                                     </a>
                                 </td>
