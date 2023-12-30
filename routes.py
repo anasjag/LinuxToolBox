@@ -1,16 +1,18 @@
 from flask import (
     Flask, 
-    render_template, 
+    render_template,
     request, 
     current_app, 
     Blueprint,
     redirect,
     session,
     flash,
-    url_for
+    url_for,
+    make_response
     )
 from datetime import date
 import xmltodict
+import pdfkit
 import uuid
 import functools
 from forms import *
@@ -71,23 +73,30 @@ def history():
         "history.html", scanned_data=scanned_data, search_query=search_query,title = f"History - "
     )
 
-
+def scan_page(scan_id, scan_ip):
+    scan_data = current_app.db.scans.find_one({"_id": scan_id})
+        
+    if scan_data and 'data' in scan_data:
+        
+        scan_result = scan_data['data']
+        return render_template('scan.html', scan_result=scan_result, ip=scan_ip)
+    else:
+        # Handle the case when data is not available or has unexpected structure
+        return render_template('scan.html', scan_result=None)
+    
 @pages.route("/handle_action/<action_type>/<scan_id>/<scan_ip>")
 def handle_action(action_type, scan_id, scan_ip):
     if action_type == "download_btn":
-        print(f"download_btn clicked for item with ID {scan_id}")
-    elif action_type == "showResult_btn":
+        rendered_html = scan_page(scan_id, scan_ip)
+         # Use pdfkit.from_string to generate the PDF content
+        pdf = pdfkit.from_string(rendered_html)
+        response = make_response(pdf)
+        response.headers['Content-Type'] = 'application/pdf'
+        response.headers['Content-Disposition'] =f'attachment; filename={scan_ip}.pdf'
 
-        scan_data = current_app.db.scans.find_one({"_id": scan_id})
-        
-        if scan_data and 'data' in scan_data:
-            
-            scan_result = scan_data['data']
-            return render_template('scan.html', scan_result=scan_result, ip=scan_ip)
-        else:
-            # Handle the case when data is not available or has unexpected structure
-            return render_template('scan.html', scan_result=None)
-        
+        return response
+    elif action_type == "showResult_btn":
+       scan_page(scan_id, scan_ip) 
     elif action_type == "remove_btn":
         current_app.db.scans.delete_one({"_id": scan_id})
     return redirect(url_for("pages.history"))
@@ -232,7 +241,7 @@ def nmap_scan():
     else:
         # Handle the case when data is not available or has unexpected structure
         return render_template('scan.html', scan_result=None)
-
+    
 @pages.route("/logout")
 def logout():
     session.clear()
