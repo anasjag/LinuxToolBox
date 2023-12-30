@@ -44,28 +44,42 @@ def tools():
     return render_template("tools.html",  title = f"Tools - ")
 
 @pages.route("/history.html", methods=["GET", "POST"])
-# @login_required
+@login_required
 def history():
-    # scan_data = current_app.db.scans.find_one({"_id": session["user_id"]})
-    scanned_data = [
-        {"id": "123", "ip": "192.159", "date": "19-02-2012", "status": False},
-        {"id": "456", "ip": "10.0.0.1", "date": "20-02-2012", "status": True},
-        {"id": "789", "ip": "172.16.0.1", "date": "21-02-2012", "status": False},
-        {"id": "123", "ip": "192.159", "date": "19-02-2012", "status": False},
-        {"id": "456", "ip": "10.0.0.1", "date": "20-02-2012", "status": True},
-        {"id": "789", "ip": "172.16.0.1", "date": "21-02-2012", "status": False},
-    ]
+    user_data = current_app.db.user.find_one({"_id": session["user_id"]})
+    print(session["user_id"])
+    print(user_data)
+    data = user_data['scans']
+    print(data)
+    
+    # scan_data = current_app.db.user.find_one({"_id": user_data})
+    # for scan in :
+    #     scan = Scans(
+    #         _id=uuid.uuid4().hex,
+    #         date= str(date.today()),
+    #         status=dict_data['nmaprun']['runstats']['finished']['@exit'],
+    #         ip=target_ip,
+    #         data=dict_data
+    #     )
+    
+    # scanned_data = [
+    #     {"id": "123", "ip": "192.159", "date": "19-02-2012", "status": False},
+    #     {"id": "456", "ip": "10.0.0.1", "date": "20-02-2012", "status": True},
+    #     {"id": "789", "ip": "172.16.0.1", "date": "21-02-2012", "status": False},
+    #     {"id": "123", "ip": "192.159", "date": "19-02-2012", "status": False},
+    #     {"id": "456", "ip": "10.0.0.1", "date": "20-02-2012", "status": True},
+    #     {"id": "789", "ip": "172.16.0.1", "date": "21-02-2012", "status": False},
+    # ]
     # data_ = [scans(**datain) for datain in scanned_data]
 
     search_query = request.args.get("search_query", "").lower()
-    search_query_lower = search_query.lower()
     scanned_data = [
         data
         for data in scanned_data
-        if search_query_lower in data["ip"].lower()
-        or search_query_lower in data["date"].lower()
-        or (search_query_lower == "success" and data["status"])
-        or (search_query_lower == "fail" and not data["status"])
+        if search_query in data["ip"].lower()
+        or search_query in data["date"].lower()
+        or (search_query == "success" and data["status"])
+        or (search_query == "fail" and not data["status"])
     ]
     return render_template(
         "history.html", scanned_data=scanned_data, search_query=search_query,title = f"History - "
@@ -207,6 +221,11 @@ def nmap_scan():
             data=dict_data
         )
     current_app.db.scans.insert_one(asdict(scan))
+
+    if session.get("email"):
+        current_app.db.users.update_one(
+            {"_id": session["user_id"]}, {"$push": {"scans": scan._id}}
+        )
 
     scan_data = current_app.db.scans.find_one({"_id": scan._id})
     
