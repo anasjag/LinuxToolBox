@@ -2,4 +2,5 @@
 /learning
 /nmap .code-workspace
 /test.code-workspace
+venv
 .env
