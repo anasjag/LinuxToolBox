@@ -96,7 +96,15 @@ def handle_action(action_type, scan_id, scan_ip):
 
         return response
     elif action_type == "showResult_btn":
-       scan_page(scan_id, scan_ip) 
+        scan_data = current_app.db.scans.find_one({"_id": scan_id})
+        
+        if scan_data and 'data' in scan_data:
+            
+            scan_result = scan_data['data']
+            return render_template('scan.html', scan_result=scan_result, ip=scan_ip)
+        else:
+            # Handle the case when data is not available or has unexpected structure
+            return render_template('scan.html', scan_result=None)
     elif action_type == "remove_btn":
         current_app.db.scans.delete_one({"_id": scan_id})
     return redirect(url_for("pages.history"))
