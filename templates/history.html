@@ -55,7 +55,7 @@
                             {% for scan_data in scanned_data %}
                             <tr>
                                 <td class="table-header" style="padding-left: 50px;">{{ scan_data.ip }}</td>
-                                {% if scan_data.status %}
+                                {% if scan_data.status =="success" %}
                                 <td class="table-header" style="color: green !important;">Success</td>
                                 {% else %}
                                 <td class="table-header" style="color: #DC3545 !important;">Fail</td>

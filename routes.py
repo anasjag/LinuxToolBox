@@ -48,13 +48,16 @@ def tools():
 def history():
     user_data = current_app.db.users.find_one({"_id": session["user_id"]})
     data = user_data['scans']
+    
     scanned_data = []
     for scan in data:    
-        scanned_data = current_app.db.scans.find_one(
-        {"_id": scan},
-        {"data": 0}
+        scan_data = current_app.db.scans.find_one(
+            {"_id": scan},
+            {"data": 0}
         )
-    
+        if scan_data:
+            scanned_data.append(scan_data)
+    print(scanned_data)
     
     # scanned_data = [
     #     {"id": "123", "ip": "192.159", "date": "19-02-2012", "status": False},
@@ -67,13 +70,13 @@ def history():
     # data_ = [scans(**datain) for datain in scanned_data]
 
     search_query = request.args.get("search_query", "").lower()
-    # scanned_data = [
-    #     data for data in scanned_data
-    #     if search_query in data["ip"].lower()
-    #     or search_query in data["date"].lower()
-    #     or (search_query == "success" and data["status"])
-    #     or (search_query == "fail" and not data["status"])
-    # ]
+    scanned_data = [
+        data for data in scanned_data
+        if search_query in data["ip"].lower()
+        or search_query in data["date"].lower()
+        or (search_query in "success" and data["status"].lower() in "success")
+        or (search_query in "fail" and data["status"].lower() in "fail")
+    ]
    
     return render_template(
         "history.html", scanned_data=scanned_data, search_query=search_query,title = f"History - "
