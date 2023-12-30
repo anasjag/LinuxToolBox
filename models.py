@@ -14,7 +14,6 @@ class Users:
 @dataclass
 class Scans:
     _id: str
-    # user_id: Users._id
     # date: str
     # succeed: bool
     data: dict
