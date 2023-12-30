@@ -66,18 +66,28 @@ def history():
         or (search_query in "success" and data["status"].lower() in "success")
         or (search_query in "fail" and data["status"].lower() in "fail")
     ]
-   
+    
     return render_template(
         "history.html", scanned_data=scanned_data, search_query=search_query,title = f"History - "
     )
 
 
-@pages.route("/handle_action/<action_type>/<scan_id>")
-def handle_action(action_type, scan_id):
+@pages.route("/handle_action/<action_type>/<scan_id>/<scan_ip>")
+def handle_action(action_type, scan_id, scan_ip):
     if action_type == "download_btn":
         print(f"download_btn clicked for item with ID {scan_id}")
     elif action_type == "showResult_btn":
-        print(f"showResult_btn clicked for item with ID {scan_id}")
+
+        scan_data = current_app.db.scans.find_one({"_id": scan_id})
+        
+        if scan_data and 'data' in scan_data:
+            
+            scan_result = scan_data['data']
+            return render_template('scan.html', scan_result=scan_result, ip=scan_ip)
+        else:
+            # Handle the case when data is not available or has unexpected structure
+            return render_template('scan.html', scan_result=None)
+        
     elif action_type == "remove_btn":
         print(f"remove_btn clicked for item with ID {scan_id}")
     return redirect(url_for("pages.history"))
@@ -222,10 +232,6 @@ def nmap_scan():
     else:
         # Handle the case when data is not available or has unexpected structure
         return render_template('scan.html', scan_result=None)
-
-
-    # subprocess.run(['xsltproc', 'templates/nmaptest.xml', '-o', 'templates/nmaptest.html'])
-    return render_template('scan.html', scan_result=scan_result)
 
 @pages.route("/logout")
 def logout():
