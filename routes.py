@@ -7,6 +7,7 @@ from flask import (
     redirect,
     session,
     flash,
+    url_for
     )
 import xmltodict
 import uuid
@@ -42,9 +43,44 @@ def tools():
     return render_template("tools.html",  title = f"Tools - ")
 
 @pages.route("/history.html", methods=["GET", "POST"])
-@login_required
+# @login_required
 def history():
-    return render_template("history.html",  title = f"History - ")
+    # scan_data = current_app.db.scans.find_one({"_id": session["user_id"]})
+    scanned_data = [
+        {"id": "123", "ip": "192.159", "date": "19-02-2012", "status": False},
+        {"id": "456", "ip": "10.0.0.1", "date": "20-02-2012", "status": True},
+        {"id": "789", "ip": "172.16.0.1", "date": "21-02-2012", "status": False},
+        {"id": "123", "ip": "192.159", "date": "19-02-2012", "status": False},
+        {"id": "456", "ip": "10.0.0.1", "date": "20-02-2012", "status": True},
+        {"id": "789", "ip": "172.16.0.1", "date": "21-02-2012", "status": False},
+    ]
+    # data_ = [scans(**datain) for datain in scanned_data]
+
+    search_query = request.args.get("search_query", "").lower()
+    search_query_lower = search_query.lower()
+    scanned_data = [
+        data
+        for data in scanned_data
+        if search_query_lower in data["ip"].lower()
+        or search_query_lower in data["date"].lower()
+        or (search_query_lower == "success" and data["status"])
+        or (search_query_lower == "fail" and not data["status"])
+    ]
+    return render_template(
+        "history.html", scanned_data=scanned_data, search_query=search_query,title = f"History - "
+    )
+
+
+@pages.route("/handle_action/<action_type>/<scan_id>")
+def handle_action(action_type, scan_id):
+    if action_type == "download_btn":
+        print(f"download_btn clicked for item with ID {scan_id}")
+    elif action_type == "showResult_btn":
+        print(f"showResult_btn clicked for item with ID {scan_id}")
+    elif action_type == "remove_btn":
+        print(f"remove_btn clicked for item with ID {scan_id}")
+    return redirect(url_for("pages.history"))
+
 
 @pages.route("/login.html", methods=["GET", "POST"])
 def login():
