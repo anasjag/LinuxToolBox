@@ -28,8 +28,12 @@
                     a single port check.<br><br>Each Nmap port scan against a target IP address or hostname
                     automatically maps the attack surface and gives accurate data for your reconnaissance work. Sign up
                     here.</p>
+                {%if not session.get("email")%}   
                 <a class="btn font-monospace text-center shadow d-block" role="button" data-bss-hover-animate="pulse"
                     id="tool_btn1" href="signup.html">Create account</a>
+                {%else%}
+                <img id="home_img" src="static/img/clipboard-image.png">
+                {%endif%}
             </div>
             <div class="col">
                 <section id="tool_card" style="padding-bottom: 53px;margin-bottom: 35px;">
