@@ -89,7 +89,7 @@ def handle_action(action_type, scan_id, scan_ip):
             return render_template('scan.html', scan_result=None)
         
     elif action_type == "remove_btn":
-        print(f"remove_btn clicked for item with ID {scan_id}")
+        current_app.db.scans.delete_one({"_id": scan_id})
     return redirect(url_for("pages.history"))
 
 
