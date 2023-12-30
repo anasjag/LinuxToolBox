@@ -57,17 +57,6 @@ def history():
         )
         if scan_data:
             scanned_data.append(scan_data)
-    print(scanned_data)
-    
-    # scanned_data = [
-    #     {"id": "123", "ip": "192.159", "date": "19-02-2012", "status": False},
-    #     {"id": "456", "ip": "10.0.0.1", "date": "20-02-2012", "status": True},
-    #     {"id": "789", "ip": "172.16.0.1", "date": "21-02-2012", "status": False},
-    #     {"id": "123", "ip": "192.159", "date": "19-02-2012", "status": False},
-    #     {"id": "456", "ip": "10.0.0.1", "date": "20-02-2012", "status": True},
-    #     {"id": "789", "ip": "172.16.0.1", "date": "21-02-2012", "status": False},
-    # ]
-    # data_ = [scans(**datain) for datain in scanned_data]
 
     search_query = request.args.get("search_query", "").lower()
     scanned_data = [
