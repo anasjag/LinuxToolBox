@@ -196,53 +196,53 @@
 
   <a name="top"></a>
   <div id="container">
-    <h1>Nmap Scanned at Wed Dec 27 16:11:59 2023</h1>
+    <h1>Nmap Scanned at {{ scan_result['nmaprun']['@startstr']}}</h1>
     <ul id="menu">
       <li><a href="#scansummary">Scan Summary</a>
       </li>
-      <li> | <a href="#host_192_168_1_8" class="up">192.168.1.8</a>
+      <li> | <a href="#{{ip}}" class="up">
+        {{ip}}
       </li>
     </ul>
     <a name="scansummary"></a>
     <hr class="print_only">
     <h2>Scan Summary</h2>
     <p>
-      Nmap 7.94 was initiated at Wed Dec 27 16:11:59 2023 with these arguments:<br><i>nmap -oX scan.xml -O -sV
-        192.168.1.8</i><br></p>
+      Nmap 7.94 was initiated at {{ scan_result['nmaprun']['@startstr']}} with these arguments:<br><i>{{ scan_result['nmaprun']['@args']}}</i><br></p>
     <p>
-      Verbosity: 0; Debug level 0</p>
-    <p>Nmap done at Wed Dec 27 16:12:14 2023; 1 IP address (1 host up) scanned in 14.66 seconds</p>
+      Verbosity: {{ scan_result['nmaprun']['verbose']['@level']}}; Debug level {{ scan_result['nmaprun']['debugging']['@level']}}</p>
+    <p>{{ scan_result['nmaprun']['runstats']['finished']['@summary']}}</p>
     <hr class="print_only">
     <a name="host_192_168_1_8"></a>
-    <h2 class="up">192.168.1.8<span class="print_only">(online)</span>
+    <h2 class="up">{{ip}}<span class="print_only">({{ scan_result['nmaprun']['host']['status']['@state']}})</span>
     </h2>
-    <div id="hostblock_192.168.1.8" class="unhidden">
+    <div id="hostblock_{{ip}}" class="unhidden">
       <h3>Address</h3>
       <ul>
-        <li>192.168.1.8
-          (ipv4)
+        <li>{{ip}}
+          ({{ scan_result['nmaprun']['hosthint']['address'][0]['@addrtype']}})
         </li>
-        <li>AE:AF:75:F3:4C:4C
-          (mac)
+        <li>{{ scan_result['nmaprun']['hosthint']['address'][1]['@addr']}}
+          ({{ scan_result['nmaprun']['hosthint']['address'][1]['@addrtype']}})
         </li>
       </ul>
 
 
 
       <h3>Ports</h3>
-      <p>The 977 ports scanned but not shown below are in state: <b>closed</b></p>
+      <p>The {{ scan_result['nmaprun']['host']['ports']['extraports']['@count']}} ports scanned but not shown below are in state: <b>closed</b></p>
       <ul>
         <li>
-          <p>977 ports replied with: <b>reset</b></p>
+          <p>{{ scan_result['nmaprun']['host']['ports']['extraports']['@count']}} ports replied with: <b>reset</b></p>
         </li>
       </ul>
-      <table id="porttable_192.168.1.8" cellspacing="1">
+      <table id="porttable_{{ip}}" cellspacing="1">
         <tr class="head">
           <td colspan="2">Port</td>
           <td>State
-            <a href="javascript:togglePorts('porttable_192.168.1.8','closed');"><span class="noprint"><small> (toggle
+            <a href="javascript:togglePorts('porttable_{{ip}}','closed');"><span class="noprint"><small> (toggle
                   closed [0] </small></span></a><a
-              href="javascript:togglePorts('porttable_192.168.1.8','filtered');"><span class="noprint"><small> |filtered
+              href="javascript:togglePorts('porttable_{{ip}}','filtered');"><span class="noprint"><small> |filtered
                   [0])</small></span></a>
           </td>
           <td>Service</td>

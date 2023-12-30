@@ -14,6 +14,7 @@ class Users:
 @dataclass
 class Scans:
     _id: str
-    # date: str
-    # succeed: bool
+    date: str
+    status: str
+    ip: str
     data: dict

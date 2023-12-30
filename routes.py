@@ -9,6 +9,7 @@ from flask import (
     flash,
     url_for
     )
+from datetime import date
 import xmltodict
 import uuid
 import functools
@@ -190,17 +191,19 @@ def security():
 @pages.route("/scan", methods=["GET", "POST"])
 def nmap_scan():
     
-    
-    target_ip = "192.168.1.29"
+    target_ip = "192.168.1.6"
     
     xml_scan = subprocess.run(['nmap', '-O', '-sV', '-oX', '-', target_ip], capture_output=True)
     nmap_output = xml_scan.stdout.decode('utf-8')
 
     # Parse XML string to a Python dictionary
     dict_data = xmltodict.parse(nmap_output)
-    
+
     scan = Scans(
             _id=uuid.uuid4().hex,
+            date= str(date.today()),
+            status=dict_data['nmaprun']['runstats']['finished']['@exit'],
+            ip=target_ip,
             data=dict_data
         )
     current_app.db.scans.insert_one(asdict(scan))
@@ -210,7 +213,7 @@ def nmap_scan():
     if scan_data and 'data' in scan_data:
         
         scan_result = scan_data['data']
-        return render_template('scan.html', scan_result=scan_result)
+        return render_template('scan.html', scan_result=scan_result, ip=target_ip)
     else:
         # Handle the case when data is not available or has unexpected structure
         return render_template('scan.html', scan_result=None)
