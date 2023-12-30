@@ -14,7 +14,6 @@ class GeneralForm(FlaskForm):
             regex=re.compile(r"^[a-zA-Z'-]+$"),
             message='The name should not contain any numbers or special characters.'
         )])
-    #something
     country_code = SelectField('Country Code',default='962', choices=[ 
     "---","004", "008", "012", "016", "020", "024", "028", "031", "032", "036",
     "040", "044", "048", "050", "051", "052", "056", "060", "064", "068",
