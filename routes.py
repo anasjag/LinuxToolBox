@@ -220,7 +220,7 @@ def nmap_scan():
     
     target_ip = "192.168.1.6"
     
-    xml_scan = subprocess.run(['nmap', '-O', '-sV', '-oX', '-', target_ip], capture_output=True)
+    xml_scan = subprocess.run(['nmap', '-O', '-sV', '-oX','-', target_ip], capture_output=True)
     nmap_output = xml_scan.stdout.decode('utf-8')
 
     # Parse XML string to a Python dictionary
