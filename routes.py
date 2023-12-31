@@ -49,7 +49,7 @@ def tools():
 
     form = ToolsForm()
     if form.validate_on_submit():
-        pass
+        print("??????????")
     return render_template('tools.html', form=form)
     # return render_template("tools.html",  title = f"Tools - ",form=form)
 
