@@ -41,9 +41,21 @@ def start():
 def home(): 
     return render_template("home.html",  title = f"Home - ")
 
+
+
+
 @pages.route("/tools.html", methods=["GET", "POST"])
 def tools():
-    return render_template("tools.html",  title = f"Tools - ")
+    
+    form = ToolsForm()
+    if form.validate_on_submit():
+        print("000000000000000000000000000000000")
+        return redirect("home.html")
+    return render_template("tools.html",  title = f"Tools - ",form=form)
+
+
+
+
 
 @pages.route("/history.html", methods=["GET", "POST"])
 @login_required
@@ -241,15 +253,16 @@ def nmap_scan():
         )
 
     scan_data = current_app.db.scans.find_one({"_id": scan._id})
-    
+
     if scan_data and 'data' in scan_data:
         
+
         scan_result = scan_data['data']
         return render_template('scan.html', scan_result=scan_result, ip=target_ip)
     else:
         # Handle the case when data is not available or has unexpected structure
         return render_template('scan.html', scan_result=None)
-    
+
 @pages.route("/logout")
 def logout():
     session.clear()
