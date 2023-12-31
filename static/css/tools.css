@@ -219,7 +219,7 @@
 
 @media (min-width: 300px) {
   .tool_inputs {
-    width: 95%;
+    width: 100%;
     height: 21px;
     border-radius: 4px;
     padding-top: 11px;
@@ -273,7 +273,6 @@
     border-bottom-color: var(--bs-emphasis-color);
     display: flex;
     justify-content: center;
-    align-items: center;
     width: 100%;
     flex-direction: column;
     padding-bottom: 5px;

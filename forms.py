@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField ,validators, TelField, SelectField
+from wtforms import StringField, SubmitField, PasswordField ,validators, TelField, SelectField,BooleanField,RadioField,FieldList
 from wtforms.validators import InputRequired, DataRequired, ValidationError
 import re
 
@@ -116,3 +116,15 @@ class LoginForm(FlaskForm):
         )  
     ])
     submit = SubmitField("Login")
+    
+class ToolsForm(FlaskForm):
+    targetForm = StringField("Target")
+    svCheck = BooleanField("Detect service version")
+    osCheck = BooleanField("Detect operation system")
+    radio_field = RadioField('Choose one', choices=[('Common ports', 'Common Ports'),('Lists of ports', 'Lists Of Ports')])
+    portsForm = StringField("Top 10 Ports")
+    listForm= FieldList(StringField('Item'))
+    submit = SubmitField("Start Scan")
+    
+    
+    
