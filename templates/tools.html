@@ -58,8 +58,6 @@
                                         style="margin-top: 0px;")}}
                                     </div>
 
-
-
                                     <div class="form-check form-switch" style="margin-left: 20px;display: flex;">
                                         {{form.osCheck(class="form-check-input",id="flexSwitchCheckDefault" ,)}}
                                         {{form.osCheck.label(class="form-label form-check-label", id="tool_checkbox2_p",
@@ -81,19 +79,29 @@
                                         none; ",id="customRadio2",name="customRadio")}}
                                     </div>
 
-                                    {{form.radio_field.data}}
-                                    {% if form.radio_field.data == none %}
-                                    <p>mesh</p>
-                                    {{ form.portsForm(class="form-control") }}
-                                    {% elif form.radio_field.data == 'Lists Of Ports' %}
-                                    {{ form.listForm(class="form-control") }}
-                                    {% else %}
-                                    {# Default behavior when no radio button is selected #}
-                                    <p>something</p>
-                                    {{ form.portsForm(class="form-control") }}
-                                    {% endif %}
+                                    {% for option, label in form.radio_field.choices %}
+                                    <label>
+                                    {{ form.radio_field(value=option) }}
+                                    {{ label }}
+                                    </label>
+                                    {% endfor %}
 
-                                </div><input type="text" id="tool_card_input2" class="tool_inputs" placeholder="Top 10 ports">
+                                    <p id="selected-option-message" style="display:none;">Selected Option: <span id="selected-option"></span></p>
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            var selectedOptionMessage = document.getElementById('selected-option-message');
+                                            var selectedOptionSpan = document.getElementById('selected-option');
+                                            
+                                            document.querySelectorAll('input[name="options"]').forEach(function(radio) {
+                                                radio.addEventListener('click', function() {
+                                                    var selectedValue = this.value;
+                                                    selectedOptionSpan.innerText = selectedValue;
+                                                    selectedOptionMessage.style.display = 'block';
+                                                });
+                                            });
+                                        });
+                                    </script>
+                            </div><input type="text" id="tool_card_input2" class="tool_inputs" placeholder="Top 10 ports">
                             </section>
 
                             <div id="tool_section3" style="display: flex;margin-top: 30px;">
