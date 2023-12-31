@@ -28,59 +28,97 @@
                     a single port check.<br><br>Each Nmap port scan against a target IP address or hostname
                     automatically maps the attack surface and gives accurate data for your reconnaissance work. Sign up
                     here.</p>
-                {%if not session.get("email")%}   
+                {%if not session.get("email")%}
                 <a class="btn font-monospace text-center shadow d-block" role="button" data-bss-hover-animate="pulse"
                     id="tool_btn1" href="signup.html">Create account</a>
                 {%endif%}
             </div>
             <div class="col">
                 <section id="tool_card" style="padding-bottom: 53px;margin-bottom: 35px;">
-                    <section id="tool_section1" >
-                        <label class="form-label font-monospace" id="tool_target_label">Target</label>
-                            <input type="text" id="tool_card_input1"
-                                class="tool_inputs" placeholder="IP or hostname"></section>
+                    <section id="tool_section1">
+                        <div class="mb-3"
+                            style="width: 95%; height: 42px; border-radius: 4px; padding-top: 11px; padding-bottom: 11px; padding-left: 15px; padding-right: 11px; margin-left: 0px; font-size: 12px;">
+
+                            <form method="POST">
+                                {{form.hidden_tag()}}
+                                {{form.targetForm.label(class="form-label font-monospace", id="tool_target_label")}}
+                                {{ form.targetForm( class="tool_inputs",
+                                placeholder="IP or hostname",
+                                type="text", id="tool_card_input1",)}}
+
+                        </div>
+                    </section>
                     <section id="tool_section2" style="padding-top: 0px;">
                         <p class="font-monospace" id="tool_scan_option_p">Scan option</p>
                         <div style="display: flex;padding-bottom: 0px;margin-top: 0px;">
-                            <div id="tool_checkbox_1" class="form-check form-switch" style="padding-top: 0px;"><input
-                                    type="checkbox" id="flexSwitchCheckDefault" class="form-check-input"><label
-                                    class="form-label form-check-label" id="tool_checkbox1_p"
-                                    for="flexSwitchCheckDefault" style="margin-top: 0px;">Detect service version</label>
+
+                            <div id="tool_checkbox_1" class="form-check form-switch" style="padding-top: 0px;">
+                                {{form.svCheck(id="flexSwitchCheckDefault", class="form-check-input")}}
+                                {{form.svCheck.label(class="form-label form-check-label", id="tool_checkbox1_p",
+                                style="margin-top: 0px;")}}
                             </div>
+
+
+
+                            <div class="form-check form-switch" style="margin-left: 20px;display: flex;">
+                                {{form.osCheck(class="form-check-input",id="flexSwitchCheckDefault" ,)}}
+                                {{form.osCheck.label(class="form-label form-check-label", id="tool_checkbox2_p",
+                                style="margin-top: 5px;padding-top: 0px;")}}
+                            </div>
+
                             <div class="form-check form-switch" style="margin-left: 21px;display: flex;">
                                 <input type="checkbox" id="flexSwitchCheckDefault-1" class="form-check-input">
                                 <label
                                     class="form-label form-check-label" id="tool_checkbox2_p"
                                     for="flexSwitchCheckDefault" style="margin-top: 5px;padding-top: 0px;">Detect
                                     operation system</label></div>
+
                         </div>
                     </section>
                     <section id="tool_card_section3">
                         <p class="font-monospace" id="tool_port_selection_p">Port selection</p>
                         <div id="tool_radios"
                             style="display: flex;padding-bottom: 0px;margin-top: 0px;margin-left: -40px;">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" id="customRadio1"
-                                    class="custom-control-input" name="customRadio" checked="">
-                                    <label
-                                    class="form-label custom-control-label" for="customRadio1">Common ports</label>
+
+
+                            <div class="custom-control custom-radio" style="display: flex; flex-direction: column;">
+                                {{form.radio_field(id="customRadio",
+                                class="custom-control-input form-label custom-control-label",style="display: flex;
+                                list-style:
+                                none; ",id="customRadio2",name="customRadio")}}
                             </div>
-                            <div class="custom-control custom-radio"><input type="radio" id="customRadio2"
-                                    class="custom-control-input" name="customRadio"><label
-                                    class="form-label custom-control-label" for="customRadio2">Lists of ports</label>
-                            </div>
+
+                            {{form.radio_field.data}}
+                            {% if form.radio_field.data == none %}
+                            <p>mesh</p>
+                            {{ form.portsForm(class="form-control") }}
+                            {% elif form.radio_field.data == 'Lists Of Ports' %}
+                            {{ form.listForm(class="form-control") }}
+                            {% else %}
+                            {# Default behavior when no radio button is selected #}
+                            <p>something</p>
+                            {{ form.portsForm(class="form-control") }}
+                            {% endif %}
+
                         </div><input type="text" id="tool_card_input2" class="tool_inputs" placeholder="Top 10 ports">
                     </section>
+
                     <div id="tool_section3" style="display: flex;margin-top: 30px;">
                         <div id="tool_checkbox_terms" class="custom-control custom-checkbox custom-control-inline">
+
                             <input type="checkbox" id="customCheckInline1" class="custom-control-input"
                                 style="width: 20px;height: 20px;"><label class="form-label custom-control-label"
                                 id="tool_terms_p" for="customCheckInline2">I am authorized to scan this target and I
                                 agree with the <span style="text-decoration: underline;">Terrms of
                                     Service.</span></label>
-                        </div><button class="btn btn-primary shadow home_signup all_btn" data-bss-hover-animate="pulse"
-                            id="tool_card_btn" type="button">Start scan</button>
-                    </div>
+                        </div>
+                        {% if form.errors %}
+                        <p>{{ form.errors }}</p>
+                        {% endif %}
+                        {{ form.submit(class="btn btn-primary shadow home_signup",id="tool_card_btn",
+                        **{'data-bss-hover-animate':"pulse"})
+                        }}
+                        </form>
                 </section>
             </div>
         </div>
