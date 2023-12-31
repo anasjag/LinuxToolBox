@@ -267,6 +267,7 @@
           <td>{{ row['service']['@extrainfo'] if row['service'] and '@extrainfo' in row['service'] else '' }}</td>
         </tr>
         {% endfor %}
+        
         {% else %}
         <tr>
           <td colspan="8">Data not available or Nmap cannot find target hostname/IP address</td>
