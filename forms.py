@@ -124,7 +124,7 @@ class ToolsForm(FlaskForm):
     radio_field = RadioField('Choose one', choices=[('Common ports', 'Common Ports'),('Lists of ports', 'Lists Of Ports')])
     portsForm = StringField("Top 10 Ports")
     listForm= FieldList(StringField('Item'))
-    checkbox = BooleanField("I am authorized to scan this target and I agree with the Terms of Service.")
+    checkbox = BooleanField("I am authorized to scan this target and I agree with the Terms of Service.",validators=[InputRequired()])
     submit = SubmitField("Start Scan")
     
     
