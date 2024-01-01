@@ -39,87 +39,84 @@
                         <div class="mb-3"
                             style="width: 95%; height: 42px; border-radius: 4px; padding-top: 11px; padding-bottom: 11px; padding-left: 15px; padding-right: 11px; margin-left: 0px; font-size: 12px;">
 
-                        <form method="POST">
-                            {{form.hidden_tag()}}
-                            {{form.targetForm.label(class="form-label font-monospace", id="tool_target_label")}}
-                            {{ form.targetForm( class="tool_inputs",
-                            placeholder="IP or hostname",
-                            type="text", id="tool_card_input1",)}}
+                            <form method="POST">
+                                {{form.hidden_tag()}}
+                                {{form.targetForm.label(class="form-label font-monospace", id="tool_target_label")}}
+                                {{ form.targetForm( class="tool_inputs",
+                                placeholder="IP or hostname",
+                                type="text", id="tool_card_input1",)}}
 
-                                </div>
-                            </section>
-                            <section id="tool_section2" style="padding-top: 0px;">
-                                <p class="font-monospace" id="tool_scan_option_p">Scan option</p>
-                                <div style="display: flex;padding-bottom: 0px;margin-top: 0px;">
+                        </div>
+                    </section>
+                    <section id="tool_section2" style="padding-top: 0px;">
+                        <p class="font-monospace" id="tool_scan_option_p">Scan option</p>
+                        <div style="display: flex;padding-bottom: 0px;margin-top: 0px;">
 
-                                    <div id="tool_checkbox_1" class="form-check form-switch" style="padding-top: 0px;">
-                                        {{form.svCheck(id="flexSwitchCheckDefault", class="form-check-input")}}
-                                        {{form.svCheck.label(class="form-label form-check-label", id="tool_checkbox1_p",
-                                        style="margin-top: 0px;")}}
-                                    </div>
+                            <div id="tool_checkbox_1" class="form-check form-switch" style="padding-top: 0px;">
+                                {{form.svCheck(id="flexSwitchCheckDefault", class="form-check-input")}}
+                                {{form.svCheck.label(class="form-label form-check-label", id="tool_checkbox1_p",
+                                style="margin-top: 0px;")}}
+                            </div>
 
-                                    <div class="form-check form-switch" style="margin-left: 20px;display: flex;">
-                                        {{form.osCheck(class="form-check-input",id="flexSwitchCheckDefault" ,)}}
-                                        {{form.osCheck.label(class="form-label form-check-label", id="tool_checkbox2_p",
-                                        style="margin-top: 5px;padding-top: 0px;")}}
-                                    </div>
+                            <div class="form-check form-switch" style="margin-left: 20px;display: flex;">
+                                {{form.osCheck(class="form-check-input",id="flexSwitchCheckDefault" ,)}}
+                                {{form.osCheck.label(class="form-label form-check-label", id="tool_checkbox2_p",
+                                style="margin-top: 5px;padding-top: 0px;")}}
+                            </div>
 
-                                </div>
-                            </section>
-                            <section id="tool_card_section3">
-                                <p class="font-monospace" id="tool_port_selection_p">Port selection</p>
-                                <div id="tool_radios"
-                                    style="display: flex;padding-bottom: 0px;margin-top: 0px;margin-left: -40px;">
+                        </div>
+                    </section>
+                    <section id="tool_card_section3">
+                        <p class="font-monospace" id="tool_port_selection_p">Port selection</p>
+                        <div id="tool_radios"
+                            style="display: flex;padding-bottom: 0px;margin-top: 0px;margin-left: -40px;">
 
 
-                                    <div class="custom-control custom-radio" style="display: flex; flex-direction: column;">
-                                        {{form.radio_field(id="customRadio",
-                                        class="custom-control-input form-label custom-control-label",style="display: flex;
-                                        list-style:
-                                        none; ",id="customRadio2",name="customRadio")}}
-                                    </div>
+                            <div class="custom-control custom-radio" style="display: flex; flex-direction: column;">
+                                {{form.radio_field(id="customRadio",
+                                class="custom-control-input form-label custom-control-label",style="display: flex;
+                                list-style:
+                                none; ",id="customRadio2",name="customRadio")}}
+                            </div>
 
-                                    {% for option, label in form.radio_field.choices %}
-                                    <label>
-                                    {{ form.radio_field(value=option) }}
-                                    {{ label }}
-                                    </label>
-                                    {% endfor %}
+                            {% for option, label in form.radio_field.choices %}
+                            <label>
+                                {{ form.radio_field(value=option) }}
+                                {{ label }}
+                            </label>
+                            {% endfor %}
 
-                                    <p id="selected-option-message" style="display:none;">Selected Option: <span id="selected-option"></span></p>
-                                    <script>
-                                        document.addEventListener('DOMContentLoaded', function() {
-                                            var selectedOptionMessage = document.getElementById('selected-option-message');
-                                            var selectedOptionSpan = document.getElementById('selected-option');
-                                            
-                                            document.querySelectorAll('input[name="options"]').forEach(function(radio) {
-                                                radio.addEventListener('click', function() {
-                                                    var selectedValue = this.value;
-                                                    selectedOptionSpan.innerText = selectedValue;
-                                                    selectedOptionMessage.style.display = 'block';
-                                                });
-                                            });
+                            <p id="selected-option-message" style="display:none;">Selected Option: <span
+                                    id="selected-option"></span></p>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    var selectedOptionMessage = document.getElementById('selected-option-message');
+                                    var selectedOptionSpan = document.getElementById('selected-option');
+
+                                    document.querySelectorAll('input[name="options"]').forEach(function (radio) {
+                                        radio.addEventListener('click', function () {
+                                            var selectedValue = this.value;
+                                            selectedOptionSpan.innerText = selectedValue;
+                                            selectedOptionMessage.style.display = 'block';
                                         });
-                                    </script>
-                            </div><input type="text" id="tool_card_input2" class="tool_inputs" placeholder="Top 10 ports">
-                            </section>
+                                    });
+                                });
+                            </script>
+                        </div><input type="text" id="tool_card_input2" class="tool_inputs" placeholder="Top 10 ports">
+                    </section>
 
-                            <div id="tool_section3" style="display: flex;margin-top: 30px;">
-                                <div id="tool_checkbox_terms" class="custom-control custom-checkbox custom-control-inline">
-
-                                    <input type="checkbox" id="customCheckInline1" class="custom-control-input"
-                                        style="width: 20px;height: 20px;"><label class="form-label custom-control-label"
-                                        id="tool_terms_p" for="customCheckInline2">I am authorized to scan this target and I
-                                        agree with the <span style="text-decoration: underline;">Terrms of
-                                            Service.</span></label>
-                                </div>
-                                {% if form.errors %}
-                                <p>{{ form.errors }}</p>
-                                {% endif %}
-                                {{ form.submit(class="btn btn-primary shadow home_signup",id="tool_card_btn",
-                                **{'data-bss-hover-animate':"pulse"})
-                                }}
-                        </form>
+                    <div id="tool_section3" style="display: flex;margin-top: 30px;">
+                        <<div id="tool_checkbox_terms" class="custom-control custom-checkbox custom-control-inline">
+                            {{ form.checkbox.label(class="form-label custom-control-label", id="tool_terms_p") }}
+                            {{ form.checkbox(class="custom-control-input", style="width: 20px; height: 20px;") }}
+                    </div>
+                    {% if form.errors %}
+                    <p>{{ form.errors }}</p>
+                    {% endif %}
+                    {{ form.submit(class="btn btn-primary shadow home_signup",id="tool_card_btn",
+                    **{'data-bss-hover-animate':"pulse"})
+                    }}
+                    </form>
                 </section>
             </div>
         </div>

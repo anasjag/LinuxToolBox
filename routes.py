@@ -48,8 +48,13 @@ def home():
 def tools():
 
     form = ToolsForm()
-    if form.validate_on_submit():
-        print("??????????")
+    if form.checkbox.data:
+        if form.validate_on_submit():
+            print("??????????")
+            return redirect("home.html")
+        else:
+            flash("you have to check the box ")
+        return render_template('tools.html', form=form)
     return render_template('tools.html', form=form)
     # return render_template("tools.html",  title = f"Tools - ",form=form)
 
