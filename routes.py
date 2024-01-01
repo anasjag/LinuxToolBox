@@ -49,12 +49,16 @@ def tools():
 
     form = ToolsForm()
 
-    if form.validate_on_submit():
-        selected_radio = form.radio_field.data
-    else:
-         selected_radio = None 
+    if form.checkbox.data:
+        if form.validate_on_submit():
+            print("??????????")
+            return redirect("home.html")
+        else:
+            flash("you have to check the box ")
+        return render_template('tools.html', form=form)
+    return render_template('tools.html', form=form)
+    # return render_template("tools.html",  title = f"Tools - ",form=form)
 
-    return render_template('tools.html', form=form, selected_radio=selected_radio)
 
 
 

@@ -39,6 +39,7 @@
                         <div class="mb-3"
                             style="width: 95%; height: 42px; border-radius: 4px; padding-top: 11px; padding-bottom: 11px; padding-left: 15px; padding-right: 11px; margin-left: 0px; font-size: 12px;">
 
+
                         <form method="POST">
                             {{ form.csrf_token }}
                             {{form.hidden_tag()}}
@@ -105,21 +106,18 @@
                             </section>
                             
                             <div id="tool_section3" style="display: flex;margin-top: 30px;">
-                                <div id="tool_checkbox_terms" class="custom-control custom-checkbox custom-control-inline">
+                        <<div id="tool_checkbox_terms" class="custom-control custom-checkbox custom-control-inline">
+                            {{ form.checkbox.label(class="form-label custom-control-label", id="tool_terms_p") }}
+                            {{ form.checkbox(class="custom-control-input", style="width: 20px; height: 20px;") }}
+                    </div>
+                    {% if form.errors %}
+                    <p>{{ form.errors }}</p>
+                    {% endif %}
+                    {{ form.submit(class="btn btn-primary shadow home_signup",id="tool_card_btn",
+                    **{'data-bss-hover-animate':"pulse"})
+                    }}
+                    </form>
 
-                                    <input type="checkbox" id="customCheckInline1" class="custom-control-input"
-                                        style="width: 20px;height: 20px;"><label class="form-label custom-control-label"
-                                        id="tool_terms_p" for="customCheckInline2">I am authorized to scan this target and I
-                                        agree with the <span style="text-decoration: underline;">Terrms of
-                                            Service.</span></label>
-                                </div>
-                                {% if form.errors %}
-                                <p>{{ form.errors }}</p>
-                                {% endif %}
-                                {{ form.submit(class="btn btn-primary shadow home_signup",id="tool_card_btn",
-                                **{'data-bss-hover-animate':"pulse"})
-                                }}
-                        </form>
                 </section>
             </div>
         </div>
