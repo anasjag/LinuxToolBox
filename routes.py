@@ -41,23 +41,49 @@ def start():
 def home(): 
     return render_template("home.html",  title = f"Home - ")
 
-
-
-
 @pages.route("/tools.html", methods=["GET", "POST"])
 def tools():
+    form= ToolsForm()
+    if form.validate_on_submit():
+    
+        return render_template("tools.html", form=form, show_modal=True)
+    return render_template("tools.html", form=form, show_modal=False)
 
-    form = ToolsForm()
+@pages.route("/scan", methods=["GET", "POST"])
+def scan():
+    form= ToolsForm()
+    target_ip = "192.168.1.12"
 
-    if form.checkbox.data:
-        if form.validate_on_submit():
-            print("??????????")
-            return redirect("home.html")
-        else:
-            flash("you have to check the box ")
-        return render_template('tools.html', form=form)
-    return render_template('tools.html', form=form)
-    # return render_template("tools.html",  title = f"Tools - ",form=form)
+    xml_scan = subprocess.run(['nmap', '-O', '-sV', '-oX','-', target_ip], capture_output=True)
+    nmap_output = xml_scan.stdout.decode('utf-8')
+
+    # Parse XML string to a Python dictionary
+    dict_data = xmltodict.parse(nmap_output)
+
+    scan = Scans(
+            _id=uuid.uuid4().hex,
+            date= str(date.today()),
+            status=dict_data['nmaprun']['runstats']['finished']['@exit'],
+            ip=target_ip,
+            data=dict_data
+        )
+    current_app.db.scans.insert_one(asdict(scan))
+
+    if session.get("email"):
+        current_app.db.users.update_one(
+            {"_id": session["user_id"]}, {"$push": {"scans": scan._id}}
+        )
+
+    scan_data = current_app.db.scans.find_one({"_id": scan._id})
+
+    if scan_data and 'data' in scan_data:
+        
+
+        scan_result = scan_data['data']
+        return render_template('scan.html', scan_result=scan_result, ip=target_ip)
+    else:
+        # Handle the case when data is not available or has unexpected structure
+        return render_template('scan.html', scan_result=None, ip=target_ip)
 
 
 
@@ -234,41 +260,44 @@ def security():
     form.process
     return render_template("security.html", title=f"Profile - ", form=form)
 
-# @pages.route("/scan", methods=["GET", "POST"])
+# @pages.route("/tools.html", methods=["GET", "POST"])
 # def nmap_scan():
+#     form= ToolsForm()
+#     if form.validate_on_submit():
+#         target_ip = "192.168.1.12"
     
-#     target_ip = "192.168.1.6"
-    
-#     xml_scan = subprocess.run(['nmap', '-O', '-sV', '-oX','-', target_ip], capture_output=True)
-#     nmap_output = xml_scan.stdout.decode('utf-8')
+#         xml_scan = subprocess.run(['nmap', '-O', '-sV', '-oX','-', target_ip], capture_output=True)
+#         nmap_output = xml_scan.stdout.decode('utf-8')
 
-#     # Parse XML string to a Python dictionary
-#     dict_data = xmltodict.parse(nmap_output)
+#         # Parse XML string to a Python dictionary
+#         dict_data = xmltodict.parse(nmap_output)
 
-#     scan = Scans(
-#             _id=uuid.uuid4().hex,
-#             date= str(date.today()),
-#             status=dict_data['nmaprun']['runstats']['finished']['@exit'],
-#             ip=target_ip,
-#             data=dict_data
-#         )
-#     current_app.db.scans.insert_one(asdict(scan))
+#         scan = Scans(
+#                 _id=uuid.uuid4().hex,
+#                 date= str(date.today()),
+#                 status=dict_data['nmaprun']['runstats']['finished']['@exit'],
+#                 ip=target_ip,
+#                 data=dict_data
+#             )
+#         current_app.db.scans.insert_one(asdict(scan))
 
-#     if session.get("email"):
-#         current_app.db.users.update_one(
-#             {"_id": session["user_id"]}, {"$push": {"scans": scan._id}}
-#         )
+#         if session.get("email"):
+#             current_app.db.users.update_one(
+#                 {"_id": session["user_id"]}, {"$push": {"scans": scan._id}}
+#             )
 
-#     scan_data = current_app.db.scans.find_one({"_id": scan._id})
+#         scan_data = current_app.db.scans.find_one({"_id": scan._id})
 
-#     if scan_data and 'data' in scan_data:
-        
+#         if scan_data and 'data' in scan_data:
+            
 
-#         scan_result = scan_data['data']
-#         return render_template('scan.html', scan_result=scan_result, ip=target_ip)
-#     else:
-#         # Handle the case when data is not available or has unexpected structure
-#         return render_template('scan.html', scan_result=None)
+#             scan_result = scan_data['data']
+#             return render_template('scan.html', scan_result=scan_result, ip=target_ip)
+#         else:
+#             # Handle the case when data is not available or has unexpected structure
+#             return render_template('scan.html', scan_result=None, ip=target_ip)
+#     return render_template('tools.html', form=form)
+
 
 @pages.route("/logout")
 def logout():

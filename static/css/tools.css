@@ -442,11 +442,11 @@
   }
 }
 
-#tool_card_input2:hover {
+#tool_card_input2.tool_inputs:hover {
   box-shadow: 0 0 0 .25rem rgba(235,195,58,0.5);
 }
 
-.form-check-input:hover {
+.form-check-input:hover , .tool_inputs:hover {
   box-shadow: 0 0 0 .25rem rgba(235,195,58,0.5);
 }
 

@@ -1,6 +1,7 @@
 {%extends 'base.html'%}
 {%block content%}
 
+{% if show_modal%}
 <!-- pop out-->
 <div id="myModal" class="modal">
     <div class="modal-content" style="background-color: #121212;">
@@ -14,11 +15,11 @@
         </div>
 
         <!-- Content of the modal -->
-        <iframe src="scan" frameborder="0" name="Frame" width="100%" height="1180px" style="background-color: #121212;"
+        <iframe src="scan" frameborder="0" name="Frame" width="100%" height="1180px" style="background-color: #121212; "
             onload="hideLoading()"></iframe>
     </div>
 </div>
-
+{%endif%}
 <section class="py-4" style="background-color: #121212;">
     <div class="container py-4">
         <div class="row">
@@ -40,89 +41,92 @@
                             style="width: 95%; height: 42px; border-radius: 4px; padding-top: 11px; padding-bottom: 11px; padding-left: 15px; padding-right: 11px; margin-left: 0px; font-size: 12px;">
 
 
-                        <form method="POST">
-                            {{ form.csrf_token }}
-                            {{form.hidden_tag()}}
-                            {{form.targetForm.label(class="form-label font-monospace", id="tool_target_label")}}
-                            {{ form.targetForm( class="tool_inputs",
-                            placeholder="IP or hostname",
-                            type="text", id="tool_card_input1",)}}
+                            <form method="POST">
+                                {{form.hidden_tag()}}
+                                {{form.targetForm.label(class="form-label font-monospace", id="tool_target_label")}}
+                                {{ form.targetForm( class="tool_inputs",
+                                placeholder="IP or hostname",
+                                type="text", id="tool_card_input1",)}}
 
-                                </div>
-                            </section>
-                            <section id="tool_section2" style="padding-top: 0px;">
-                                <p class="font-monospace" id="tool_scan_option_p">Scan option</p>
-                                <div style="display: flex;padding-bottom: 0px;margin-top: 0px;">
+                        </div>
+                    </section>
+                    <section id="tool_section2" style="padding-top: 0px;">
+                        <p class="font-monospace" id="tool_scan_option_p">Scan option</p>
+                        <div style="display: flex;padding-bottom: 0px;margin-top: 0px;">
 
-                                    <div id="tool_checkbox_1" class="form-check form-switch" style="padding-top: 0px;">
-                                        {{form.svCheck(id="flexSwitchCheckDefault", class="form-check-input")}}
-                                        {{form.svCheck.label(class="form-label form-check-label", id="tool_checkbox1_p",
-                                        style="margin-top: 0px;")}}
-                                    </div>
+                            <div id="tool_checkbox_1" class="form-check form-switch" style="padding-top: 0px;">
+                                {{form.svCheck(id="flexSwitchCheckDefault", class="form-check-input")}}
+                                {{form.svCheck.label(class="form-label form-check-label", id="tool_checkbox1_p",
+                                style="margin-top: 0px;")}}
+                            </div>
 
-                                    <div class="form-check form-switch" style="margin-left: 20px;display: flex;">
-                                        {{form.osCheck(class="form-check-input",id="flexSwitchCheckDefault" ,)}}
-                                        {{form.osCheck.label(class="form-label form-check-label", id="tool_checkbox2_p",
-                                        style="margin-top: 5px;padding-top: 0px;")}}
-                                    </div>
+                            <div class="form-check form-switch" style="margin-left: 20px;display: flex;">
+                                {{form.osCheck(class="form-check-input",id="flexSwitchCheckDefault" ,)}}
+                                {{form.osCheck.label(class="form-label form-check-label", id="tool_checkbox2_p",
+                                style="margin-top: 5px;padding-top: 0px;")}}
+                            </div>
 
-                                </div>
-                            </section>
-                            <section id="tool_card_section3">
-                                <p class="font-monospace" id="tool_port_selection_p">Port selection</p>
-                                <div id="tool_radios"
-                                    style="display: flex;padding-bottom: 0px;margin-top: 0px;margin-left: -40px;">
-                                </div>
-                                <div class="custom-control custom-radio" style="display: flex;">
-                                    {{ form.radio_field(id="customRadio1", style="    display: flex;
-                                    list-style: none;
-                                    justify-content: space-between;
-                                    padding: 0;
-                                    margin-left: -2.3rem;", class="custom-control-input form-label custom-control-label") }}
-                                </div>
-                                                                
-                            
-                                {{form.topPorts(id="tool_card_input2", class="tool_inputs", placeholder="Top 10 ports", style="display:block;")}}
-                                {{form.listPorts(id="tool_card_input3", class="tool_inputs", placeholder="e.g. 20, 22, 25, 80, 443", style="display: none;")}}
-                                <script>
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        var radioField = document.getElementById('customRadio1');
-                                        var top10PortsInput = document.getElementById('tool_card_input2');
-                                        var listofports = document.getElementById('tool_card_input3');
-                                        radioField.addEventListener('change', function() {
-                                            var selectedRadioValue = document.querySelector('input[name="radio_field"]:checked').value;
+                        </div>
+                    </section>
+                    <section id="tool_card_section3">
+                        <p class="font-monospace" id="tool_port_selection_p">Port selection</p>
+                        <div id="tool_radios"
+                            style="display: flex;padding-bottom: 0px;margin-top: 0px;margin-left: -40px;">
+                        </div>
+                        <div class="custom-control custom-radio" style="display: flex;">
+                            {{ form.radio_field(id="customRadio1", style=" display: flex;
+                            list-style: none;
+                            justify-content: space-between;
+                            padding: 0;
+                            margin-left: -2.3rem;", class="custom-control-input form-label custom-control-label") }}
+                        </div>
 
-                                            // Toggle the visibility of the input field based on the selected radio value
-                                            if (selectedRadioValue === 'Common ports') {
-                                                top10PortsInput.style.display = 'block';
-                                                listofports.style.display = 'none';
-                                            } else {
-                                                top10PortsInput.style.display = 'none';
-                                                listofports.style.display = 'block';
-                                            }
-                                        });
-                                    });
-                                </script>
-                            </section>
-                            
-                            <div id="tool_section3" style="display: flex;margin-top: 30px;">
-                        <div id="tool_checkbox_terms" class="custom-control custom-checkbox custom-control-inline" style="display: flex; align-items: center;">
-                            
-                            {{ form.checkbox(class="custom-control-input", style="width: 20px; height: 20px;", id="customCheckInline1") }}
-                            <label class="form-label custom-control-label"
-                                id="tool_terms_p" for="customCheckInline2">I am authorized to scan this target and I
+
+                        {{form.topPorts(id="tool_card_input2", class="tool_inputs", placeholder="Top 10 ports",
+                        style="display:block;")}}
+                        {{form.listPorts(id="tool_card_input3", class="tool_inputs", placeholder="e.g. 20, 22, 25, 80, 443", style="display: none;")}}
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var radioField = document.getElementById('customRadio1');
+                                var top10PortsInput = document.getElementById('tool_card_input2');
+                                var listofports = document.getElementById('tool_card_input3');
+                                radioField.addEventListener('change', function () {
+                                    var selectedRadioValue = document.querySelector('input[name="radio_field"]:checked').value;
+
+                                    // Toggle the visibility of the input field based on the selected radio value
+                                    if (selectedRadioValue === 'Common ports') {
+                                        top10PortsInput.style.display = 'block';
+                                        listofports.style.display = 'none';
+                                    } else {
+                                        top10PortsInput.style.display = 'none';
+                                        listofports.style.display = 'block';
+                                    }
+                                });
+                            });
+                        </script>
+                    </section>
+
+                    <div id="tool_section3" style="display: flex;margin-top: 30px;">
+                        <div id="tool_checkbox_terms" class="custom-control custom-checkbox custom-control-inline"
+                            style="display: flex; align-items: center;">
+
+                            {{ form.checkbox(class="custom-control-input", style="width: 20px; height: 20px;",
+                            id="customCheckInline1") }}
+                            <label class="form-label custom-control-label" id="tool_terms_p" for="customCheckInline2">I
+                                am authorized to scan this target and I
                                 agree with the <span style="text-decoration: underline;">Terrms of
                                     Service.</span></label>
-                            
-                        </div>
-                    {% if form.errors %}
-                    <p>{{ form.errors }}</p>
-                    {% endif %}
-                    {{ form.submit(class="btn btn-primary shadow home_signup",id="tool_card_btn",
-                    **{'data-bss-hover-animate':"pulse"})
-                    }}
-                    </form>
 
+                        </div>
+                        {% if form.errors %}
+                        <p>{{ form.errors }}</p>
+                        {% endif %}
+                        
+                        {{ form.submit(class="btn btn-primary shadow home_signup",id="tool_card_btn",
+                        **{'data-bss-hover-animate':"pulse"})
+                        }}
+                        </form>
+                    </div>
                 </section>
             </div>
         </div>

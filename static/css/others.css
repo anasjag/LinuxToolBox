@@ -184,7 +184,7 @@
   box-shadow: 0 0 0 .25rem rgba(235,195,58,0.5);
 }
 
-.form-check-input:checked {
+.form-check-input:checked, .tool_inputs:checked{
   background-color: #ebc33a;
   border-color: #5f5f5f;
 }
@@ -196,11 +196,7 @@
 #customRadio1:checked {
   background-color: #ebc33a;
   border-color: #5f5f5f;
-}
 
-#tool_card_input1:hover {
-  box-shadow: 0 0 0 .25rem rgba(235,195,58,0.5);
-  
 }
 
 .dropdown-toggle::after {
