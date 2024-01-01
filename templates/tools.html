@@ -79,13 +79,6 @@
                                 none; ",id="customRadio2",name="customRadio")}}
                             </div>
 
-                            {% for option, label in form.radio_field.choices %}
-                            <label>
-                                {{ form.radio_field(value=option) }}
-                                {{ label }}
-                            </label>
-                            {% endfor %}
-
                             <p id="selected-option-message" style="display:none;">Selected Option: <span
                                     id="selected-option"></span></p>
                             <script>
