@@ -15,7 +15,7 @@
         </div>
 
         <!-- Content of the modal -->
-        <iframe src="scan" frameborder="0" name="Frame" width="100%" height="1180px" style="background-color: #121212; "
+        <iframe src="{{url_for('pages.scan', command=command, target_ip=target_ip)}}" frameborder="0" name="Frame" width="100%" height="1180px" style="background-color: #121212; "
             onload="hideLoading()"></iframe>
     </div>
 </div>
@@ -85,25 +85,38 @@
                         {{form.topPorts(id="tool_card_input2", class="tool_inputs", placeholder="Top 10 ports",
                         style="display:block;")}}
                         {{form.listPorts(id="tool_card_input3", class="tool_inputs", placeholder="e.g. 20, 22, 25, 80, 443", style="display: none;")}}
+                
                         <script>
                             document.addEventListener('DOMContentLoaded', function () {
                                 var radioField = document.getElementById('customRadio1');
                                 var top10PortsInput = document.getElementById('tool_card_input2');
                                 var listofports = document.getElementById('tool_card_input3');
-                                radioField.addEventListener('change', function () {
+                        
+                                // Function to handle radio change
+                                function handleRadioChange() {
                                     var selectedRadioValue = document.querySelector('input[name="radio_field"]:checked').value;
-
+                        
                                     // Toggle the visibility of the input field based on the selected radio value
                                     if (selectedRadioValue === 'Common ports') {
                                         top10PortsInput.style.display = 'block';
                                         listofports.style.display = 'none';
-                                    } else {
+                                        listofports.value = null
+                                    } else if (selectedRadioValue === 'Lists of ports') {
                                         top10PortsInput.style.display = 'none';
                                         listofports.style.display = 'block';
                                     }
-                                });
+                                }
+                        
+                                // Add event listener for radio change
+                                radioField.addEventListener('change', handleRadioChange);
+                        
+                                // Trigger the change event manually to handle the initial state
+                                handleRadioChange();
                             });
                         </script>
+                        {% if form.listPorts.errors %}
+                        <p style="color: rgb(209,84,93); font-size:70%; line-height: 0.9; margin-top: 5px; margin-bottom: -15px">{{ form.listPorts.errors[0] }}</p>
+                        {% endif %}
                     </section>
 
                     <div id="tool_section3" style="display: flex;margin-top: 30px;">
@@ -118,9 +131,7 @@
                                     Service.</span></label>
 
                         </div>
-                        {% if form.errors %}
-                        <p>{{ form.errors }}</p>
-                        {% endif %}
+                
                         
                         {{ form.submit(class="btn btn-primary shadow home_signup",id="tool_card_btn",
                         **{'data-bss-hover-animate':"pulse"})

@@ -14,7 +14,6 @@ class GeneralForm(FlaskForm):
             regex=re.compile(r"^[a-zA-Z'-]+$"),
             message='The name should not contain any numbers or special characters.'
         )])
-    #something2
     country_code = SelectField('Country Code',default='962', choices=[ 
     "---","004", "008", "012", "016", "020", "024", "028", "031", "032", "036",
     "040", "044", "048", "050", "051", "052", "056", "060", "064", "068",
@@ -118,13 +117,19 @@ class LoginForm(FlaskForm):
     submit = SubmitField("Login")
     
 class ToolsForm(FlaskForm):
-    targetForm = StringField("Target")
+    targetForm = StringField("Target", validators=[InputRequired()])
     svCheck = BooleanField("Detect service version")
     osCheck = BooleanField("Detect operation system")
     radio_field = RadioField('Choose one',default='Common ports', choices=[('Common ports', 'Common Ports'),('Lists of ports', 'Lists Of Ports')])
     choices = [('option1', 'Top 10 ports'), ('option2', 'Top 100 ports'), ('option3', 'Top 1000 ports')]
     topPorts = SelectField('Select an option', choices=choices)
-    listPorts = StringField("Lists of Ports")
+    listPorts = StringField("Lists of Ports",validators=[
+        validators.Regexp(
+            regex = re.compile(r'^\d+(,\d+)*$'),
+            message='The List format must be like this : 20,33,25,80,443'
+        ),
+        validators.Optional()
+    ])
     checkbox = BooleanField("I am authorized to scan this target and I agree with the Terms of Service.",validators=[InputRequired()])
     submit = SubmitField("Start Scan")
     

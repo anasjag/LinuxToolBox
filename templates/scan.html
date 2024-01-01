@@ -221,22 +221,26 @@
       <h3>Address</h3>
       <ul>
         <li>{{ip}}
+          {% if 'address' in scan_result%}
           ({{ scan_result['nmaprun']['hosthint']['address'][0]['@addrtype']}})
         </li>
         <li>{{ scan_result['nmaprun']['hosthint']['address'][1]['@addr']}}
           ({{ scan_result['nmaprun']['hosthint']['address'][1]['@addrtype']}})
         </li>
+        {%endif%}
       </ul>
 
 
 
       <h3>Ports</h3>
+      {% if 'extraposrts' in scan_result%}
       <p>The {{ scan_result['nmaprun']['host']['ports']['extraports']['@count']}} ports scanned but not shown below are in state: <b>closed</b></p>
       <ul>
         <li>
           <p>{{ scan_result['nmaprun']['host']['ports']['extraports']['@count']}} ports replied with: <b>reset</b></p>
         </li>
       </ul>
+      {%endif%}
       <table id="porttable_{{ip}}" cellspacing="1">
         <tr class="head">
           <td colspan="2">Port</td>
