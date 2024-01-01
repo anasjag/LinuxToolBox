@@ -74,7 +74,7 @@
                                     style="display: flex;padding-bottom: 0px;margin-top: 0px;margin-left: -40px;">
                                 </div>
                                 <div class="custom-control custom-radio" style="display: flex;">
-                                    {{ form.radio_field(id="customRadio", style="    display: flex;
+                                    {{ form.radio_field(id="customRadio1", style="    display: flex;
                                     list-style: none;
                                     justify-content: space-between;
                                     padding: 0;
@@ -86,7 +86,7 @@
                                 {{form.listPorts(id="tool_card_input3", class="tool_inputs", placeholder="e.g. 20, 22, 25, 80, 443", style="display: none;")}}
                                 <script>
                                     document.addEventListener('DOMContentLoaded', function() {
-                                        var radioField = document.getElementById('customRadio');
+                                        var radioField = document.getElementById('customRadio1');
                                         var top10PortsInput = document.getElementById('tool_card_input2');
                                         var listofports = document.getElementById('tool_card_input3');
                                         radioField.addEventListener('change', function() {
@@ -106,10 +106,15 @@
                             </section>
                             
                             <div id="tool_section3" style="display: flex;margin-top: 30px;">
-                        <<div id="tool_checkbox_terms" class="custom-control custom-checkbox custom-control-inline">
-                            {{ form.checkbox.label(class="form-label custom-control-label", id="tool_terms_p") }}
-                            {{ form.checkbox(class="custom-control-input", style="width: 20px; height: 20px;") }}
-                    </div>
+                        <div id="tool_checkbox_terms" class="custom-control custom-checkbox custom-control-inline" style="display: flex; align-items: center;">
+                            
+                            {{ form.checkbox(class="custom-control-input", style="width: 20px; height: 20px;", id="customCheckInline1") }}
+                            <label class="form-label custom-control-label"
+                                id="tool_terms_p" for="customCheckInline2">I am authorized to scan this target and I
+                                agree with the <span style="text-decoration: underline;">Terrms of
+                                    Service.</span></label>
+                            
+                        </div>
                     {% if form.errors %}
                     <p>{{ form.errors }}</p>
                     {% endif %}
