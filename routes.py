@@ -48,10 +48,13 @@ def home():
 def tools():
 
     form = ToolsForm()
+
     if form.validate_on_submit():
-        print("??????????")
-    return render_template('tools.html', form=form)
-    # return render_template("tools.html",  title = f"Tools - ",form=form)
+        selected_radio = form.radio_field.data
+    else:
+         selected_radio = None 
+
+    return render_template('tools.html', form=form, selected_radio=selected_radio)
 
 
 

@@ -40,6 +40,7 @@
                             style="width: 95%; height: 42px; border-radius: 4px; padding-top: 11px; padding-bottom: 11px; padding-left: 15px; padding-right: 11px; margin-left: 0px; font-size: 12px;">
 
                         <form method="POST">
+                            {{ form.csrf_token }}
                             {{form.hidden_tag()}}
                             {{form.targetForm.label(class="form-label font-monospace", id="tool_target_label")}}
                             {{ form.targetForm( class="tool_inputs",
@@ -70,40 +71,39 @@
                                 <p class="font-monospace" id="tool_port_selection_p">Port selection</p>
                                 <div id="tool_radios"
                                     style="display: flex;padding-bottom: 0px;margin-top: 0px;margin-left: -40px;">
+                                </div>
+                                <div class="custom-control custom-radio" style="display: flex;">
+                                    {{ form.radio_field(id="customRadio", style="    display: flex;
+                                    list-style: none;
+                                    justify-content: space-between;
+                                    padding: 0;
+                                    margin-left: -2.3rem;", class="custom-control-input form-label custom-control-label") }}
+                                </div>
+                                                                
+                            
+                                {{form.topPorts(id="tool_card_input2", class="tool_inputs", placeholder="Top 10 ports", style="display:block;")}}
+                                {{form.listPorts(id="tool_card_input3", class="tool_inputs", placeholder="e.g. 20, 22, 25, 80, 443", style="display: none;")}}
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        var radioField = document.getElementById('customRadio');
+                                        var top10PortsInput = document.getElementById('tool_card_input2');
+                                        var listofports = document.getElementById('tool_card_input3');
+                                        radioField.addEventListener('change', function() {
+                                            var selectedRadioValue = document.querySelector('input[name="radio_field"]:checked').value;
 
-
-                                    <div class="custom-control custom-radio" style="display: flex; flex-direction: column;">
-                                        {{form.radio_field(id="customRadio",
-                                        class="custom-control-input form-label custom-control-label",style="display: flex;
-                                        list-style:
-                                        none; ",id="customRadio2",name="customRadio")}}
-                                    </div>
-
-                                    {% for option, label in form.radio_field.choices %}
-                                    <label>
-                                    {{ form.radio_field(value=option) }}
-                                    {{ label }}
-                                    </label>
-                                    {% endfor %}
-
-                                    <p id="selected-option-message" style="display:none;">Selected Option: <span id="selected-option"></span></p>
-                                    <script>
-                                        document.addEventListener('DOMContentLoaded', function() {
-                                            var selectedOptionMessage = document.getElementById('selected-option-message');
-                                            var selectedOptionSpan = document.getElementById('selected-option');
-                                            
-                                            document.querySelectorAll('input[name="options"]').forEach(function(radio) {
-                                                radio.addEventListener('click', function() {
-                                                    var selectedValue = this.value;
-                                                    selectedOptionSpan.innerText = selectedValue;
-                                                    selectedOptionMessage.style.display = 'block';
-                                                });
-                                            });
+                                            // Toggle the visibility of the input field based on the selected radio value
+                                            if (selectedRadioValue === 'Common ports') {
+                                                top10PortsInput.style.display = 'block';
+                                                listofports.style.display = 'none';
+                                            } else {
+                                                top10PortsInput.style.display = 'none';
+                                                listofports.style.display = 'block';
+                                            }
                                         });
-                                    </script>
-                            </div><input type="text" id="tool_card_input2" class="tool_inputs" placeholder="Top 10 ports">
+                                    });
+                                </script>
                             </section>
-
+                            
                             <div id="tool_section3" style="display: flex;margin-top: 30px;">
                                 <div id="tool_checkbox_terms" class="custom-control custom-checkbox custom-control-inline">
 
