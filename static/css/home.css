@@ -9,8 +9,8 @@
 @media (min-width: 992px) {
   #home_h1 {
     color: #F3F5F8;
-    max-width: 709px;
-    max-height: 431px;
+    width: 98%;
+    height: 431px;
     font-size: 32px;
   }
 }

@@ -120,7 +120,7 @@ class ToolsForm(FlaskForm):
     targetForm = StringField("Target", validators=[InputRequired()])
     svCheck = BooleanField("Detect service version")
     osCheck = BooleanField("Detect operation system")
-    radio_field = RadioField('Choose one',default='Common ports', choices=[('Common ports', 'Common Ports'),('Lists of ports', 'Lists Of Ports')])
+    radio_field = RadioField('Choose one',default='Common ports', choices=[('Common ports', 'Common Ports'),('Lists of ports', 'Lists of Ports')])
     choices = [('option1', 'Top 10 ports'), ('option2', 'Top 100 ports'), ('option3', 'Top 1000 ports')]
     topPorts = SelectField('Select an option', choices=choices)
     listPorts = StringField("Lists of Ports",validators=[
