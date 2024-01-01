@@ -15,8 +15,8 @@
         </div>
 
         <!-- Content of the modal -->
-        <iframe src="{{url_for('pages.scan', command=command, target_ip=target_ip)}}" frameborder="0" name="Frame" width="100%" height="1180px" style="background-color: #121212; "
-            onload="hideLoading()"></iframe>
+        <iframe src="{{url_for('pages.scan', command=command, target_ip=target_ip)}}" frameborder="0" name="Frame"
+            width="100%" height="1180px" style="background-color: #121212; " onload="hideLoading()"></iframe>
     </div>
 </div>
 {%endif%}
@@ -38,7 +38,8 @@
                 <section id="tool_card" style="padding-bottom: 53px;margin-bottom: 35px;">
                     <section id="tool_section1">
                         <div class="mb-3"
-                            style="width: 95%; height: 42px; border-radius: 4px; padding-top: 11px; padding-bottom: 11px; padding-left: 15px; padding-right: 11px; margin-left: 0px; font-size: 12px;">
+                            style="padding-top: 1rem; padding-left: 2rem; border-radius: 4px; padding-top: 11px font-size: 12px;">
+                            <!-- style=""> -->
 
 
                             <form method="POST">
@@ -50,7 +51,7 @@
 
                         </div>
                     </section>
-                    <section id="tool_section2" style="padding-top: 0px;">
+                    <section id="tool_section2" style="padding-top: 1rem;">
                         <p class="font-monospace" id="tool_scan_option_p">Scan option</p>
                         <div style="display: flex;padding-bottom: 0px;margin-top: 0px;">
 
@@ -70,8 +71,7 @@
                     </section>
                     <section id="tool_card_section3">
                         <p class="font-monospace" id="tool_port_selection_p">Port selection</p>
-                        <div id="tool_radios"
-                            style="display: flex;padding-bottom: 0px;margin-top: 0px;margin-left: -40px;">
+                        <div id="tool_radios" style="display: flex;padding-bottom: 0px;margin-top: 0px;margin-left: 40">
                         </div>
                         <div class="custom-control custom-radio" style="display: flex;">
                             {{ form.radio_field(id="customRadio1", style=" display: flex;
@@ -84,18 +84,19 @@
 
                         {{form.topPorts(id="tool_card_input2", class="tool_inputs", placeholder="Top 10 ports",
                         style="display:block;")}}
-                        {{form.listPorts(id="tool_card_input3", class="tool_inputs", placeholder="e.g. 20, 22, 25, 80, 443", style="display: none;")}}
-                
+                        {{form.listPorts(id="tool_card_input3", class="tool_inputs", placeholder="e.g. 20, 22, 25, 80,
+                        443", style="display: none;")}}
+
                         <script>
                             document.addEventListener('DOMContentLoaded', function () {
                                 var radioField = document.getElementById('customRadio1');
                                 var top10PortsInput = document.getElementById('tool_card_input2');
                                 var listofports = document.getElementById('tool_card_input3');
-                        
+
                                 // Function to handle radio change
                                 function handleRadioChange() {
                                     var selectedRadioValue = document.querySelector('input[name="radio_field"]:checked').value;
-                        
+
                                     // Toggle the visibility of the input field based on the selected radio value
                                     if (selectedRadioValue === 'Common ports') {
                                         top10PortsInput.style.display = 'block';
@@ -106,20 +107,22 @@
                                         listofports.style.display = 'block';
                                     }
                                 }
-                        
+
                                 // Add event listener for radio change
                                 radioField.addEventListener('change', handleRadioChange);
-                        
+
                                 // Trigger the change event manually to handle the initial state
                                 handleRadioChange();
                             });
                         </script>
                         {% if form.listPorts.errors %}
-                        <p style="color: rgb(209,84,93); font-size:70%; line-height: 0.9; margin-top: 5px; margin-bottom: -15px">{{ form.listPorts.errors[0] }}</p>
+                        <p
+                            style="color: rgb(209,84,93); font-size:70%; line-height: 0.9; margin-top: 5px; margin-bottom: -15px">
+                            {{ form.listPorts.errors[0] }}</p>
                         {% endif %}
                     </section>
 
-                    <div id="tool_section3" style="display: flex;margin-top: 30px;">
+                    <div id="tool_section3" style="display: flex;margin-top: 20px;">
                         <div id="tool_checkbox_terms" class="custom-control custom-checkbox custom-control-inline"
                             style="display: flex; align-items: center;">
 
@@ -131,8 +134,6 @@
                                     Service.</span></label>
 
                         </div>
-                
-                        
                         {{ form.submit(class="btn btn-primary shadow home_signup",id="tool_card_btn",
                         **{'data-bss-hover-animate':"pulse"})
                         }}

@@ -275,17 +275,17 @@
     justify-content: center;
     width: 100%;
     flex-direction: column;
-    padding-bottom: 5px;
   }
 }
 
 @media (min-width: 992px) {
   #tool_section1 {
+    padding-left: 0.6rem !important;
+    padding: inherit;
     width: 100%;
-    padding-bottom: 30px;
+    padding-bottom: 1rem;
     border-bottom-style: solid;
     border-bottom-color: var(--bs-emphasis-color);
-    margin-bottom: -18px;
   }
 }
 
@@ -297,7 +297,6 @@
     color: #f3f5f8;
     padding-left: 0px;
     margin-left: 40px;
-    margin-top: 30px;
     margin-bottom: 20px;
   }
 }
@@ -355,7 +354,6 @@
     height: 19px;
     color: #f3f5f8;
     padding-left: 0px;
-    margin-top: 30px;
     margin-bottom: 20px;
   }
 }
@@ -407,6 +405,7 @@
 }
 @media (min-width: 992px) {
   #tool_card_section3 {
+    padding-top: 0.8rem;
     border-bottom-style: solid;
     border-bottom-color: var(--bs-emphasis-color);
     display: flex;
