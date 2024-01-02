@@ -35,11 +35,10 @@
                 {%endif%}
             </div>
             <div class="col">
-                <section id="tool_card" style="padding-bottom: 53px;margin-bottom: 35px;">
+                <section id="tool_card">
                     <section id="tool_section1">
                         <div class="mb-3"
-                            style="padding-top: 1rem; padding-left: 2rem; border-radius: 4px; padding-top: 11px font-size: 12px;">
-                            <!-- style=""> -->
+                            style="width: 100%; height: 42px; border-radius: 4px; padding-bottom: 11px; margin-left: 0px; font-size: 12px;">
 
 
                             <form method="POST">
@@ -51,17 +50,19 @@
 
                         </div>
                     </section>
-                    <section id="tool_section2" style="padding-top: 1rem;">
+                    <section id="tool_section2">
                         <p class="font-monospace" id="tool_scan_option_p">Scan option</p>
                         <div style="display: flex;padding-bottom: 0px;margin-top: 0px;">
 
-                            <div id="tool_checkbox_1" class="form-check form-switch" style="padding-top: 0px;">
+                            <div id="tool_checkbox_1" class="form-check form-switch" style="padding-top: 0px;display: flex;
+                            align-items: center;">
                                 {{form.svCheck(id="flexSwitchCheckDefault", class="form-check-input")}}
                                 {{form.svCheck.label(class="form-label form-check-label", id="tool_checkbox1_p",
                                 style="margin-top: 0px;")}}
                             </div>
 
-                            <div class="form-check form-switch" style="margin-left: 20px;display: flex;">
+                            <div class="form-check form-switch"
+                                style="margin-left: 20px;display: flex;align-items: center;">
                                 {{form.osCheck(class="form-check-input",id="flexSwitchCheckDefault" ,)}}
                                 {{form.osCheck.label(class="form-label form-check-label", id="tool_checkbox2_p",
                                 style="margin-top: 5px;padding-top: 0px;")}}
@@ -71,14 +72,15 @@
                     </section>
                     <section id="tool_card_section3">
                         <p class="font-monospace" id="tool_port_selection_p">Port selection</p>
-                        <div id="tool_radios" style="display: flex;padding-bottom: 0px;margin-top: 0px;margin-left: 40">
+                        <div id="tool_radios"
+                            style="display: flex;padding-bottom: 0px;margin-top: 0px;margin-left: -40px;">
                         </div>
                         <div class="custom-control custom-radio" style="display: flex;">
                             {{ form.radio_field(id="customRadio1", style=" display: flex;
                             list-style: none;
                             justify-content: space-between;
                             padding: 0;
-                            margin-left: -2.3rem;", class="custom-control-input form-label custom-control-label") }}
+                            margin-left: -2.3rem;" , class="custom-control-input form-label custom-control-label") }}
                         </div>
 
 
@@ -122,7 +124,8 @@
                         {% endif %}
                     </section>
 
-                    <div id="tool_section3" style="display: flex;margin-top: 20px;">
+                    <div id="tool_section3" style="display: flex;margin-top: 3%;padding-left: 7%;
+                    padding-right: 7%;">
                         <div id="tool_checkbox_terms" class="custom-control custom-checkbox custom-control-inline"
                             style="display: flex; align-items: center;">
 
@@ -130,10 +133,12 @@
                             id="customCheckInline1") }}
                             <label class="form-label custom-control-label" id="tool_terms_p" for="customCheckInline2">I
                                 am authorized to scan this target and I
-                                agree with the <span style="text-decoration: underline;">Terrms of
+                                agree with the <span style="text-decoration: underline;">Terms of
                                     Service.</span></label>
 
                         </div>
+
+
                         {{ form.submit(class="btn btn-primary shadow home_signup",id="tool_card_btn",
                         **{'data-bss-hover-animate':"pulse"})
                         }}
