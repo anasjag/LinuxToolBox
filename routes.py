@@ -43,6 +43,34 @@ def start():
 def home(): 
     return render_template("home.html",  title = f"Home - ")
 
+@pages.route("/ping.html", methods=["GET", "POST"])
+def ping_page(): 
+    form = PingForm()
+    if form.validate_on_submit():
+        show_modal = True
+        target_ip = form.targetForm.data
+        return render_template("ping.html",  title = f"Ping - ", form=form, show_modal=show_modal, target_ip=target_ip)
+    return render_template("ping.html", form=form, show_modal=False)
+
+@pages.route("/ping/<target_ip>", methods=["GET", "POST"])
+def ping(target_ip):
+    
+    ping_command = ['ping', '-c', '5', target_ip]
+    ping_result = subprocess.run(ping_command, capture_output=True)
+
+    # Access the output and error if needed
+    ping_output = ping_result.stdout.decode('utf-8')
+    ping_error = ping_result.stderr.decode('utf-8')
+    if ping_output is not None:
+        print(f"{target_ip} is reachable \n ({ping_output} ms)")
+    else:
+        print(f"{target_ip} is unreachable")
+    print(ping_error)
+        # return render_template('scan.html', scan_result=scan_result, ip=target_ip)
+    # else:
+        # Handle the case when data is not available or has unexpected structure
+    return render_template('scan.html', scan_result=None, ip=target_ip)
+
 @pages.route("/tools.html", methods=["GET", "POST"])
 def tools():
     form= ToolsForm()

@@ -7,7 +7,10 @@
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item"><a class="nav-link link-light {{ 'nav-link active' if request.path == url_for('pages.home') }} " href="/home.html" style="color:#ffffff;color:#f3f5f8;border-radius:4px;">Home</a></li>
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle {{ 'nav-link active' if request.path == url_for('pages.tools') }}" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color:#f3f5f8;border-radius:4px;">Tools&nbsp;</a>
-                    <div class="dropdown-menu" style="border-radius:8px;"><a class="nmap_link" href="tools.html" style="padding-left:20px;margin-left:2px;padding-right:80px;margin-right:0px;">Nmap</a></div>
+                    <div class="dropdown-menu" style="border-radius:8px;">
+                    <a class="nmap_link" href="tools.html" style="padding-left:20px;margin-left:2px;padding-right:80px;margin-right:0px;">Nmap</a><hr>
+                    <a class="nmap_link" href="ping.html" style="padding-left:20px;margin-left:2px;margin-right:0px;">ICMP Ping</a>
+                    </div>
                 </li>
         {% if not email %}
                 <li class="nav-item"><a class="nav-link link-light" href="login.html" style="border-radius:4px;">Log in</a></li>

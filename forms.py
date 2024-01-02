@@ -132,6 +132,11 @@ class ToolsForm(FlaskForm):
     ])
     checkbox = BooleanField("I am authorized to scan this target and I agree with the Terms of Service.",validators=[InputRequired()])
     submit = SubmitField("Start Scan")
-    
+
+class PingForm(FlaskForm):
+    targetForm = StringField("Target", validators=[InputRequired()])
+    checkbox = BooleanField("I am authorized to scan this target and I agree with the Terms of Service.",validators=[InputRequired()])
+    submit = SubmitField("Start Scan")
+
     
     
