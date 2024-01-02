@@ -17,7 +17,7 @@ def create_app():
     app.db = MongoClient(app.config["MONGODB_URI"])[app.config.get("MONGODB_DB")]
     app.config['SECRET_KEY'] = SECRET_KEY
     # app.db = client.LinuxToolBox
-    
+    #6eez
     app.register_blueprint(pages)
 
     return app 
