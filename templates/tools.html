@@ -30,7 +30,7 @@
                     automatically maps the attack surface and gives accurate data for your reconnaissance work. </p>
                 
                 {%if not session.get("email")%}
-                <p class="font-monospace" style="color: #F3F5F8;"> Sign up here to see your result history.</p>
+                <p class="font-monospace" style="color: #F3F5F8;"> Sign up here to see your scans history.</p>
                 <a class="btn font-monospace text-center shadow d-block" role="button" data-bss-hover-animate="pulse"
                     id="tool_btn1" href="signup.html">Create account</a>
                 {%endif%}
@@ -150,38 +150,40 @@
     <div class="container py-4">
         <div class="row mx-auto">
             <div class="col">
-                <h1 class="font-monospace text-contnt "><strong>Online NMAP Port Scanner – Free NMAP Scanning for Open
-                        Ports</strong></h1>
+                <h1 class="text-contnt " style="text-align: center; margin-bottom:30px"><strong>Technical details</strong></h1>
                 <div class="row">
                     <div class="col">
-                        <p class="font-monospace text2-contnt"><br>Online NMAP port scanner is a free web-based tool
-                            that allows you to scan for open ports on any given IP address or domain. <a
-                                href="https://nmap.org/">NMAP</a> is a popular open-source network scanning tool used
-                            for security auditing and network exploration. With Online NMAP port scanner, you can easily
-                            perform a port scan without the need for any software installation or
-                            configuration.<br><strong>How to use Online NMAP port scanner</strong><br>To use the Online
-                            NMAP port scanner, simply navigate to <a
-                                href="https://nettoolsonline.com/nmap-online/">NettoolsOnline NMAP Tool</a> and enter
-                            the IP address or domain name that you want to scan. The tool will then perform a scan and
-                            provide you with a list of open ports on that IP or domain. You can use this information to
-                            identify any potential vulnerabilities in your network and take appropriate action to secure
-                            it.<br><strong>Benefits of using Online NMAP port scanner</strong><br>Online NMAP port
-                            scanner offers several benefits, including:<br>Free to use: Online NMAP port scanner is
-                            completely free, and there are no hidden fees or charges.Easy to use: The tool has a simple
-                            and intuitive interface, making it easy to perform port scans even if you have no prior
-                            experience with NMAP or network scanning tools.Fast and reliable: Online NMAP port scanner
-                            uses advanced scanning techniques to quickly and accurately identify open ports, making it a
-                            fast and reliable tool for network exploration and security auditing.<strong>What is NMAP
-                                and How It Works?</strong><br>NMAP is a powerful network scanning tool used to discover
-                            hosts and services on a computer network. It can be used for network inventory,
-                            vulnerability detection, penetration testing, firewall and router auditing, service
-                            detection, and network troubleshooting.<br>NMAP sends packets to a target host or network
-                            and analyzes the responses using various scanning techniques, such as TCP Connect Scanning,
-                            SYN Scanning, and UDP Scanning. It operates in multiple modes, including Interactive Mode,
-                            Scripting Mode, Stealth Mode, and Timing and Performance Mode.<br><strong>NMAP Common
-                                Ports</strong><br>NMAP has a database of common ports that it scans by default. Some of
-                            the most commonly used ports include:</p>
-                    </div>
+                        <p class="text2-contnt"><strong><span class="text2-contnt" style="color: #EBC33A;"> What is a port scanner?</span></strong><br>
+
+                            A port scanner is a software application designed to check open ports on a server’s IP address or hostname by sending probe packets to TCP or UDP ports and checking the responses.<br><br>
+                            
+                            Security and IT specialists use an open port scanner tool to check how security policies are implemented and make accurate recommendations to reduce risk.<br><br>
+                            
+                            Malicious hackers also rely on public port scanners to discover exposed and outdated network services they can exploit to gain unauthorized access to a target. This is why offensive security pros need reliable port scanning tools to keep ahead of remote attackers and proactively reduce risk.
+                        </p>
+                        <p class=" text2-contnt">This open port scan we provide checks for the top (10, 100, 1000) ports and also reports the running services versions (-sV is enabled in scan configuration).
+
+                            <br><br><strong><span style="font-size: 18px; color: #EBC33A;"> Top 100 TCP ports:</span>  </strong><br>
+        
+                            
+                            7, 9, 13, 21-23, 25, 26, 37, 53, 79-81, 88, 106, 110, 111, 113, 119, 135, 139, 143, 144, 179, 199, 389, 427, 443-445, 465, 513-515, 543, 544, 548, 554, 587, 631, 646, 873, 990, 993, 995, 1025-1029, 1110, 1433, 1720, 1723, 1755, 1900, 2000, 2001, 2049, 2121, 2717, 3000, 3128, 3306, 3389, 3986, 4444, 4899, 5000, 5009, 5051, 5060, 5101, 5190, 5357, 5432, 5631, 5666, 5800, 5900, 5985, 5986, 6000, 6001, 6646, 7070, 8000, 8008, 8009, 8080, 8081, 8443, 8888, 9100, 9999, 10000, 32768, 49152-49157
+                            <br><br>
+                            As you can see in the list above, this Nmap scan online covers the most common TCP ports:
+                  
+                            </p>
+                            <ul class="text2-contnt">
+                                <li>21 - FTP (File Transfer Protocol)</li>
+                                <li>22 - SSH (Secure Shell)</li>
+                                <li>23 - Telnet</li>
+                                <li>25 - SMTP (Mail)</li>
+                                <li>80 - HTTP (Web)</li>
+                                <li>110 - POP3 (Mail)</li>
+                                <li>143 - IMAP (Mail)</li>
+                                <li>443 - HTTPS (Secure Web)</li>
+                                <li>445 - SMB (Microsoft File Sharing)</li>
+                                <li>3389 - RDP (Remote Desktop Protocol).</li>
+                            </ul>
+                            </div>
                 </div>
             </div>
         </div>

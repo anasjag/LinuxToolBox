@@ -19,7 +19,7 @@ import uuid
 import functools
 from forms import *
 import subprocess
-from models import Users , Scans
+from models import Users , Scans, Pings
 from dataclasses import asdict
 
 pages = Blueprint(
@@ -42,161 +42,6 @@ def start():
 @pages.route("/home.html", methods=["GET", "POST"])
 def home(): 
     return render_template("home.html",  title = f"Home - ")
-
-@pages.route("/ping.html", methods=["GET", "POST"])
-def ping_page(): 
-    form = PingForm()
-    if form.validate_on_submit():
-        show_modal = True
-        target_ip = form.targetForm.data
-        return render_template("ping.html",  title = f"Ping - ", form=form, show_modal=show_modal, target_ip=target_ip)
-    return render_template("ping.html", form=form, show_modal=False)
-
-@pages.route("/ping/<target_ip>", methods=["GET", "POST"])
-def ping(target_ip):
-    
-    ping_command = ['ping', '-c', '5', target_ip]
-    ping_output = subprocess.run(ping_command, capture_output=True).stdout.decode('utf-8')
-
-    # Access the output and error if needed
-    # ping_output = ping_result.stdout.decode('utf-8')
-    # ping_error = ping_result.stderr.decode('utf-8')
-    if ping_output is not None:
-        print(f'PING 192.168.1.5 (192.168.1.5): 56 data bytes\n64 bytes from 192.168.1.5: icmp_seq=0 ttl=64 time=110.743 ms\n64 bytes from 192.168.1.5: icmp_seq=1 ttl=64 time=30.948 ms\n64 bytes from 192.168.1.5: icmp_seq=2 ttl=64 time=45.737 ms\n64 bytes from 192.168.1.5: icmp_seq=3 ttl=64 time=65.080 ms\n64 bytes from 192.168.1.5: icmp_seq=4 ttl=64 time=83.715 ms\n\n--- 192.168.1.5 ping statistics ---\n5 packets transmitted, 5 packets received, 0.0% packet loss\nround-trip min/avg/max/stddev = 30.948/67.245/110.743/28.100 ms\n')
-    else:
-        print(f"{target_ip} is unreachable")
-    # print(ping_error)
-    
-    return render_template('ping_result.html', scan_result=ping_output, ip=target_ip)
-
-@pages.route("/tools.html", methods=["GET", "POST"])
-def tools():
-    form= ToolsForm()
-    if form.validate_on_submit():
-        target_ip = form.targetForm.data
-        command = ['nmap']
-        if form.svCheck.data:
-            command.append('-sV')
-        if form.osCheck.data:
-            command.append('-O')
-        if form.radio_field.data == 'Common ports':
-            if form.topPorts.data == 'option1':
-                command.append('--top-ports')
-                command.append('10')
-            elif form.topPorts.data == 'option2':
-                command.append('--top-ports')
-                command.append('100')
-            else:
-                command.append('--top-ports')
-                command.append('1000')
-        else:
-            command.append('-p')
-            command.append(f'{form.listPorts.data}')
-        command.append('-oX')
-        command.append('-')
-        command.append(socket.gethostbyname(target_ip))
-        form.process()
-        return render_template("tools.html", form=form, show_modal=True, command=command, target_ip=target_ip)
-    return render_template("tools.html", form=form, show_modal=False)
-
-@pages.route("/scan/<command>/<target_ip>", methods=["GET", "POST"])
-def scan(command,target_ip):
-    
-    command = ast.literal_eval(command) 
-    xml_scan = subprocess.run(command, capture_output=True)
-    nmap_output = xml_scan.stdout.decode('utf-8')
-
-    # Parse XML string to a Python dictionary
-    dict_data = xmltodict.parse(nmap_output)
-    scan = Scans(
-            _id=uuid.uuid4().hex,
-            date= str(date.today()),
-            status=dict_data['nmaprun']['runstats']['finished']['@exit'],
-            ip=target_ip,
-            data=dict_data
-        )
-    current_app.db.scans.insert_one(asdict(scan))
-
-    if session.get("email"):
-        current_app.db.users.update_one(
-            {"_id": session["user_id"]}, {"$push": {"scans": scan._id}}
-        )
-
-    scan_data = current_app.db.scans.find_one({"_id": scan._id})
-
-    if scan_data and 'data' in scan_data:
-        
-
-        scan_result = scan_data['data']
-        return render_template('scan.html', scan_result=scan_result, ip=target_ip)
-    else:
-        # Handle the case when data is not available or has unexpected structure
-        return render_template('scan.html', scan_result=None, ip=target_ip)
-
-@pages.route("/history.html", methods=["GET", "POST"])
-@login_required
-def history():
-    user_data = current_app.db.users.find_one({"_id": session["user_id"]})
-    data = user_data['scans']
-    
-    scanned_data = []
-    for scan in data:    
-        scan_data = current_app.db.scans.find_one(
-            {"_id": scan},
-            {"data": 0}
-        )
-        if scan_data:
-            scanned_data.append(scan_data)
-
-    search_query = request.args.get("search_query", "").lower()
-    scanned_data = [
-        data for data in scanned_data
-        if search_query in data["ip"].lower()
-        or search_query in data["date"].lower()
-        or (search_query in "success" and data["status"].lower() in "success")
-        or (search_query in "fail" and data["status"].lower() in "fail")
-    ]
-    
-    return render_template(
-        "history.html", scanned_data=scanned_data, search_query=search_query,title = f"History - "
-    )
-
-def scan_page(scan_id, scan_ip):
-    scan_data = current_app.db.scans.find_one({"_id": scan_id})
-        
-    if scan_data and 'data' in scan_data:
-        
-        scan_result = scan_data['data']
-        return render_template('scan.html', scan_result=scan_result, ip=scan_ip)
-    else:
-        # Handle the case when data is not available or has unexpected structure
-        return render_template('scan.html', scan_result=None)
-    
-@pages.route("/handle_action/<action_type>/<scan_id>/<scan_ip>")
-def handle_action(action_type, scan_id, scan_ip):
-    if action_type == "download_btn":
-        rendered_html = scan_page(scan_id, scan_ip)
-         # Use pdfkit.from_string to generate the PDF content
-        pdf = pdfkit.from_string(rendered_html)
-        response = make_response(pdf)
-        response.headers['Content-Type'] = 'application/pdf'
-        response.headers['Content-Disposition'] =f'attachment; filename={scan_ip}.pdf'
-
-        return response
-    elif action_type == "showResult_btn":
-        scan_data = current_app.db.scans.find_one({"_id": scan_id})
-        
-        if scan_data and 'data' in scan_data:
-            
-            scan_result = scan_data['data']
-            return render_template('scan.html', scan_result=scan_result, ip=scan_ip)
-        else:
-            # Handle the case when data is not available or has unexpected structure
-            return render_template('scan.html', scan_result=None)
-    elif action_type == "remove_btn":
-        current_app.db.scans.delete_one({"_id": scan_id})
-    return redirect(url_for("pages.history"))
-
 
 @pages.route("/login.html", methods=["GET", "POST"])
 def login():
@@ -241,7 +86,7 @@ def signup():
         return redirect("login.html")
     
     return render_template("signup.html", title = f"Signup - ", form=form)
-    
+
 @pages.route("/general.html", methods=["GET", "POST"])
 @login_required
 def general():
@@ -303,8 +148,169 @@ def security():
     form.process
     return render_template("security.html", title=f"Profile - ", form=form)
 
+@pages.route("/ping.html", methods=["GET", "POST"])
+def ping_page(): 
+    form = PingForm()
+    if form.validate_on_submit():
+        show_modal = True
+        target_ip = form.targetForm.data
+        return render_template("ping.html",  title = f"Ping - ", form=form, show_modal=show_modal, target_ip=target_ip)
+    return render_template("ping.html", form=form, show_modal=False)
+
+@pages.route("/ping/<target_ip>", methods=["GET", "POST"])
+def ping(target_ip):
+    
+    ping_command = ['ping', '-c', '5', target_ip]
+    ping_output = subprocess.run(ping_command, capture_output=True).stdout.decode('utf-8')
+    scan = Pings(
+            _id=uuid.uuid4().hex,
+            data=ping_output,
+            date= str(date.today()),
+            status='success' if ping_output is not None else 'faild',
+            ip=target_ip,
+            tool_name="Ping"
+        )
+    current_app.db.scans.insert_one(asdict(scan))
+
+    if session.get("email"):
+        current_app.db.users.update_one(
+            {"_id": session["user_id"]}, {"$push": {"scans": scan._id}}
+        )
+    
+    return render_template('ping_result.html', scan_result=ping_output, ip=target_ip)
+
+@pages.route("/tools.html", methods=["GET", "POST"])
+def tools():
+    form= ToolsForm()
+    if form.validate_on_submit():
+        target_ip = form.targetForm.data
+        command = ['nmap']
+        if form.svCheck.data:
+            command.append('-sV')
+        if form.osCheck.data:
+            command.append('-O')
+        if form.radio_field.data == 'Common ports':
+            if form.topPorts.data == 'option1':
+                command.append('--top-ports')
+                command.append('10')
+            elif form.topPorts.data == 'option2':
+                command.append('--top-ports')
+                command.append('100')
+            else:
+                command.append('--top-ports')
+                command.append('1000')
+        else:
+            command.append('-p')
+            command.append(f'{form.listPorts.data}')
+        command.append('-oX')
+        command.append('-')
+        command.append(socket.gethostbyname(target_ip))
+        form.process()
+        return render_template("tools.html", form=form, show_modal=True, command=command, target_ip=target_ip)
+    return render_template("tools.html", form=form, show_modal=False)
+
+@pages.route("/scan/<command>/<target_ip>", methods=["GET", "POST"])
+def scan(command,target_ip):
+    
+    command = ast.literal_eval(command) 
+    xml_scan = subprocess.run(command, capture_output=True)
+    nmap_output = xml_scan.stdout.decode('utf-8')
+
+    # Parse XML string to a Python dictionary
+    dict_data = xmltodict.parse(nmap_output)
+    scan = Scans(
+            _id=uuid.uuid4().hex,
+            date= str(date.today()),
+            status=dict_data['nmaprun']['runstats']['finished']['@exit'],
+            ip=target_ip,
+            data=dict_data,
+            tool_name="Nmap"
+        )
+    current_app.db.scans.insert_one(asdict(scan))
+
+    if session.get("email"):
+        current_app.db.users.update_one(
+            {"_id": session["user_id"]}, {"$push": {"scans": scan._id}}
+        )
+
+    scan_data = current_app.db.scans.find_one({"_id": scan._id})
+
+    if scan_data and 'data' in scan_data:
+        scan_result = scan_data['data']
+        if 'nmaprun' not in scan_result or 'host' not in scan_result['nmaprun'] or 'ports' not in scan_result['nmaprun']['host'] or 'port'not in scan_result['nmaprun']['host']['ports']:
+            current_app.db.scans.update_one(
+                {"_id": scan._id}, {"$set": {"status": "faild"}}
+            )
+        return render_template('scan.html', scan_result=scan_result, ip=target_ip)
+
+
+@pages.route("/history.html", methods=["GET", "POST"])
+@login_required
+def history():
+    user_data = current_app.db.users.find_one({"_id": session["user_id"]})
+    data = user_data['scans']
+    
+    scanned_data = []
+    for scan in data:    
+        scan_data = current_app.db.scans.find_one(
+            {"_id": scan},
+            {"data": 0}
+        )
+        if scan_data:
+            scanned_data.append(scan_data)
+
+    search_query = request.args.get("search_query", "").lower()
+    scanned_data = [
+        data for data in scanned_data
+        if search_query in data["ip"].lower()
+        or search_query in data["date"].lower()
+        or (search_query in "success" and data["status"].lower() in "success")
+        or (search_query in "fail" and data["status"].lower() in "fail")
+    ]
+    
+    return render_template(
+        "history.html", scanned_data=scanned_data, search_query=search_query,title = f"History - "
+    )
+
+def scan_page(scan_id, scan_ip):
+    scan_data = current_app.db.scans.find_one({"_id": scan_id})
+        
+    if scan_data and 'data' in scan_data:
+        if scan_data['tool_name']== 'Nmap':
+            scan_result = scan_data['data']
+            return render_template('scan.html', scan_result=scan_result, ip=scan_ip)
+        else:
+            scan_result = scan_data['data']
+            return render_template('ping_result.html', scan_result=scan_result, ip=scan_ip)
+    
+@pages.route("/handle_action/<action_type>/<scan_id>/<scan_ip>")
+def handle_action(action_type, scan_id, scan_ip):
+    if action_type == "download_btn":
+        rendered_html = scan_page(scan_id, scan_ip)
+         # Use pdfkit.from_string to generate the PDF content
+        pdf = pdfkit.from_string(rendered_html)
+        response = make_response(pdf)
+        response.headers['Content-Type'] = 'application/pdf'
+        response.headers['Content-Disposition'] =f'attachment; filename={scan_ip}.pdf'
+
+        return response
+    elif action_type == "showResult_btn":
+        scan_data = current_app.db.scans.find_one({"_id": scan_id})
+        
+        if scan_data and 'data' in scan_data:
+            if scan_data['tool_name']== 'Nmap':
+                scan_result = scan_data['data']
+                return render_template('scan.html', scan_result=scan_result, ip=scan_ip)
+            else:
+                scan_result = scan_data['data']
+                return render_template('ping_result.html', scan_result=scan_result, ip=scan_ip)
+    elif action_type == "remove_btn":
+        current_app.db.scans.delete_one({"_id": scan_id})
+    return redirect(url_for("pages.history"))
+
 @pages.route("/logout")
 def logout():
     session.clear()
 
     return redirect("login.html")
+

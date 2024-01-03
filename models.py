@@ -18,3 +18,13 @@ class Scans:
     status: str
     ip: str
     data: dict
+    tool_name: str
+
+@dataclass
+class Pings:
+    _id: str
+    data: str
+    status: str
+    ip: str
+    date: str
+    tool_name: str

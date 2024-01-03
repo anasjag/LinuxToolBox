@@ -45,7 +45,8 @@
                         <thead class="table-heading">
 
                             <tr class="table-row">
-                                <th class="font-monospace table-header" style="padding-left: 50px;">IP or Hostname</th>
+                                <th class="font-monospace table-header" style="padding-left: 50px;">Tool</th>
+                                <th class="font-monospace table-header" >IP or Hostname</th>
                                 <th class="table-header">Status</th>
                                 <th class="table-header">Date</th>
                                 <th class="text-center table-header">Actions</th>
@@ -55,7 +56,8 @@
                             {% if scanned_data %} <!-- if there is a data in the dic/database -->
                             {% for scan_data in scanned_data %}
                             <tr>
-                                <td class="table-header" style="padding-left: 50px;">{{ scan_data.ip }}</td>
+                                <td class="table-header" style="padding-left: 50px;">{{ scan_data.tool_name }}</td>
+                                <td class="table-header">{{ scan_data.ip }}</td>
                                 {% if scan_data.status =="success" %}
                                 <td class="table-header" style="color: green !important;">Success</td>
                                 {% else %}
