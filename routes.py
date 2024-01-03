@@ -56,20 +56,18 @@ def ping_page():
 def ping(target_ip):
     
     ping_command = ['ping', '-c', '5', target_ip]
-    ping_result = subprocess.run(ping_command, capture_output=True)
+    ping_output = subprocess.run(ping_command, capture_output=True).stdout.decode('utf-8')
 
     # Access the output and error if needed
-    ping_output = ping_result.stdout.decode('utf-8')
-    ping_error = ping_result.stderr.decode('utf-8')
+    # ping_output = ping_result.stdout.decode('utf-8')
+    # ping_error = ping_result.stderr.decode('utf-8')
     if ping_output is not None:
-        print(f"{target_ip} is reachable \n ({ping_output} ms)")
+        print(f'PING 192.168.1.5 (192.168.1.5): 56 data bytes\n64 bytes from 192.168.1.5: icmp_seq=0 ttl=64 time=110.743 ms\n64 bytes from 192.168.1.5: icmp_seq=1 ttl=64 time=30.948 ms\n64 bytes from 192.168.1.5: icmp_seq=2 ttl=64 time=45.737 ms\n64 bytes from 192.168.1.5: icmp_seq=3 ttl=64 time=65.080 ms\n64 bytes from 192.168.1.5: icmp_seq=4 ttl=64 time=83.715 ms\n\n--- 192.168.1.5 ping statistics ---\n5 packets transmitted, 5 packets received, 0.0% packet loss\nround-trip min/avg/max/stddev = 30.948/67.245/110.743/28.100 ms\n')
     else:
         print(f"{target_ip} is unreachable")
-    print(ping_error)
-        # return render_template('scan.html', scan_result=scan_result, ip=target_ip)
-    # else:
-        # Handle the case when data is not available or has unexpected structure
-    return render_template('scan.html', scan_result=None, ip=target_ip)
+    # print(ping_error)
+    
+    return render_template('ping_result.html', scan_result=ping_output, ip=target_ip)
 
 @pages.route("/tools.html", methods=["GET", "POST"])
 def tools():

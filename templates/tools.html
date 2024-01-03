@@ -27,9 +27,10 @@
                 <h1 class="font-monospace" id="tool_h1"><strong>Port Scan with Nmap</strong></h1>
                 <p class="font-monospace" id="tool_p1">Find open ports and running services, and do OS fingerprinting in
                     a single port check.<br><br>Each Nmap port scan against a target IP address or hostname
-                    automatically maps the attack surface and gives accurate data for your reconnaissance work. Sign up
-                    here.</p>
+                    automatically maps the attack surface and gives accurate data for your reconnaissance work. </p>
+                
                 {%if not session.get("email")%}
+                <p class="font-monospace" style="color: #F3F5F8;"> Sign up here to see your result history.</p>
                 <a class="btn font-monospace text-center shadow d-block" role="button" data-bss-hover-animate="pulse"
                     id="tool_btn1" href="signup.html">Create account</a>
                 {%endif%}

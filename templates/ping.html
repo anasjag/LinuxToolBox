@@ -12,7 +12,7 @@
         <!-- Loading indicator -->
         <div class="loading" id="loadingIndicator">
             <div class="loading-indicator"></div>
-            <p class="font-monospace" id="scan_p1">Starting Nmap Scan</p>
+            <p class="font-monospace" id="scan_p1">Scan in progress</p>
         </div>
 
         <!-- Content of the modal -->
@@ -55,22 +55,8 @@
                         </div>
                     </section>
 
-                    <div id="tool_section3" style="display: flex;margin-top: 3%;padding-left: 7%;
-                    padding-right: 7%;">
-                        <div id="tool_checkbox_terms" class="custom-control custom-checkbox custom-control-inline"
-                            style="display: flex; align-items: center;">
-
-                            {{ form.checkbox(class="custom-control-input", style="width: 20px; height: 20px;",
-                            id="customCheckInline1") }}
-                            <label class="form-label custom-control-label" id="tool_terms_p" for="customCheckInline2">I
-                                am authorized to scan this target and I
-                                agree with the <span style="text-decoration: underline;">Terms of
-                                    Service.</span></label>
-
-                        </div>
-
-
-                        {{ form.submit(class="btn btn-primary shadow home_signup",id="tool_card_btn",
+                    <div id="tool_section3" style="display: flex;margin-top: 3%;">
+                        {{ form.submit(class="btn btn-primary shadow home_signup",id="ping_card_btn",
                         **{'data-bss-hover-animate':"pulse"})
                         }}
                         </form>
@@ -83,18 +69,20 @@
 <section class="py-4" style="background-color: #121212;">
     <div class="container py-4">
         <div class="row mx-auto">
-            <div class="col">
-                <h1 class="font-monospace text-contnt "><strong>ICMP PING</strong></h1>
+            <div class="col" >
+                <h1 class="font-monospace" style="color:#EBC33a; margin-bottom:2%"><strong>About this tool: </strong></h1>
                 <div class="row">
                     <div class="col">
-                        <p class="font-monospace text2-contnt">
+                        <p class="font-monospace text2-contnt" style="margin-bottom: 10%;">
                             <a aria-current="page" href="#" class="font-monospace text2-contnt">ICMP Ping</a>
                             is a tool that shows if a target host is reachable over the internet via the ICMP protocol.
+                            The tool also performs a quick DNS resolution and shows the IP address of a given hostname.
+                            A set of statistics are shown at the end, such as the number of packets sent/received, percent of packet loss, round trip time information.
                         </p>
                         <hr>
 
                         <h3 id="how-it-works" class="font-monospace text2-contnt">
-                            <a href="#how-it-works" style="color: antiquewhite;">How it works</a>
+                            <a href="#how-it-works" style="    font-size: 24px;color:#EBC33a;">How it works</a>
                         </h3>
                         <p class="font-monospace text2-contnt">Ping uses the <a
                                 class="font-monospace text2-contnt"
