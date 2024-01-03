@@ -201,7 +201,7 @@ def handle_action(action_type, scan_id, scan_ip):
 @pages.route("/login.html", methods=["GET", "POST"])
 def login():
     if session.get("email"):
-        return redirect("home/html")
+        return redirect("home.html")
     form = LoginForm()
     if form.validate_on_submit():
         user_data = current_app.db.users.find_one({"email":  form.email.data})
