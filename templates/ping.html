@@ -16,8 +16,8 @@
         </div>
 
         <!-- Content of the modal -->
-        <iframe src="{{url_for('pages.ping',target_ip=target_ip)}}" frameborder="0" name="Frame" width="100%" height="1180px" style="background-color: #121212; "
-            onload="hideLoading()"></iframe>
+        <iframe src="{{url_for('pages.ping',target_ip=target_ip)}}" frameborder="0" name="Frame" width="100%"
+            height="1180px" style="background-color: #121212; " onload="hideLoading()"></iframe>
     </div>
 </div>
 {%endif%}
@@ -25,18 +25,21 @@
     <div class="container py-4">
         <div class="row">
             <div class="col">
-                <h1 class="font-monospace" id="tool_h1"><strong>Port Scan with Nmap</strong></h1>
-                <p class="font-monospace" id="tool_p1">Find open ports and running services, and do OS fingerprinting in
-                    a single port check.<br><br>Each Nmap port scan against a target IP address or hostname
-                    automatically maps the attack surface and gives accurate data for your reconnaissance work. Sign up
-                    here.</p>
+                <h1 class="font-monospace" id="tool_h1"><strong>ICMP Ping</strong></h1>
+                <p class="font-monospace" id="tool_p1">Check if a server is live and responds to ICMP Echo requests.
+                    This tool can also be
+                    used to find the IP address of a
+                    hostname.</p>
                 {%if not session.get("email")%}
+                <p class="font-monospace" id="tool_p1" style="margin-bottom: -220px;margin-top: -125px;">
+                    Sign up here to see your result history.
+                </p>
                 <a class="btn font-monospace text-center shadow d-block" role="button" data-bss-hover-animate="pulse"
                     id="tool_btn1" href="signup.html">Create account</a>
                 {%endif%}
             </div>
             <div class="col">
-                <section id="ping_card" >
+                <section id="ping_card">
                     <section id="tool_section1">
                         <div class="mb-3"
                             style="width: 100%; height: 42px; border-radius: 4px; padding-bottom: 11px; margin-left: 0px; font-size: 12px;">
@@ -65,8 +68,8 @@
                                     Service.</span></label>
 
                         </div>
-                
-                        
+
+
                         {{ form.submit(class="btn btn-primary shadow home_signup",id="tool_card_btn",
                         **{'data-bss-hover-animate':"pulse"})
                         }}
@@ -81,37 +84,27 @@
     <div class="container py-4">
         <div class="row mx-auto">
             <div class="col">
-                <h1 class="font-monospace text-contnt "><strong>Online NMAP Port Scanner – Free NMAP Scanning for Open
-                        Ports</strong></h1>
+                <h1 class="font-monospace text-contnt "><strong>ICMP PING</strong></h1>
                 <div class="row">
                     <div class="col">
-                        <p class="font-monospace text2-contnt"><br>Online NMAP port scanner is a free web-based tool
-                            that allows you to scan for open ports on any given IP address or domain. <a
-                                href="https://nmap.org/">NMAP</a> is a popular open-source network scanning tool used
-                            for security auditing and network exploration. With Online NMAP port scanner, you can easily
-                            perform a port scan without the need for any software installation or
-                            configuration.<br><strong>How to use Online NMAP port scanner</strong><br>To use the Online
-                            NMAP port scanner, simply navigate to <a
-                                href="https://nettoolsonline.com/nmap-online/">NettoolsOnline NMAP Tool</a> and enter
-                            the IP address or domain name that you want to scan. The tool will then perform a scan and
-                            provide you with a list of open ports on that IP or domain. You can use this information to
-                            identify any potential vulnerabilities in your network and take appropriate action to secure
-                            it.<br><strong>Benefits of using Online NMAP port scanner</strong><br>Online NMAP port
-                            scanner offers several benefits, including:<br>Free to use: Online NMAP port scanner is
-                            completely free, and there are no hidden fees or charges.Easy to use: The tool has a simple
-                            and intuitive interface, making it easy to perform port scans even if you have no prior
-                            experience with NMAP or network scanning tools.Fast and reliable: Online NMAP port scanner
-                            uses advanced scanning techniques to quickly and accurately identify open ports, making it a
-                            fast and reliable tool for network exploration and security auditing.<strong>What is NMAP
-                                and How It Works?</strong><br>NMAP is a powerful network scanning tool used to discover
-                            hosts and services on a computer network. It can be used for network inventory,
-                            vulnerability detection, penetration testing, firewall and router auditing, service
-                            detection, and network troubleshooting.<br>NMAP sends packets to a target host or network
-                            and analyzes the responses using various scanning techniques, such as TCP Connect Scanning,
-                            SYN Scanning, and UDP Scanning. It operates in multiple modes, including Interactive Mode,
-                            Scripting Mode, Stealth Mode, and Timing and Performance Mode.<br><strong>NMAP Common
-                                Ports</strong><br>NMAP has a database of common ports that it scans by default. Some of
-                            the most commonly used ports include:</p>
+                        <p class="font-monospace text2-contnt">
+                            <a aria-current="page" href="#" class="font-monospace text2-contnt">ICMP Ping</a>
+                            is a tool that shows if a target host is reachable over the internet via the ICMP protocol.
+                        </p>
+                        <hr>
+
+                        <h3 id="how-it-works" class="font-monospace text2-contnt">
+                            <a href="#how-it-works" style="color: antiquewhite;">How it works</a>
+                        </h3>
+                        <p class="font-monospace text2-contnt">Ping uses the <a
+                                class="font-monospace text2-contnt"
+                                href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol"
+                                rel="nofollow">Internet Control Message Protocol (ICMP)</a> to determine
+                            if the target host is
+                            reachable. The tool sends ICMP Echo Request packets to the destination host and waits for
+                            ICMP Echo Replies.
+                        </p>
+
                     </div>
                 </div>
             </div>
