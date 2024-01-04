@@ -13,6 +13,8 @@
 .u-bare-link{
   text-decoration: none;
 }
+@media (min-width: 300px)
+{
 #home_under_h1{
   color: #F3F5F8;
   display: inline-block;
@@ -20,6 +22,18 @@
   margin-bottom: 15%;
   font-size: 24px;
 }
+}
+@media (min-width: 992px)
+{
+#home_under_h1{
+  color: #F3F5F8;
+  display: inline-block;
+  max-width: 622px;
+  margin-bottom: 45%;
+  font-size: 24px;
+}
+}
+
 .project-card__img{
 
   border-radius: 15px;
@@ -101,14 +115,14 @@
   #home_h1 {
     color: #f3f5f8;
     padding-top: 85px;
-    font-size: 15px;
+    font-size: 18px;
   }
 }
 
 @media (min-width: 992px) {
   #home_h1 {
     color: #F3F5F8;
-    font-size: 32px;
+    font-size: 48px;
   }
 }
 
