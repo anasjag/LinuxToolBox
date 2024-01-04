@@ -16,7 +16,9 @@
 #home_under_h1{
   color: #F3F5F8;
   display: inline-block;
-  width: 430px;
+  max-width: 622px;
+  margin-bottom: 15%;
+  font-size: 24px;
 }
 .project-card__img{
 
@@ -37,9 +39,11 @@
 .project-card:hover .project-card__img {
   transform: translateY(-0.5rem);
 }
-.project-card:hover .project-card__img {
+.project-card:hover .project-card__name{
   text-decoration: underline;
-
+}
+.cta:hover{
+  text-decoration: underline;
 }
 
 .project-card {
@@ -57,11 +61,7 @@
   margin: 0 auto;
 
 }
-.image-background{
-  background-color: #1a1a1a;
-  width: 20rem;
-  border-radius: 4px;
-}
+
 .p-linux{
   color: #ebc33a;
   font-size: 2rem;
@@ -79,9 +79,20 @@
   }
 }
 
+@media (max-width: 780px) {
+  .p_home {
+    display: block !important;
+  }
+}
+@media (min-width: 780px) {
+  .p2_home{
+    display: block !important;
+  }
+}
+
 @media (min-width: 70em) {
   .projects {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     max-width: 68rem;
   }
 }

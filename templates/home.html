@@ -25,22 +25,60 @@
                     </p>
                     
                     <section class="projects">
-                        {% for project in projects %}
-                        <div class="image-background">
-                            <a class="u-bare-link" href="{{ url_for('pages.project', slug=project['slug']) }}">
-                                <article class="project-card">
-                                    <img class="project-card__img"
-                                        src="{{ url_for('static', filename=project['thumb']) }}" />
-                                    <header class="project-card__meta">
+                    <p style="margin-top: 9%;
+                    color: #f3f5f8;
+                    text-align: left;
+                    margin-left: 18%;"><span style="font-size: 24px;">Port Scanner with Nmap</span><br> Find open ports and running services, and do OS fingerprinting in a single port check.</p>
+                    <div class="image-background">
+                        
+                        <a class="u-bare-link" href="/tools.html">
+                            <article class="project-card">
+                                <img class="project-card__img" src="/static/img/nmap-logo.jpg">
+                                <header class="project-card__meta">
 
-                                        <h4 class="project-card__name font-monospace">{{ project['name'] }}
-                                        </h4>
-                                        <p style="color: #ebc33ac4; font-size: smaller;">{{project['hinted']}}</p>
-                                    </header>
-                                </article>
-                            </a>
-                        </div>
-                        {%endfor%}
+                                    <h4 class="project-card__name font-monospace">Port Scanner with Nmap
+                                    </h4>
+                                    <p style="color: #ebc33ac4; font-size: smaller;">Testing open ports</p>
+                                </header>
+                            </article>
+                        </a>
+                        
+                    </div>
+                    
+                    <p class="p_home" style="margin-top: 15%;display:none;color: #f3f5f8;" ><span style="font-size: 24px;">ICMP Ping</span><br>Detect if a server is live and responds to ICMP requests.</p>
+                    <div class="image-background">
+                        
+                        <a class="u-bare-link" href="/ping.html">
+                            <article class="project-card">
+                                <img class="project-card__img" src="/static/img/ping22.png">
+                                <header class="project-card__meta">
+
+                                    <h4 class="project-card__name font-monospace">ICMP Ping
+                                    </h4>
+                                    <p style="color: #ebc33ac4; font-size: smaller;">Tests the reachability of network devices</p>
+                                </header>
+                            </article>
+                        </a>
+                        
+                    </div>
+                    <p class="p2_home" style="margin-top: 15%; display:none;color: #f3f5f8;" ><span style="font-size: 24px;">ICMP Ping</span><br>Detect if a server is live and responds to ICMP requests.</p>
+                    <p style="margin-top: 15%;color: #f3f5f8;">Discover hidden, sensitive or vulnerable files and routes in web applications and servers.
+                    </p>
+                    <div class="image-background">
+                        
+                        <a class="u-bare-link" href="/%23">
+                            <article class="project-card">
+                                <img class="project-card__img" src="/static/img/ffuf.png">
+                                <header class="project-card__meta">
+
+                                    <h4 class="project-card__name font-monospace">URL Fuzzer
+                                    </h4>
+                                    <p style="color: #ebc33ac4; font-size: smaller;">COMING SOON...</p>
+                                </header>
+                            </article>
+                        </a>
+                        
+                    </div>
                     </section>
                 </div>
                 
