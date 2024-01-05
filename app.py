@@ -1,5 +1,5 @@
-import os, subprocess
-from flask import Flask, render_template, request, url_for, redirect
+import os
+from flask import Flask
 from pymongo import MongoClient
 from dotenv import load_dotenv
 

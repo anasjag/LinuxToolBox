@@ -33,12 +33,18 @@
                     {{ form.lname(class="form-control form-control-sm form-control", placeholder="Doe", style="width:98%; border-radius: 8px;margin-bottom: 10px;")}}
                 </div>
             </div>
+            {% for error in form.fname.errors or form.lname.errors%}
+                <li style="color: rgb(209,84,93); font-size:70%; line-height: 0.9;margin-bottom: -25px;margin-top: -20px">{{ error }}</li><br>
+                {% endfor %} 
             <div class="bounce animated mb-3" style="margin-top: 0px;margin-bottom: 6px;">
 
                 {{ form.email.label(class="form-label font-monospace form-label", style="color: #121212;") }}
                 {{ form.email(class="form-control form-control-sm form-control", placeholder="Example@linuxtoolbox.com", style="border-radius: 8px;margin-bottom: 10px;")}}
                 
             </div>
+            {% for error in form.email.errors %}
+                <li style="color: rgb(209,84,93); font-size:70%; line-height: 0.9;margin-bottom: -25px;margin-top: -10px">{{ error }}</li><br>
+                {% endfor %} 
             <div class="bounce animated mb-3">
                 
                 {{form.password.label(class="form-label font-monospace form-label", style="color: #121212;")}}
@@ -54,10 +60,10 @@
             <div class="mb-3" style="margin-top: -51px;">
                 <ul >
                     {% for error in form.password.errors %}
-                        <li style="color: rgb(209,84,93); font-size:70%; line-height: 0.9; margin-top: 5px; margin-bottom: -15px">{{ error }}</li><br>
+                        <li style="color: rgb(209,84,93); font-size:70%; line-height: 0.9; margin-top: -5px; margin-bottom: -15px">{{ error }}</li><br>
                     {% endfor %} 
                     {% for error in form.confirm.errors %}
-                        <li style="color: rgb(209,84,93); font-size:70%; line-height: 0.9; margin-top: 5px; margin-bottom: -200px">{{ error }}</li><br>
+                        <li style="color: rgb(209,84,93); font-size:70%; line-height: 0.9; margin-top: -5px; margin-bottom: -45px">{{ error }}</li><br>
                     {% endfor %}  
                 </ul>  
                 {{ form.submit(class="btn btn-primary font-monospace text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center shadow form-control all_btn", type="submit", id="signup_btn", **{'data-bss-hover-animate':'pulse'},)}}

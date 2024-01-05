@@ -45,31 +45,7 @@ def start():
 
 @pages.route("/home.html", methods=["GET", "POST"])
 def home():
-    projects = [
-        {
-            "name": "Port Scanner with Nmap",
-            "thumb": "img/nmap-logo.jpg",
-            "slug": "tools.html",
-            "hinted": "Testing open ports",
-            "disc": "Find open ports and running services, and do OS fingerprinting in a single port check."
-        },
-        {
-            "name": "ICMP Ping",
-            "thumb": "img/ping22.png",
-            "hinted":"Tests the reachability of network devices",
-            "slug": "ping.html",
-            "disc": "nmasdkashfgsalgfdfasdfasdfgasdgdsagasdf"
-        },
-        {
-            "name": "URL Fuzzer",
-            "thumb": "img/ffuf.png",
-            "hinted":"COMING SOON...",
-            "slug": "#",
-            "disc": "nmasdkashfgsalgfdfasdfasdfgasdgdsagasdf"
-        },
-    ]
-
-    return render_template("home.html", title=f"Home - ", projects=projects)
+    return render_template("home.html", title=f"Home - ")
 
 
 @pages.route("/<slug>", methods=["GET", "POST"])
@@ -113,7 +89,6 @@ def login():
             "The password or the email that you have entered is incorrect",
             category="danger",
         )
-    # Print flash messages for debugging
 
     return render_template("login.html", title=f"Login - ", form=form)
 

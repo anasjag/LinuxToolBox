@@ -23,6 +23,9 @@
                         type="email", value=form.email.default, placeholder="Example@linuxtoolbox.com",
                         style="border-radius: 8px;margin-bottom: 30px;")}}
             </div>
+            {% for error in form.email.errors%}
+                <li style="color: rgb(209,84,93); font-size:70%; line-height: 0.9;margin-bottom: -25px;margin-top: -20px">{{ error }}</li><br>
+                {% endfor %} 
             <div class="security_field" style="margin-top: 0px;">
                 <strong>{{form.password.label(class="form-label font-monospace form-label",
                         style="margin-bottom:0px;color:#f3f5f8;")}}</strong>

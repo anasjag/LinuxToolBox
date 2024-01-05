@@ -264,7 +264,7 @@
   font-size: 70%;
   color: #121212;
   background-color: #EBC33A;
-  line-height: 1.9;  
+  line-height: 0.9;  
 }
 .form__flash--danger{
   font-size: 70%;
@@ -286,7 +286,10 @@
     padding-right: 0px;
   }
 }
-
+.signup_form {
+  position: relative;
+  top: -35px;
+}
 #signup_btn {
   background-color: #EBC33A;
   color: #121212;
@@ -295,7 +298,7 @@
   margin-bottom: 0px;
   padding-bottom: 0px;
   padding-top: 4px;
-  margin-top: 25px;
+  margin-top: 7px;
 }
 
 @media (min-width: 992px) {

@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField ,validators, TelField, SelectField,BooleanField,RadioField,FieldList
 from wtforms.validators import InputRequired, DataRequired, ValidationError
 import re
+from flask import current_app
 
 class GeneralForm(FlaskForm):
     fname = StringField("First Name:",validators=[InputRequired(),
@@ -61,8 +62,8 @@ class GeneralForm(FlaskForm):
     submit = SubmitField("Save Changes", name="update_profile")
     
 
-
 class SecurityForm(FlaskForm):
+    
     email = StringField("Email:", validators=[validators.Email(), validators.Optional()])
     password = PasswordField('Password:', validators=[
         validators.Regexp(
@@ -79,6 +80,7 @@ class SecurityForm(FlaskForm):
         if form.password.data and not field.data:
             raise ValidationError('Confirm Password is required when entering a password.')
     submit = SubmitField("Save Changes", name="update2_profile")
+    
 
 class SignupForm(FlaskForm):
     fname = StringField("First Name:",validators=[InputRequired(),
@@ -91,7 +93,11 @@ class SignupForm(FlaskForm):
             regex=re.compile(r"^[a-zA-Z'-]+$"),
             message='The name should not contain any numbers or special characters.'
         )])
-    email = StringField("Email:",validators=[validators.Email(),InputRequired() ])
+    def unique_email(form, field):
+        existing_user =current_app.db.users.find_one({'email': field.data})
+        if existing_user:
+            raise ValidationError('Email already exists. Please choose a different one.')
+    email = StringField("Email:",validators=[validators.Email(),InputRequired(),unique_email])
     password = PasswordField('Password:', validators=[
         validators.DataRequired(),
         validators.Regexp(
@@ -104,6 +110,8 @@ class SignupForm(FlaskForm):
         validators.EqualTo('password', message='Passwords must match'),
     ])
     submit = SubmitField("Sign up")
+
+    
 
 class LoginForm(FlaskForm):
     email = StringField("Email:",validators=[validators.Email(),InputRequired() ])

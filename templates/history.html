@@ -67,7 +67,7 @@
                                 <td class="text-center table-header">
                                     <a
                                         href="{{ url_for('pages.handle_action', action_type='download_btn', scan_id=scan_data._id, scan_ip=scan_data.ip) }}">
-                                        <svg class="btnNoBorders" fill="none" height="1em" style="color:#DC3545;"
+                                        <svg class="btnNoBorders" fill="none" height="1em" style="color:#EBC33A;"
                                             viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
                                             <path
                                                 d="M11 5C11 4.44772 11.4477 4 12 4C12.5523 4 13 4.44772 13 5V12.1578L16.2428 8.91501L17.657 10.3292L12.0001 15.9861L6.34326 10.3292L7.75748 8.91501L11 12.1575V5Z"
@@ -80,7 +80,7 @@
                                     <a
                                         href="{{ url_for('pages.handle_action', action_type='showResult_btn', scan_id=scan_data._id, scan_ip=scan_data.ip) }}">
                                         <svg class="bi bi-eye" fill="currentColor" height="1em" viewbox="0 0 16 16"
-                                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                            width="1em" xmlns="http://www.w3.org/2000/svg"style="color:#f3f5f8 ;">
                                             <path
                                                 d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z">
                                             </path>
@@ -91,7 +91,7 @@
                                     </a>
                                     <a
                                         href="{{ url_for('pages.handle_action', action_type='remove_btn', scan_id=scan_data._id, scan_ip=scan_data.ip) }}">
-                                        <i class="la la-remove"></i>
+                                        <i class="la la-remove"style="color:#DC3545;"></i>
                                     </a>
                                 </td>
                                 {% endfor %}
