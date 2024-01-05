@@ -47,12 +47,6 @@ def start():
 def home():
     return render_template("home.html", title=f"Home - ")
 
-
-@pages.route("/<slug>", methods=["GET", "POST"])
-def project(slug):
-    # Add your project view logic here
-    return render_template("project.html", slug=slug)
-
 def scan_page(scan_id, scan_ip):
     scan_data = current_app.db.scans.find_one({"_id": scan_id})
 

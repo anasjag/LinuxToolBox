@@ -1,5 +1,5 @@
 from dataclasses import dataclass , field
-
+from typing import List
 @dataclass
 class Users:
     _id: str
@@ -9,7 +9,7 @@ class Users:
     phone: str = None
     email: str = None
     password: str = None
-    scans: list[str] = field(default_factory=list)
+    scans: List[str] = field(default_factory=list)
 
 @dataclass
 class Scans:
