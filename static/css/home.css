@@ -111,7 +111,12 @@
     max-width: 45rem;
   }
 }
-
+.home_p{
+    margin-top: 9%;
+    color: #f3f5f8;
+    text-align: left;
+    margin-left: 18%;
+}
 @media (max-width: 780px) {
   .p_home {
     display: block !important;
