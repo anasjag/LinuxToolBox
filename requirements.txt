@@ -5,7 +5,6 @@ Flask
 itsdangerous
 Jinja2
 MarkupSafe
-pymongo
 Werkzeug
 gunicorn
 flask-wtf
@@ -14,3 +13,4 @@ xmltodict
 email_validator
 pdfkit
 wkhtmltopdf
+pymongo[srv]
