@@ -335,6 +335,10 @@ def handle_action(action_type, scan_id, scan_ip):
                 return render_template('ping_result.html', scan_result=scan_result, ip=scan_ip)
     elif action_type == "remove_btn":
         current_app.db.scans.delete_one({"_id": scan_id})
+        current_app.db.users.update_one(
+            {"scans": scan_id},
+            {"$pull": {"scans": scan_id}}
+        )
     return redirect(url_for("pages.history"))
 @pages.route("/logout")
 def logout():
