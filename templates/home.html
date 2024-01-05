@@ -27,7 +27,8 @@
                     </p>
 
                     <section class="projects">
-                        <p class="home_p"><span style="font-size: 24px; color:#ebc33a;">Port Scanner with Nmap</span><br> Find open ports
+                        <p class="home_p"><span style="font-size: 24px; color:#ebc33a;">Port Scanner with
+                                Nmap</span><br> Find open ports
                             and running services, and do OS fingerprinting in a single port check.</p>
                         <div class="image-background">
 
@@ -46,7 +47,8 @@
                         </div>
 
                         <p class="p_home home_p" style="margin-top: 15%;display:none;color: #f3f5f8;"><span
-                                style="font-size: 24px; color:#ebc33a;">ICMP Ping</span><br>Detect if a server is live and responds to
+                                style="font-size: 24px; color:#ebc33a;">ICMP Ping</span><br>Detect if a server is live
+                            and responds to
                             ICMP requests.</p>
                         <div class="image-background">
 
@@ -65,10 +67,11 @@
 
                         </div>
                         <p class="p2_home home_p" style="margin-top: 15%; display:none;color: #f3f5f8;"><span
-                                style="font-size: 24px; color:#ebc33a;">ICMP Ping</span><br>Detect if a server is live and responds to
+                                style="font-size: 24px; color:#ebc33a;">ICMP Ping</span><br>Detect if a server is live
+                            and responds to
                             ICMP requests.</p>
-                        <p class="home_p"><span
-                            style="font-size: 24px; color:#ebc33a;">URL Fuzzer</span><br> Discover hidden, sensitive or vulnerable files and
+                        <p class="home_p"><span style="font-size: 24px; color:#ebc33a;">URL Fuzzer</span><br> Discover
+                            hidden, sensitive or vulnerable files and
                             routes in web applications and servers.
                         </p>
                         <div class="image-background">
@@ -111,20 +114,18 @@
     const options = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.5 // Adjust as needed
+        threshold: 0.2 // Adjust this value to control when the paragraph starts revealing
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                pHome.style.animationPlayState = 'running';
-            } else {
-                pHome.style.animationPlayState = 'paused';
-            }
+            const opacityValue = entry.isIntersecting ? 1 : 0;
+            pHome.style.opacity = opacityValue;
         });
     }, options);
 
     observer.observe(pHome);
 </script>
+
 
 {%endblock%}
