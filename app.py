@@ -2,6 +2,7 @@ import os
 from flask import Flask
 from pymongo import MongoClient
 from dotenv import load_dotenv
+import certifi
 
 load_dotenv()
 
@@ -15,7 +16,7 @@ def create_app():
     # client = MongoClient(os.getenv("MONGODB_URI"))
     app.config["MONGODB_URI"] = os.environ.get("MONGODB_URI")
     app.config["MONGODB_DB"] = os.environ.get("MONGODB_DB")
-    app.db = MongoClient(app.config["MONGODB_URI"])[
+    app.db = MongoClient(app.config["MONGODB_URI"], tlsCAFile=certifi.where())[
         app.config.get("MONGODB_DB")
     ]
     app.config["SECRET_KEY"] = SECRET_KEY

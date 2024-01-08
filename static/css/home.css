@@ -4,18 +4,17 @@
   box-sizing: border-box;
 }
 .p-home {
-      position: relative;
-      left: 0px; /* Initial position outside the view */
-      top: 0px;
-      animation-name: example;
-      animation-duration: 2s;
-    }
+    position: relative;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 2s ease; /* Adjust the duration and easing as needed */
+}
 
-    @keyframes example {
-      0%   { left:-250px; }
 
-      100% {left:0px;}
-    }
+
+
+
+
+
 .main{
   background-color:#121212;
   background: linear-gradient(135deg, #121212, #121212);
