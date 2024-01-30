@@ -3,7 +3,7 @@ from flask import Flask
 from pymongo import MongoClient
 from dotenv import load_dotenv
 # import certifi
-
+ 
 load_dotenv()
 
 SECRET_KEY = os.urandom(32)
@@ -22,7 +22,6 @@ def create_app():
     ]
     app.config["SECRET_KEY"] = SECRET_KEY
     # app.db = client.LinuxToolBox
-    # 6eez
     app.register_blueprint(pages)
 
     return app
