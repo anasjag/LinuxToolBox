@@ -4,6 +4,7 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 # import certifi
  
+ 
 load_dotenv()
 
 SECRET_KEY = os.urandom(32)
