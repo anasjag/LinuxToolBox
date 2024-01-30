@@ -1,2 +1,0 @@
-security.html if user put an exists email 
-history.html the table must be date sortable and the search must work in tool name field 
