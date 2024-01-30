@@ -17,6 +17,7 @@ import socket
 import pdfkit
 import uuid
 import functools
+from passlib.hash import pbkdf2_sha256
 from forms import *
 import subprocess
 from models import Users , Scans, Pings
@@ -72,8 +73,8 @@ def login():
             return redirect("login.html")
         user = Users(**user_data)
         if (
-            user and form.password.data == user.password
-        ):  # should be || pdkf2_sha256.verify(form.password.data,user.password)
+            user and pbkdf2_sha256.verify(form.password.data,user.password)
+        ):  
             session["user_id"] = user._id
             session["email"] = user.email
 
@@ -100,7 +101,7 @@ def signup():
             fname=form.fname.data,
             lname=form.lname.data,
             email=form.email.data,
-            password=form.password.data,  # should be hashed using a secure method
+            password=pbkdf2_sha256.hash(form.password.data),  # should be hashed by using a secure method
         )
         current_app.db.users.insert_one(asdict(user))
         flash("User registered successfully", category="success")
@@ -164,15 +165,15 @@ def security():
                 {
                     "$set": {
                         "email": form.email.data,
-                        "password": form.password.data
-                        if form.password.data
-                        else form.password.default,
+                        "password": pbkdf2_sha256.hash(form.password.data)
+                        if pbkdf2_sha256.hash(form.password.data)
+                        else pbkdf2_sha256.hash(form.password.default),
                     }
                 },
             )
             if form.email.data != form.email.default:
                 flash("Email changed successfully!", category="success")
-            if form.password.data != "":
+            if pbkdf2_sha256.hash(form.password.data) != "":
                 flash("Password changed successfully!", category="success")
             return redirect("security.html")
     form.process

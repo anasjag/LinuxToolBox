@@ -14,3 +14,4 @@ email_validator
 pdfkit
 wkhtmltopdf
 pymongo[srv]
+passlib
