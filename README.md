@@ -23,16 +23,22 @@ LinuxToolBox is a user-friendly web platform designed to provide seamless access
    - On Windows: 
      ```
      venv\Scripts\activate
+     ```
+   - On macOS and Linux:
+     ```
+     source venv/bin/activate
+     ```
+5. Install dependencies: `pip install -r requirements.txt` After installation, set up the Flask environment:
+   - On Windows: 
+     ```
      set FLASK_ENV=development
      set FLASK_APP=app.py
      ```
    - On macOS and Linux:
      ```
-     source venv/bin/activate
      export FLASK_ENV=development
      export FLASK_APP=app.py
      ```
-5. Install dependencies: `pip install -r requirements.txt`
 6. Install Nmap:
    - For Linux: `sudo apt-get install nmap`
    - For macOS (using Homebrew): `brew install nmap`
