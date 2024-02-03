@@ -211,10 +211,15 @@ def ping(target_ip):
 
 @pages.route("/tools.html", methods=["GET", "POST"])
 def tools():
+    # Initialize the ToolsForm
     form= ToolsForm()
+    # Check if the form is submitted and valid
     if form.validate_on_submit():
+        # Get the target IP address from the form
         target_ip = form.targetForm.data
+        # Initialize the Nmap command with the base command
         command = ['nmap']
+        # Add options to the command based on form inputs
         if form.svCheck.data:
             command.append('-sV')
         if form.osCheck.data:
@@ -232,11 +237,15 @@ def tools():
         else:
             command.append('-p')
             command.append(f'{form.listPorts.data}')
+        # Add output format and target IP to the command
         command.append('-oX')
         command.append('-')
         command.append(socket.gethostbyname(target_ip))
+        # Process the form
         form.process()
+        # Render the tools template with form data and command
         return render_template("tools.html", form=form, show_modal=True, command=command, target_ip=target_ip)
+    # Render the tools template with the initialized form
     return render_template("tools.html", form=form, show_modal=False)
 
 @pages.route("/scan/<command>/<target_ip>", methods=["GET", "POST"])
