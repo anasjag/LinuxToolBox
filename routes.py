@@ -241,13 +241,16 @@ def tools():
 
 @pages.route("/scan/<command>/<target_ip>", methods=["GET", "POST"])
 def scan(command,target_ip):
-    
+    # Evaluate the command string into a Python object
     command = ast.literal_eval(command) 
+    # Run the Nmap command and capture the output
     xml_scan = subprocess.run(command, capture_output=True)
+    # Decode the output from bytes to a UTF-8 string
     nmap_output = xml_scan.stdout.decode('utf-8')
 
-    # Parse XML string to a Python dictionary
+    # Parse the XML output into a Python dictionary
     dict_data = xmltodict.parse(nmap_output)
+    # Create a new Scan object to store in the database
     scan = Scans(
             _id=uuid.uuid4().hex,
             date= str(date.today()),
@@ -256,23 +259,28 @@ def scan(command,target_ip):
             data=dict_data,
             tool_name="Nmap"
         )
+    # Insert the Scan object into the database
     current_app.db.scans.insert_one(asdict(scan))
 
+    # If a user is logged in, associate the scan with their account
     if session.get("email"):
         current_app.db.users.update_one(
             {"_id": session["user_id"]}, {"$push": {"scans": scan._id}}
         )
 
+    # Retrieve the scan data from the database
     scan_data = current_app.db.scans.find_one({"_id": scan._id})
 
+    # Check if the scan data is available and contains expected keys
     if scan_data and 'data' in scan_data:
         scan_result = scan_data['data']
         if 'nmaprun' not in scan_result or 'host' not in scan_result['nmaprun'] or 'ports' not in scan_result['nmaprun']['host'] or 'port'not in scan_result['nmaprun']['host']['ports']:
+            # Update the status in the database if the scan data is incomplete
             current_app.db.scans.update_one(
                 {"_id": scan._id}, {"$set": {"status": "faild"}}
             )
+        # Render the scan results template with the retrieved data
         return render_template('scan.html', scan_result=scan_result, ip=target_ip)
-
 
 @pages.route("/history.html", methods=["GET", "POST"])
 @login_required
